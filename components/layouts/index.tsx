@@ -24,8 +24,8 @@ const BaseLayout: React.FC = (props) => {
             </Menu.Item>
           </Menu>
         </Layout.Header>
-        <Layout.Content className="bg-gray-100 p-8">
-          <div className="h-full w-full bg-white p-5">{props.children}</div>
+        <Layout.Content className="bg-gray-100 p-5">
+          <div className="h-full w-full p-3">{props.children}</div>
         </Layout.Content>
         <Layout.Footer className="fixed bottom-0 w-full text-center">Quiz ©2022 Created by Meruem</Layout.Footer>
       </Layout>

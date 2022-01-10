@@ -1,37 +1,34 @@
 import type { NextPage } from 'next'
 import { Fragment } from 'react'
-import { Radio, Button } from 'antd'
+import { Radio } from 'antd'
 import { topicItem } from '@/models/topic'
 import { getTopicList } from '@/services/topic'
-import { TOPIC_PAGE_SIZE } from '@/constant'
 
 type propsType = {
   data: topicItem[]
 }
 
 const IndexPage: NextPage<propsType> = (props) => {
-  const data = { props }
-  console.log(data)
+  const { data } = props
 
   return (
     <Fragment>
-      <Radio.Group defaultValue="1" size="middle">
-        {/* {
+      <Radio.Group defaultValue="1" size="large" className="flex space-x-1">
+        {
           data.map(topic => (
             <Radio.Button value={topic.id} key={topic.id}>{topic.topic}</Radio.Button>
           ))
-        } */}
+        }
       </Radio.Group>
     </Fragment>
   )
 }
 
-export const getStaticProps = async () => {
-  const data = await getTopicList({ pageNum: 1, pageSize: TOPIC_PAGE_SIZE })
-  console.log(data, 111111111111)
+export async function getStaticProps() {
+  const res = await getTopicList()
   return {
     props: {
-      data
+      data: res.data
     },
     revalidate: 3600
   }
