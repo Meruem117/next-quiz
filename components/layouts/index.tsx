@@ -9,7 +9,7 @@ const BaseLayout: React.FC = (props) => {
   return (
     <Fragment>
       <Head>
-        <title>Next Quiz</title>
+        <title>Quiz</title>
         <meta name="description" content="A quiz system based on next." />
       </Head>
       <Layout className="layout h-screen w-full">
