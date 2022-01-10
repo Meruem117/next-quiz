@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
 
-const HomePage: NextPage = () => {
+const Layout: NextPage = () => {
   return (
     <>
       <h1>Home</h1>
@@ -8,4 +8,4 @@ const HomePage: NextPage = () => {
   )
 }
 
-export default HomePage
+export default Layout

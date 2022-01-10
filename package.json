@@ -1,5 +1,5 @@
 {
-  "name": "my-app",
+  "name": "next-quiz",
   "private": true,
   "scripts": {
     "dev": "next dev",
