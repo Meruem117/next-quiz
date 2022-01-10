@@ -1,5 +1,4 @@
 import type { NextPage } from 'next'
-import { Fragment } from 'react'
 import { Radio } from 'antd'
 import { topicItem } from '@/models/topic'
 import { getTopicList } from '@/services/topic'
@@ -12,15 +11,22 @@ const IndexPage: NextPage<propsType> = (props) => {
   const { data } = props
 
   return (
-    <Fragment>
-      <Radio.Group defaultValue="1" size="large" className="flex space-x-1">
-        {
-          data.map(topic => (
-            <Radio.Button value={topic.id} key={topic.id}>{topic.topic}</Radio.Button>
-          ))
-        }
-      </Radio.Group>
-    </Fragment>
+    <div className="flex w-full h-full">
+      {/* left */}
+      <div className="flex flex-col w-3/4 h-full">
+        {/* topic list */}
+        <Radio.Group defaultValue="1" size="large" className="space-x-1">
+          {
+            data.map(topic => (
+              <Radio.Button value={topic.id} key={topic.id}>{topic.topic}</Radio.Button>
+            ))
+          }
+        </Radio.Group>
+        {/* topic content */}
+      </div>
+      {/* right */}
+      <div className="w-1/4 h-full bg-white">ss</div>
+    </div>
   )
 }
 
