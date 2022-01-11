@@ -1,3 +1,4 @@
+export const baseUrl = 'http://localhost:8080'
 export const PAGE_SIZE = 10
 export const ROLE = {
   ROOT: 2,
