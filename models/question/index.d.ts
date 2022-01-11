@@ -9,6 +9,6 @@ export interface questionItem {
   optionD: string,
   answer: string,
   score: number,
-  createTime: Date,
-  updateTime: Date
+  createTime: string,
+  updateTime: string
 }

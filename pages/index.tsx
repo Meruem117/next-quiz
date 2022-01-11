@@ -1,5 +1,6 @@
 import type { NextPage } from 'next'
 import TopicList from '@/components/topic/topic-list'
+import QuestionList from '@/components/question/question-list'
 import type { topicItem } from '@/models/topic'
 import type { questionItem } from '@/models/question'
 import { getTopicList } from '@/services/topic'
@@ -11,14 +12,13 @@ type propsType = {
 }
 
 const IndexPage: NextPage<propsType> = (props) => {
-
-  console.log(props.list[0].question)
   return (
-    <div className="flex w-full h-full">
+    <div className="flex w-full h-full space-x-6">
       {/* left */}
-      <div className="flex flex-col w-3/4 h-full">
+      <div className="flex flex-col w-3/4 h-full space-y-6">
         <TopicList data={props.data} />
         {/* topic content - question list */}
+        <QuestionList data={props.list} />
       </div>
       {/* right */}
       <div className="w-1/4 h-full bg-white">ss</div>
