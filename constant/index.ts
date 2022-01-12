@@ -15,3 +15,5 @@ export const QUESTION_TYPE_TEXT: { [key: number]: string } = {
   1: 'single choice',
   0: 'multiple choice'
 }
+//* schedule
+export const CONDUCTING_QUIZ_NUMBER: number = 3
