@@ -27,17 +27,13 @@ const ScheduleList: React.FC<{ data: scheduleItem[] }> = ({ data }) => {
                     <a>#{item.round}</a>
                   </div>}
               />
-              <div className="text-base text-gray-400 pl-2">
-                <Space direction="horizontal">
-                  <p className="w-12">Start:</p>
-                  <p>{item.startTime}</p>
-                </Space>
+              <div className="flex text-base text-gray-400 pl-2">
+                <p className="w-12">Start:</p>
+                <p>{item.startTime}</p>
               </div>
-              <div className="text-base text-gray-400 pl-2">
-                <Space direction="horizontal">
-                  <p className="w-12">End:</p>
-                  <p>{item.endTime}</p>
-                </Space>
+              <div className="flex text-base text-gray-400 pl-2">
+                <p className="w-12">End:</p>
+                <p>{item.endTime}</p>
               </div>
             </Space>
           </List.Item>
