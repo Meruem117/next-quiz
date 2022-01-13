@@ -14,7 +14,7 @@ const ScheduleList: React.FC<{ data: scheduleItem[] }> = ({ data }) => {
         itemLayout="horizontal"
         dataSource={data}
         renderItem={item => (
-          <Link href={`/quiz/${item.quizId}?round=${item.round}`} passHref>
+          <Link href={`/quiz/${item.quizId}-${item.id}`} passHref>
             <List.Item
               className="cursor-pointer rounded group hover:shadow-lg p-4 hover:shadow-green-300 duration-150 ease-in-out"
               extra={

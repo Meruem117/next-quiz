@@ -1,21 +1,24 @@
 import type { NextPage } from 'next'
 import QuizDetail from '@/components/quiz/quiz-detail'
 import type { quizItem } from '@/models/quiz'
+import type { scheduleItem } from '@/models/schedule'
 import { getQuizById } from '@/services/quiz'
+import { getScheduleById } from '@/services/schedule'
 
 type propsType = {
-  quizDetail: quizItem[]
+  quizInfo: quizItem,
+  scheduleInfo: scheduleItem
 }
 
 type contextType = {
   params: {
-    quizId: number
+    ids: string
   }
 }
 
 const QuizPage: NextPage<propsType> = (props) => {
   return (
-    <QuizDetail data={props.quizDetail} />
+    <QuizDetail data={props} />
   )
 }
 
@@ -23,20 +26,22 @@ export async function getStaticPaths() {
   return {
     fallback: true,
     paths: [
-      { params: { quizId: '1' } },
-      { params: { quizId: '2' } },
-      { params: { quizId: '3' } }
+      { params: { ids: '1-1' } }
     ]
   }
 }
 
 export async function getStaticProps(context: contextType) {
-  const id = context.params.quizId
-  const quizRes = await getQuizById(id)
+  const ids = context.params.ids.split('-')
+  const quizId = parseInt(ids[0])
+  const scheduleId = parseInt(ids[1])
+  const quizRes = await getQuizById(quizId)
+  const scheduleRes = await getScheduleById(scheduleId)
 
   return {
     props: {
-      quizDetail: quizRes.data
+      quizInfo: quizRes.data,
+      scheduleInfo: scheduleRes.data
     },
     revalidate: 3600
   }

@@ -11,3 +11,8 @@ export async function getScheduleEndList(limit: number): Promise<responseItem<sc
   const response = await fetch(baseUrl + '/schedule/end?limit=' + limit)
   return response.json()
 }
+
+export async function getScheduleById(id: number): Promise<responseItem<scheduleItem>> {
+  const response = await fetch(baseUrl + '/schedule/get?id=' + id)
+  return response.json()
+}
