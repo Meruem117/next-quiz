@@ -9,7 +9,7 @@ const QuizDetail: React.FC<{
   }
 }> = ({ data }) => {
   return (
-    <div>
+    <div className="bg-white">
       {data.quizInfo.topic}
       {data.scheduleInfo.question}
     </div>
