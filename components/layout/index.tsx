@@ -1,7 +1,6 @@
-import React from 'react'
-import Link from 'next/link'
+import React, { Fragment } from 'react'
 import Head from 'next/head'
-import { Fragment } from 'react'
+import Link from 'next/link'
 import { Layout, Menu } from 'antd'
 import { HomeOutlined } from '@ant-design/icons'
 

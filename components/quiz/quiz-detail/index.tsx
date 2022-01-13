@@ -1,17 +1,9 @@
 import React from 'react'
 import type { quizItem } from '@/models/quiz'
-import type { scheduleItem } from '@/models/schedule'
 
-const QuizDetail: React.FC<{
-  data: {
-    quizInfo: quizItem,
-    scheduleInfo: scheduleItem
-  }
-}> = ({ data }) => {
+const QuizDetail: React.FC<{ data: quizItem }> = ({ data }) => {
   return (
     <div className="bg-white">
-      {data.quizInfo.topic}
-      {data.scheduleInfo.question}
     </div>
   )
 }

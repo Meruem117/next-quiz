@@ -5,7 +5,6 @@ import type { questionItem } from '@/models/question'
 import { QUESTION_TYPE_TEXT } from '@/constant'
 
 const QuestionList: React.FC<{ data: questionItem[] }> = ({ data }) => {
-  console.log(data)
   return (
     <List
       itemLayout="vertical"
