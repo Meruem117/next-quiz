@@ -3,7 +3,7 @@ import { useRouter } from 'next/router'
 
 const TeamPage: NextPage = () => {
   const router = useRouter()
-  const team = router.query.team
+  const team = router.query.teamId
 
   return (
     <>
