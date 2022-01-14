@@ -1,23 +1,23 @@
 import type { NextPage } from 'next'
-import QuizDetail from '@/components/quiz/quiz-detail'
+import QuizInfo from '@/components/quiz/quiz-info'
 import ScheduleInfo from '@/components/schedule/schedule-info'
 import QuestionList from '@/components/question/question-list'
 import type { quizItem } from '@/models/quiz'
 import type { scheduleItem } from '@/models/schedule'
-import type { questionItem } from '@/models/question'
+// import type { questionItem } from '@/models/question'
 import { getQuizById } from '@/services/quiz'
-import { getScheduleById } from '@/services/schedule'
-import { getQuestionById } from '@/services/question'
+import { getScheduleByQuizId } from '@/services/schedule'
+// import { getQuestionById } from '@/services/question'
 
 type propsType = {
-  quizDetail: quizItem,
+  quizInfo: quizItem,
   scheduleInfo: scheduleItem,
-  questionList: questionItem[]
+  // questionList: questionItem[]
 }
 
 type contextType = {
   params: {
-    ids: string
+    quizId: number
   }
 }
 
@@ -25,10 +25,10 @@ const QuizPage: NextPage<propsType> = (props) => {
   return (
     <div className="flex flex-col space-y-4">
       <div className="flex space-x-4">
-        <QuizDetail data={props.quizDetail} />
+        <QuizInfo data={props.quizInfo} />
         <ScheduleInfo data={props.scheduleInfo} />
       </div>
-      <QuestionList data={props.questionList} />
+      {/* <QuestionList data={props.questionList} /> */}
     </div>
   )
 }
@@ -43,24 +43,22 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps(context: contextType) {
-  const ids = context.params.ids.split('-')
-  const quizId = parseInt(ids[0])
-  const scheduleId = parseInt(ids[1])
+  const quizId = context.params.quizId
   const quizRes = await getQuizById(quizId)
-  const scheduleRes = await getScheduleById(scheduleId)
-  const questionList: questionItem[] = []
-  const questions = scheduleRes.data.question.split('-')
-  questions.forEach(async item => {
-    const questionId = parseInt(item)
-    const questionRes = await getQuestionById(questionId)
-    questionList.push(questionRes.data)
-  })
+  const scheduleRes = await getScheduleByQuizId(quizId)
+  // const questionList: questionItem[] = []
+  // const questions = scheduleRes.data.question.split('-')
+  // questions.forEach(async item => {
+  //   const questionId = parseInt(item)
+  //   const questionRes = await getQuestionById(questionId)
+  //   questionList.push(questionRes.data)
+  // })
 
   return {
     props: {
-      quizDetail: quizRes.data,
+      quizInfo: quizRes.data,
       scheduleInfo: scheduleRes.data,
-      questionList
+      // questionList
     },
     revalidate: 3600
   }
