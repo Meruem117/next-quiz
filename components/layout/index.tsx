@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
-import { Layout, Menu } from 'antd'
+import { Layout, Menu, BackTop } from 'antd'
 import { HomeOutlined } from '@ant-design/icons'
 
 const BaseLayout: React.FC = (props) => {
@@ -33,6 +33,7 @@ const BaseLayout: React.FC = (props) => {
         {/* footer */}
         <Layout.Footer className="fixed bottom-0 w-full text-center text-base">Quiz ©2022 Created by Meruem</Layout.Footer>
       </Layout>
+      <BackTop />
     </Fragment>
   )
 }

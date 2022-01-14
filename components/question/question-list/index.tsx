@@ -9,7 +9,7 @@ const QuestionList: React.FC<{ data: questionItem[] }> = ({ data }) => {
     <List
       itemLayout="vertical"
       size="large"
-      className="bg-white"
+      className="bg-white rounded"
       dataSource={data}
       footer={
         <a className="pl-1 text-sm">Add your question here.</a>

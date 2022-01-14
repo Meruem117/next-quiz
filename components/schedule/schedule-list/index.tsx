@@ -5,7 +5,7 @@ import type { scheduleItem } from '@/models/schedule'
 
 const ScheduleList: React.FC<{ data: scheduleItem[] }> = ({ data }) => {
   return (
-    <div className="flex flex-col bg-white space-y-4">
+    <div className="flex flex-col bg-white space-y-4 rounded">
       <div className="flex p-2">
         <Typography.Title level={3} className="w-11/12">Conducting Quiz</Typography.Title>
         <Typography.Text type="secondary" className="w-1/12 pt-1 cursor-pointer hover:text-blue-400">My Quiz</Typography.Text>
@@ -14,7 +14,7 @@ const ScheduleList: React.FC<{ data: scheduleItem[] }> = ({ data }) => {
         itemLayout="horizontal"
         dataSource={data}
         renderItem={item => (
-          <Link href={`/quiz/${item.quizId}-${item.id}`} passHref>
+          <Link href={`/quiz/${item.quizId}`} passHref>
             <List.Item
               className="cursor-pointer rounded group hover:shadow-lg p-4 hover:shadow-green-300 duration-150 ease-in-out"
               extra={

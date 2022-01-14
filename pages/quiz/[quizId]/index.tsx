@@ -23,8 +23,8 @@ type contextType = {
 
 const QuizPage: NextPage<propsType> = (props) => {
   return (
-    <div className="flex flex-col space-y-4">
-      <div className="flex space-x-4">
+    <div className="flex flex-col w-full space-y-4">
+      <div className="flex w-1/2 mx-auto p-4 space-x-4 bg-white rounded">
         <QuizInfo data={props.quizInfo} />
         <ScheduleInfo data={props.scheduleInfo} />
       </div>
@@ -37,7 +37,7 @@ export async function getStaticPaths() {
   return {
     fallback: true,
     paths: [
-      { params: { ids: '1-1' } }
+      { params: { quizId: '1' } }
     ]
   }
 }
