@@ -1,14 +1,14 @@
 import React from 'react'
 import Link from 'next/link'
-import { List, Tag, Space } from 'antd'
+import { List, Tag, Space, Typography } from 'antd'
 import type { scheduleItem } from '@/models/schedule'
 
 const ScheduleList: React.FC<{ data: scheduleItem[] }> = ({ data }) => {
   return (
     <div className="flex flex-col bg-white space-y-4">
       <div className="flex p-2">
-        <div className="text-xl font-semibold w-11/12">Conducting Quiz</div>
-        <a className="w-1/12 text-sm pt-1">My Quiz</a>
+        <Typography.Title level={3} className="w-11/12">Conducting Quiz</Typography.Title>
+        <Typography.Text type="secondary" className="w-1/12 pt-1 cursor-pointer hover:text-blue-400">My Quiz</Typography.Text>
       </div>
       <List
         itemLayout="horizontal"
@@ -24,18 +24,22 @@ const ScheduleList: React.FC<{ data: scheduleItem[] }> = ({ data }) => {
               <Space direction="vertical" size="small">
                 <List.Item.Meta
                   title={
-                    <div className="flex space-x-3 text-xl font-semibold">
-                      <p className="group-hover:text-green-600">{item.quizName}</p>
-                      <a title={`round:${item.round}`}>#{item.round}</a>
+                    <div className="flex space-x-3">
+                      <Typography.Title
+                        level={4}
+                        className="group-hover:text-green-600"
+                        title={`Round: ${item.round}`}
+                      >{item.quizName} #{item.round}
+                      </Typography.Title>
                     </div>}
                 />
-                <div className="flex text-base text-gray-400 pl-2">
-                  <p className="w-12">Start:</p>
-                  <p>{item.startTime}</p>
+                <div className="flex pl-2">
+                  <Typography.Text type="secondary" className="w-12">Start:</Typography.Text>
+                  <Typography.Text type="secondary">{item.startTime}</Typography.Text>
                 </div>
-                <div className="flex text-base text-gray-400 pl-2">
-                  <p className="w-12">End:</p>
-                  <p>{item.endTime}</p>
+                <div className="flex pl-2">
+                  <Typography.Text type="secondary" className="w-12">End:</Typography.Text>
+                  <Typography.Text type="secondary">{item.endTime}</Typography.Text>
                 </div>
               </Space>
             </List.Item>

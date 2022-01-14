@@ -16,6 +16,12 @@ type propsType = {
   scheduleList: scheduleItem[]
 }
 
+type contextType = {
+  params: {
+    topic: string
+  }
+}
+
 const IndexPage: NextPage<propsType> = (props) => {
   return (
     <div className="flex w-full h-full space-x-6">
@@ -32,9 +38,22 @@ const IndexPage: NextPage<propsType> = (props) => {
   )
 }
 
-export async function getStaticProps() {
+export async function getStaticPaths() {
   const topicRes = await getTopicList()
-  const topic = topicRes.data[0].topic
+  const topicList = topicRes.data
+  return {
+    fallback: false,
+    paths: topicList.map(item => ({
+      params: {
+        topic: item.topic
+      }
+    }))
+  }
+}
+
+export async function getStaticProps(context: contextType) {
+  const topic = context.params.topic
+  const topicRes = await getTopicList()
   const questionRes = await getQuestionListByTopic(topic)
   const scheduleRes = await getScheduleStartList(CONDUCTING_QUIZ_NUMBER)
 
