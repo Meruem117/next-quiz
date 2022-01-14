@@ -12,7 +12,7 @@ const QuestionList: React.FC<{ data: questionItem[] }> = ({ data }) => {
       className="bg-white rounded"
       dataSource={data}
       footer={
-        <a className="pl-1 text-sm">Add your question here.</a>
+        <a className="pl-2 text-sm">upload your question</a>
       }
       renderItem={item => (
         <List.Item
