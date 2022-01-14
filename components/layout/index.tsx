@@ -15,9 +15,9 @@ const BaseLayout: React.FC = (props) => {
       {/* layout */}
       <Layout className="layout h-screen w-full">
         {/* header */}
-        <Layout.Header className="flex justify-start space-x-4 px-4 pt-1.5 bg-white">
+        <Layout.Header className="flex justify-center space-x-4 px-4 pt-1.5 bg-white">
           <div className="text-4xl font-semibold cursor-default select-none text-AiDeep">Quiz</div>
-          <Menu mode="horizontal" defaultSelectedKeys={['home']} className="w-full text-lg font-medium">
+          <Menu mode="horizontal" defaultSelectedKeys={['home']} className="text-lg font-medium">
             <Menu.Item key="home" icon={<HomeOutlined />}>
               <Link href={'/'}>Home</Link>
             </Menu.Item>
