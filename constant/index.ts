@@ -23,6 +23,6 @@ export const QUESTION_TYPE = {
   MULTIPLE_CHOICE: 0
 }
 export const QUESTION_TYPE_TEXT: { [key: number]: string } = {
-  1: 'single choice',
-  0: 'multiple choice'
+  1: 'Single Choice',
+  0: 'Multiple Choice'
 }

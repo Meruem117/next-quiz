@@ -5,7 +5,7 @@ import { HomeOutlined, TagsOutlined } from '@ant-design/icons'
 
 const NavMenu: React.FC = () => {
   return (
-    <Menu mode="horizontal" defaultSelectedKeys={['home']} className="text-lg font-medium w-1/2">
+    <Menu mode="horizontal" defaultSelectedKeys={['']} className="text-lg font-medium w-1/2">
       <Menu.Item key="home" icon={<HomeOutlined />}>
         <Link href={'/'}>Home</Link>
       </Menu.Item>

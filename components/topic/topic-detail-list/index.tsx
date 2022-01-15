@@ -8,7 +8,7 @@ const TopicDetailList: React.FC<{ data: topicItem[] }> = ({ data }) => {
     <List
       itemLayout="horizontal"
       dataSource={data}
-      className="w-1/2 mx-auto"
+      className="w-1/2 mx-auto shadow-xl"
       renderItem={item => (
         <Link href={`/topic/${item.topic}`} passHref>
           <List.Item className="bg-white p-2 rounded cursor-pointer hover:bg-green-200 hover:shadow-lg">
