@@ -1,6 +1,6 @@
 import React, { ReactElement } from 'react'
 import { List, Button, Tag, Typography } from 'antd'
-import { TagOutlined, ClockCircleOutlined } from '@ant-design/icons'
+import { ClockCircleOutlined } from '@ant-design/icons'
 import IconText from '@/components/common/icon-text'
 import type { questionItem } from '@/models/question'
 import { QUESTION_TYPE_TEXT } from '@/constant'
@@ -20,16 +20,16 @@ const QuestionList: React.FC<{ data: questionItem[] }> = ({ data }) => {
           key={item.id}
           className="rounded p-2"
           actions={[
-            <Tag color="volcano" key={item.topic}>{item.topic}</Tag>,
-            <IconText icon={TagOutlined} text={QUESTION_TYPE_TEXT[item.type]} key={item.type} />,
-            <IconText icon={ClockCircleOutlined} text={item.updateTime.substring(0, 10)} key={item.updateTime} />
+            <Tag color="volcano" key={item.id}>{item.topic}</Tag>,
+            <Tag color="magenta" key={item.id}>{QUESTION_TYPE_TEXT[item.type]}</Tag>,
+            <IconText key={item.id} icon={ClockCircleOutlined} text={item.updateTime.substring(0, 10)} title={`Last Update: ${item.updateTime}`} />
           ]}
           extra={
             <Button type="default" href={`/question/${item.id}`}>Detail</Button>
           }
         >
           <List.Item.Meta
-            title={<Typography.Title level={4}>{item.question}</Typography.Title>}
+            title={<Typography.Title level={4} title={item.question}>{item.question}</Typography.Title>}
           />
         </List.Item>
       )}

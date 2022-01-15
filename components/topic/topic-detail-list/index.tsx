@@ -14,7 +14,7 @@ const TopicDetailList: React.FC<{ data: topicItem[] }> = ({ data }) => {
           <List.Item className="bg-white p-2 rounded cursor-pointer hover:bg-green-200 hover:shadow-lg">
             <List.Item.Meta
               avatar={<Avatar shape="square" size={48} src={`https://ui-avatars.com/api/?name=${item.topic}`} />}
-              title={<Typography.Title level={4}>{item.topic}</Typography.Title>}
+              title={<Typography.Title level={4} title={item.topic}>{item.topic}</Typography.Title>}
               description={item.description}
             />
           </List.Item>
