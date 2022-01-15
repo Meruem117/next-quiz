@@ -2,7 +2,7 @@ import React, { Fragment } from 'react'
 import Head from 'next/head'
 import Link from 'next/link'
 import { Layout, Menu, BackTop } from 'antd'
-import { HomeOutlined } from '@ant-design/icons'
+import { HomeOutlined, TagsOutlined } from '@ant-design/icons'
 
 const BaseLayout: React.FC = (props) => {
   return (
@@ -17,12 +17,12 @@ const BaseLayout: React.FC = (props) => {
         {/* header */}
         <Layout.Header className="flex justify-center space-x-4 px-4 pt-1.5 bg-white">
           <div className="text-4xl font-semibold cursor-default select-none text-AiDeep">Quiz</div>
-          <Menu mode="horizontal" defaultSelectedKeys={['home']} className="text-lg font-medium">
+          <Menu mode="horizontal" defaultSelectedKeys={['home']} className="text-lg font-medium w-1/2">
             <Menu.Item key="home" icon={<HomeOutlined />}>
               <Link href={'/'}>Home</Link>
             </Menu.Item>
-            <Menu.Item key="about">
-              <Link href={'/about'}>About</Link>
+            <Menu.Item key="topic" icon={<TagsOutlined />}>
+              <Link href={'/topic'}>Topic</Link>
             </Menu.Item>
           </Menu>
         </Layout.Header>
