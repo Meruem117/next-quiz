@@ -7,7 +7,7 @@ import { getQuestionListByTopic } from '@/services/question'
 
 type propsType = {
   topic: string,
-  questionList: questionItem[]
+  questionData: questionItem[]
 }
 
 type contextType = {
@@ -20,7 +20,7 @@ const TopicDetailPage: NextPage<propsType> = (props) => {
   return (
     <div className="w-1/2 mx-auto">
       <TopicBreadcrumb topic={props.topic} />
-      <QuestionList data={props.questionList} />
+      <QuestionList data={props.questionData} />
     </div>
   )
 }
@@ -45,7 +45,7 @@ export async function getStaticProps(context: contextType) {
   return {
     props: {
       topic,
-      questionList: questionRes.data
+      questionData: questionRes.data
     },
     revalidate: 3600
   }

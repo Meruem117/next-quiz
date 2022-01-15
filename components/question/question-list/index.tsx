@@ -10,10 +10,13 @@ const QuestionList: React.FC<{ data: questionItem[] }> = ({ data }) => {
     <List
       itemLayout="vertical"
       size="large"
-      className="bg-white shadow-xl"
       dataSource={data}
+      className="bg-white shadow-xl p-2"
+      pagination={{
+        pageSize: 3,
+      }}
       footer={
-        <a className="text-sm pl-2">upload your question</a>
+        <a>Add a Question</a>
       }
       renderItem={item => (
         <List.Item
