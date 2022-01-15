@@ -22,7 +22,7 @@ type contextType = {
   }
 }
 
-const IndexPage: NextPage<propsType> = (props) => {
+const TopicDetailPage: NextPage<propsType> = (props) => {
   return (
     <div className="flex w-full h-full space-x-6">
       {/* left */}
@@ -67,4 +67,4 @@ export async function getStaticProps(context: contextType) {
   }
 }
 
-export default IndexPage
+export default TopicDetailPage

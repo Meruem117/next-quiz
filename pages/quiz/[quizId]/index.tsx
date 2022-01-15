@@ -1,7 +1,7 @@
 import type { NextPage } from 'next'
 import QuizInfo from '@/components/quiz/quiz-info'
 import ScheduleInfo from '@/components/schedule/schedule-info'
-import QuestionList from '@/components/question/question-list'
+// import QuestionList from '@/components/question/question-simple-list'
 import type { quizItem } from '@/models/quiz'
 import type { scheduleItem } from '@/models/schedule'
 // import type { questionItem } from '@/models/question'
@@ -21,7 +21,7 @@ type contextType = {
   }
 }
 
-const QuizPage: NextPage<propsType> = (props) => {
+const QuizDetailPage: NextPage<propsType> = (props) => {
   return (
     <div className="flex flex-col w-full space-y-4">
       <div className="flex w-1/2 mx-auto p-4 space-x-4 bg-white rounded">
@@ -64,4 +64,4 @@ export async function getStaticProps(context: contextType) {
   }
 }
 
-export default QuizPage
+export default QuizDetailPage
