@@ -16,7 +16,19 @@ export const IS_TEAM_TYPE_TEXT: { [key: number]: string } = {
   0: 'user'
 }
 //* schedule
-export const CONDUCTING_QUIZ_NUMBER = 3
+export const SCHEDULE_START_TYPE = {
+  START: 1,
+  NOT_START: 0
+}
+export const SCHEDULE_END_TYPE = {
+  END: 1,
+  NOT_END: 0
+}
+export const SCHEDULE_STATUS = {
+  START: 'Start',
+  REMAIN: 'Remain',
+  END: 'End'
+}
 //* question
 export const QUESTION_TYPE = {
   SINGLE_CHOICE: 1,

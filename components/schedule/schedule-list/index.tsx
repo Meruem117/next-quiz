@@ -1,53 +1,49 @@
-import React from 'react'
-import Link from 'next/link'
-import { List, Tag, Space, Typography } from 'antd'
+import React, { ReactElement } from 'react'
+import { List, Button, Typography, Tag } from 'antd'
+import { ClockCircleOutlined } from '@ant-design/icons'
+import IconText from '@/components/common/icon-text'
 import type { scheduleItem } from '@/models/schedule'
+import { SCHEDULE_START_TYPE, SCHEDULE_END_TYPE } from '@/constant'
 
 const ScheduleList: React.FC<{ data: scheduleItem[] }> = ({ data }) => {
   return (
-    <div className="flex flex-col bg-white space-y-4 rounded">
-      <div className="flex p-2">
-        <Typography.Title level={3} className="w-11/12">Conducting Quiz</Typography.Title>
-        <Typography.Text type="secondary" className="w-1/12 pt-1 cursor-pointer hover:text-blue-400">My Quiz</Typography.Text>
-      </div>
-      <List
-        itemLayout="horizontal"
-        dataSource={data}
-        renderItem={item => (
-          <Link href={`/quiz/${item.quizId}`} passHref>
-            <List.Item
-              className="cursor-pointer rounded group hover:shadow-lg p-4 hover:shadow-green-300 duration-150 ease-in-out"
-              extra={
-                <Tag color="green">Conducting</Tag>
-              }
-            >
-              <Space direction="vertical" size="small">
-                <List.Item.Meta
-                  title={
-                    <div className="flex space-x-3">
-                      <Typography.Title
-                        level={4}
-                        className="group-hover:text-green-600"
-                        title={`Round: ${item.round}`}
-                      >{item.quizName} #{item.round}
-                      </Typography.Title>
-                    </div>}
-                />
-                <div className="flex pl-2">
-                  <Typography.Text type="secondary" className="w-12">Start:</Typography.Text>
-                  <Typography.Text type="secondary">{item.startTime}</Typography.Text>
-                </div>
-                <div className="flex pl-2">
-                  <Typography.Text type="secondary" className="w-12">End:</Typography.Text>
-                  <Typography.Text type="secondary">{item.endTime}</Typography.Text>
-                </div>
-              </Space>
-            </List.Item>
-          </Link>
-        )}
-      />
-    </div>
+    <List
+      itemLayout="vertical"
+      dataSource={data}
+      className="w-1/2 mx-auto p-2 shadow-xl bg-white"
+      pagination={{
+        pageSize: 2,
+      }}
+      footer={
+        <a>My Quiz</a>
+      }
+      renderItem={item => (
+        (item.isStart === SCHEDULE_START_TYPE.START) && (item.isEnd === SCHEDULE_END_TYPE.NOT_END) &&
+        <ScheduleListItem item={item} color="green" text="Start" />
+        || (item.isStart === SCHEDULE_START_TYPE.NOT_START) &&
+        <ScheduleListItem item={item} color="magenta" text="Remain" />
+        || (item.isEnd === SCHEDULE_END_TYPE.END) &&
+        <ScheduleListItem item={item} color="red" text="End" />
+      )}
+    />
   )
 }
+
+const ScheduleListItem = ({ item, color, text }: { item: scheduleItem, color: string, text: string }): ReactElement => (
+  <List.Item
+    className="p-2 rounded bg-white"
+    extra={
+      <Button type="default" href={`/quiz/${item.quizId}`}>Detail</Button>
+    }
+    actions={[
+      <Tag key={item.id} color={color}>{text}</Tag>,
+      <IconText key={item.id} icon={ClockCircleOutlined} text={item.startTime.substring(0, 10)} title={`Start at: ${item.startTime}`} />
+    ]}
+  >
+    <List.Item.Meta
+      title={<Typography.Title level={4} title={`Round: ${item.round}`}>{item.quizName} #{item.round}</Typography.Title>}
+    />
+  </List.Item>
+)
 
 export default ScheduleList

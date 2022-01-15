@@ -1,5 +1,5 @@
 import React from 'react'
-import { Typography, Tag, Collapse, PageHeader } from 'antd'
+import { Typography, Tag, Collapse } from 'antd'
 import { CalendarOutlined } from '@ant-design/icons'
 import IconText from '@/components/common/icon-text'
 import type { questionItem } from '@/models/question'
@@ -28,7 +28,7 @@ const QuestionDetail: React.FC<{ data: questionItem }> = ({ data }) => {
       </div>
       <div className="flex space-x-2">
         <Tag color="volcano">{data.topic}</Tag>
-        <Tag color="magenta">{QUESTION_TYPE_TEXT[data.type]}</Tag>
+        <Tag color="blue">{QUESTION_TYPE_TEXT[data.type]}</Tag>
       </div>
       {
         options.map(option => {

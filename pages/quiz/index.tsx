@@ -1,13 +1,27 @@
 import type { NextPage } from 'next'
-import Link from 'next/link'
+import ScheduleList from '@/components/schedule/schedule-list'
+import type { scheduleItem } from '@/models/schedule'
+import { getScheduleStartList } from '@/services/schedule'
 
-const QuizPage: NextPage = () => {
+type propsType = {
+  scheduleData: scheduleItem[]
+}
+
+const QuizPage: NextPage<propsType> = (props) => {
   return (
-    <>
-      <h1>About</h1>
-      <Link href={'/team/a'}>To Team A</Link>
-    </>
+    <ScheduleList data={props.scheduleData} />
   )
+}
+
+export async function getStaticProps() {
+  const scheduleRes = await getScheduleStartList(0)
+
+  return {
+    props: {
+      scheduleData: scheduleRes.data
+    },
+    revalidate: 3600
+  }
 }
 
 export default QuizPage

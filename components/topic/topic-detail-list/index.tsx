@@ -8,7 +8,7 @@ const TopicDetailList: React.FC<{ data: topicItem[] }> = ({ data }) => {
     <List
       itemLayout="horizontal"
       dataSource={data}
-      className="w-1/2 mx-auto shadow-xl p-2"
+      className="w-1/2 mx-auto shadow-xl p-2 bg-white"
       pagination={{
         pageSize: 6,
       }}
@@ -17,7 +17,7 @@ const TopicDetailList: React.FC<{ data: topicItem[] }> = ({ data }) => {
       }
       renderItem={item => (
         <Link href={`/topic/${item.topic}`} passHref>
-          <List.Item className="bg-white p-2 rounded cursor-pointer hover:bg-green-200 hover:shadow-lg">
+          <List.Item className="p-2 rounded cursor-pointer hover:bg-green-200 hover:shadow-lg">
             <List.Item.Meta
               avatar={<Avatar shape="square" size={48} src={`https://ui-avatars.com/api/?name=${item.topic}`} />}
               title={<Typography.Title level={4} title={item.topic}>{item.topic}</Typography.Title>}
