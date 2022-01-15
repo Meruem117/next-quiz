@@ -3,27 +3,30 @@ import { List, Button, Typography, Tag } from 'antd'
 import { ClockCircleOutlined } from '@ant-design/icons'
 import IconText from '@/components/common/icon-text'
 import type { scheduleItem } from '@/models/schedule'
-import { SCHEDULE_START_TYPE, SCHEDULE_END_TYPE } from '@/constant'
+import { SCHEDULE_TYPE, SCHEDULE_STATUS } from '@/constant'
 
-const ScheduleList: React.FC<{ data: scheduleItem[] }> = ({ data }) => {
+const ScheduleList: React.FC<{ data: scheduleItem[], select: string[] }> = ({ data, select }) => {
   return (
     <List
       itemLayout="vertical"
       dataSource={data}
-      className="w-1/2 mx-auto p-2 shadow-xl bg-white"
+      className="shadow-xl bg-white p-2"
       pagination={{
-        pageSize: 2,
+        pageSize: 10,
       }}
       footer={
         <a>My Quiz</a>
       }
       renderItem={item => (
-        (item.isStart === SCHEDULE_START_TYPE.START) && (item.isEnd === SCHEDULE_END_TYPE.NOT_END) &&
-        <ScheduleListItem item={item} color="green" text="Start" />
-        || (item.isStart === SCHEDULE_START_TYPE.NOT_START) &&
-        <ScheduleListItem item={item} color="magenta" text="Remain" />
-        || (item.isEnd === SCHEDULE_END_TYPE.END) &&
-        <ScheduleListItem item={item} color="red" text="End" />
+        // end
+        select.includes(SCHEDULE_STATUS.END.color) && (item.isEnd === SCHEDULE_TYPE.END) &&
+        <ScheduleListItem item={item} color={SCHEDULE_STATUS.END.color} text={SCHEDULE_STATUS.END.text} />
+        // not start
+        || select.includes(SCHEDULE_STATUS.REMAIN.color) && (item.isStart === SCHEDULE_TYPE.NOT_START) &&
+        <ScheduleListItem item={item} color={SCHEDULE_STATUS.REMAIN.color} text={SCHEDULE_STATUS.REMAIN.text} />
+        // start but not end
+        || select.includes(SCHEDULE_STATUS.START.color) && (item.isStart === SCHEDULE_TYPE.START) && (item.isEnd === SCHEDULE_TYPE.NOT_END) &&
+        <ScheduleListItem item={item} color={SCHEDULE_STATUS.START.color} text={SCHEDULE_STATUS.START.text} />
       )}
     />
   )
@@ -37,7 +40,7 @@ const ScheduleListItem = ({ item, color, text }: { item: scheduleItem, color: st
     }
     actions={[
       <Tag key={item.id} color={color}>{text}</Tag>,
-      <IconText key={item.id} icon={ClockCircleOutlined} text={item.startTime.substring(0, 10)} title={`Start at: ${item.startTime}`} />
+      <IconText key={item.id} icon={ClockCircleOutlined} text={item.startTime} title={`Start at: ${item.startTime}`} />
     ]}
   >
     <List.Item.Meta

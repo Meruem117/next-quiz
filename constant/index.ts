@@ -16,18 +16,16 @@ export const IS_TEAM_TYPE_TEXT: { [key: number]: string } = {
   0: 'user'
 }
 //* schedule
-export const SCHEDULE_START_TYPE = {
+export const SCHEDULE_TYPE = {
   START: 1,
-  NOT_START: 0
-}
-export const SCHEDULE_END_TYPE = {
+  NOT_START: 0,
   END: 1,
   NOT_END: 0
 }
 export const SCHEDULE_STATUS = {
-  START: 'Start',
-  REMAIN: 'Remain',
-  END: 'End'
+  START: { text: 'Start', color: 'green' },
+  REMAIN: { text: 'Remain', color: 'magenta' },
+  END: { text: 'End', color: 'red' }
 }
 //* question
 export const QUESTION_TYPE = {
