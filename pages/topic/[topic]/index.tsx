@@ -1,10 +1,12 @@
 import type { NextPage } from 'next'
+import TopicBreadcrumb from '@/components/topic/topic-breadcrumb'
 import QuestionList from '@/components/question/question-list'
 import type { questionItem } from '@/models/question'
 import { getTopicList } from '@/services/topic'
 import { getQuestionListByTopic } from '@/services/question'
 
 type propsType = {
+  topic: string,
   questionList: questionItem[]
 }
 
@@ -16,7 +18,10 @@ type contextType = {
 
 const TopicDetailPage: NextPage<propsType> = (props) => {
   return (
-    <QuestionList data={props.questionList} />
+    <div className="w-1/2 mx-auto">
+      <TopicBreadcrumb topic={props.topic} />
+      <QuestionList data={props.questionList} />
+    </div>
   )
 }
 
@@ -39,6 +44,7 @@ export async function getStaticProps(context: contextType) {
 
   return {
     props: {
+      topic,
       questionList: questionRes.data
     },
     revalidate: 3600

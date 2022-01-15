@@ -9,15 +9,15 @@ const QuestionList: React.FC<{ data: questionItem[] }> = ({ data }) => {
     <List
       itemLayout="vertical"
       size="large"
-      className="w-1/2 mx-auto"
+      className="bg-white"
       dataSource={data}
       footer={
-        <a className="text-sm">upload your question</a>
+        <a className="text-sm pl-2">upload your question</a>
       }
       renderItem={item => (
         <List.Item
           key={item.id}
-          className="bg-white rounded p-2"
+          className="rounded p-2"
           actions={[
             <Tag color="volcano" key={item.topic}>{item.topic}</Tag>,
             <IconText icon={TagsOutlined} text={QUESTION_TYPE_TEXT[item.type]} key={item.type} />,
