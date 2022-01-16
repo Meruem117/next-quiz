@@ -1,5 +1,5 @@
 import type { NextPage } from 'next'
-import TopicDetailList from '@/components/topic/topic-detail-list'
+import TopicList from '@/components/topic/topic-list'
 import type { topicItem } from '@/models/topic'
 import { getTopicList } from '@/services/topic'
 
@@ -9,7 +9,7 @@ type propsType = {
 
 const TopicPage: NextPage<propsType> = (props) => {
   return (
-    <TopicDetailList data={props.topicData} />
+    <TopicList data={props.topicData} />
   )
 }
 
