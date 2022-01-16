@@ -1,19 +1,18 @@
 import React from 'react'
-import { Typography, Tag, Space, Divider } from 'antd'
-import { UserOutlined, FireOutlined } from '@ant-design/icons'
+import { Typography } from 'antd'
+import { CrownOutlined, TagOutlined, UserOutlined, FlagOutlined } from '@ant-design/icons'
 import IconText from '@/components/common/icon-text'
 import type { quizItem } from '@/models/quiz'
 
 const QuizDetail: React.FC<{ data: quizItem }> = ({ data }) => {
   return (
-    <div className="flex flex-col bg-white shadow-lg rounded p-4 space-y-4">
+    <div className="flex flex-col bg-white shadow-lg rounded p-4 space-y-2">
       <Typography.Title level={3}>{data.quiz}</Typography.Title>
-      <Space split={<Divider type="vertical" />}>
-        <Tag color="volcano">{data.topic}</Tag>
-        <IconText icon={UserOutlined} text={data.creator} title={`Creator: ${data.creator}`} />
-        <IconText icon={FireOutlined} text={data.round} title={`Total Rounds: ${data.round}`} />
-      </Space>
-      <Typography.Text type="secondary" className="text-base">{data.description}</Typography.Text>
+      <IconText icon={CrownOutlined} text={data.winner || '-'} title={`Winner: ${data.winner || 'Undecided'}`} />
+      <IconText icon={TagOutlined} text={data.topic} title={`Topic: ${data.topic}`} />
+      <IconText icon={UserOutlined} text={data.creator} title={`Creator: ${data.creator}`} />
+      <IconText icon={FlagOutlined} text={data.round} title={`Total Rounds: ${data.round}`} />
+      <Typography.Paragraph type="secondary" ellipsis={true} title={data.description}>{data.description}</Typography.Paragraph>
     </div>
   )
 }

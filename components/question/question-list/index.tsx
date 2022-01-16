@@ -16,7 +16,7 @@ const QuestionList: React.FC<{ data: questionItem[] }> = ({ data }) => {
         pageSize: 3,
       }}
       footer={
-        <a>Add a Question</a>
+        <a>Upload question here</a>
       }
       renderItem={item => (
         <List.Item

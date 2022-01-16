@@ -1,7 +1,7 @@
 import React from 'react'
 import Link from 'next/link'
 import { List, Tag, Typography } from 'antd'
-import { UserOutlined, FireOutlined } from '@ant-design/icons'
+import { UserOutlined, FlagOutlined } from '@ant-design/icons'
 import IconText from '@/components/common/icon-text'
 import type { quizItem } from '@/models/quiz'
 
@@ -21,7 +21,7 @@ const QuizList: React.FC<{ data: quizItem[] }> = ({ data }) => {
             actions={[
               <Tag color="volcano" key={item.id}>{item.topic}</Tag>,
               <IconText key={item.id} icon={UserOutlined} text={item.creator} title={`Creator: ${item.creator}`} />,
-              <IconText key={item.id} icon={FireOutlined} text={`Round: ${item.round}`} title={`Total Rounds: ${item.round}`} />
+              <IconText key={item.id} icon={FlagOutlined} text={item.round} title={`Total Rounds: ${item.round}`} />
             ]}
           >
             <List.Item.Meta
