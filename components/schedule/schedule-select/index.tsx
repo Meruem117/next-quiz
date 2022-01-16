@@ -26,7 +26,7 @@ const ScheduleSelect: React.FC<{ select: string[], handleChange: (value: string[
       value={select}
       options={options}
       onChange={onChange}
-      className="w-full rounded"
+      className="w-full rounded shadow-md"
     />
   )
 }

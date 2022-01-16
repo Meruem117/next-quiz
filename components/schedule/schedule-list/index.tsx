@@ -10,21 +10,14 @@ const ScheduleList: React.FC<{ data: scheduleItem[], select: string[] }> = ({ da
   const ScheduleListItem = ({ item, color, text }: { item: scheduleItem, color: string, text: string }): ReactElement => (
     <Link href={`/quiz/${item.quizId}`} passHref>
       <List.Item
-        className="p-2 rounded group hover:bg-gray-100 hover:shadow-lg cursor-pointer"
+        className="p-2 rounded hover:bg-gray-100 hover:shadow-lg cursor-pointer"
         actions={[
           <Tag key={item.id} color={color}>{text}</Tag>,
           <IconText key={item.id} icon={ClockCircleOutlined} text={item.startTime} title={`Start at: ${item.startTime}`} />
         ]}
       >
         <List.Item.Meta
-          title={
-            <Typography.Title
-              level={4}
-              title={`Round: ${item.round}`}
-              className="group-hover:text-blue-500"
-            >{item.quizName} #{item.round}
-            </Typography.Title>
-          }
+          title={<Typography.Title level={4} title={`Round: ${item.round}`}>{item.quizName} #{item.round}</Typography.Title>}
         />
       </List.Item>
     </Link>
@@ -35,9 +28,6 @@ const ScheduleList: React.FC<{ data: scheduleItem[], select: string[] }> = ({ da
       itemLayout="vertical"
       dataSource={data}
       className="shadow-xl bg-white p-2 rounded"
-      pagination={{
-        pageSize: 10,
-      }}
       renderItem={item => (
         // start but not end
         select.includes(SCHEDULE_STATUS.START.color) && (item.isStart === SCHEDULE_TYPE.START) && (item.isEnd === SCHEDULE_TYPE.NOT_END) &&

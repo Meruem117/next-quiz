@@ -20,8 +20,8 @@ const QuizList: React.FC<{ data: quizItem[] }> = ({ data }) => {
             className="p-2 rounded group cursor-pointer hover:bg-blue-100 hover:shadow-lg ease-in-out duration-75"
             actions={[
               <Tag color="volcano" key={item.id}>{item.topic}</Tag>,
-              <IconText key={item.id} icon={FireOutlined} text={`Round: ${item.round}`} title={`Total Rounds: ${item.round}`} />,
-              <IconText key={item.id} icon={UserOutlined} text={item.creator} title={`Creator: ${item.creator}`} />
+              <IconText key={item.id} icon={UserOutlined} text={item.creator} title={`Creator: ${item.creator}`} />,
+              <IconText key={item.id} icon={FireOutlined} text={`Round: ${item.round}`} title={`Total Rounds: ${item.round}`} />
             ]}
           >
             <List.Item.Meta

@@ -8,18 +8,8 @@ type propsType = {
 }
 
 const QuizPage: NextPage<propsType> = (props) => {
-  // const [select, setSelect] = useState<string[]>([SCHEDULE_STATUS.START.color])
-
-  // function handleChange(value: string[]): void {
-  //   setSelect(value)
-  // }
-
   return (
     <QuizList data={props.quizData} />
-    // <div className="w-1/2 mx-auto p-2 space-y-4 rounded">
-    //   <ScheduleSelect select={select} handleChange={handleChange} />
-    //   <ScheduleList data={props.scheduleData} select={select} />
-    // </div>
   )
 }
 

@@ -1,9 +1,13 @@
 import type { NextPage } from 'next'
+import { useState } from 'react'
 import QuizDetail from '@/components/quiz/quiz-detail'
+import ScheduleSelect from '@/components/schedule/schedule-select'
+import ScheduleList from '@/components/schedule/schedule-list'
 import type { quizItem } from '@/models/quiz'
 import type { scheduleItem } from '@/models/schedule'
 import { getQuizList, getQuizById } from '@/services/quiz'
 import { getScheduleListByQuizId } from '@/services/schedule'
+import { SCHEDULE_STATUS } from '@/constant'
 
 type propsType = {
   quizData: quizItem,
@@ -17,8 +21,22 @@ type contextType = {
 }
 
 const QuizDetailPage: NextPage<propsType> = (props) => {
+  const [select, setSelect] = useState<string[]>([SCHEDULE_STATUS.START.color, SCHEDULE_STATUS.END.color, SCHEDULE_STATUS.REMAIN.color])
+
+  function handleChange(value: string[]): void {
+    setSelect(value)
+  }
+
   return (
-    <QuizDetail quiz={props.quizData} schedule={props.scheduleData} />
+    <div className="flex justify-center space-x-4">
+      <div>
+        <QuizDetail data={props.quizData} />
+      </div>
+      <div className="w-1/2 space-y-4 rounded">
+        <ScheduleSelect select={select} handleChange={handleChange} />
+        <ScheduleList data={props.scheduleData} select={select} />
+      </div>
+    </div>
   )
 }
 
