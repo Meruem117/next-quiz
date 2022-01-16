@@ -6,7 +6,7 @@ import type { quizItem } from '@/models/quiz'
 
 const QuizDetail: React.FC<{ data: quizItem }> = ({ data }) => {
   return (
-    <div className="flex flex-col bg-white shadow-lg rounded p-4 space-y-2">
+    <div className="flex flex-col bg-white shadow-xl rounded p-3 space-y-2">
       <Typography.Title level={3}>{data.quiz}</Typography.Title>
       <IconText icon={CrownOutlined} text={data.winner || '-'} title={`Winner: ${data.winner || 'Undecided'}`} />
       <IconText icon={TagOutlined} text={data.topic} title={`Topic: ${data.topic}`} />

@@ -1,8 +1,8 @@
 export interface questionItem {
   id: number,
   question: string,
-  uploader: string,
-  uploaderId: number,
+  up: string,
+  upId: number,
   topic: string,
   type: number,
   optionA: string,
