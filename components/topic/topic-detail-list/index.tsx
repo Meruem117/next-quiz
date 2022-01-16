@@ -12,9 +12,6 @@ const TopicDetailList: React.FC<{ data: topicItem[] }> = ({ data }) => {
       pagination={{
         pageSize: 6,
       }}
-      footer={
-        <a>Add a Topic</a>
-      }
       renderItem={item => (
         <Link href={`/topic/${item.topic}`} passHref>
           <List.Item className="p-2 rounded cursor-pointer hover:bg-green-200 hover:shadow-lg">
