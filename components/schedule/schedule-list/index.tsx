@@ -34,7 +34,7 @@ const ScheduleList: React.FC<{ data: scheduleItem[], select: string[] }> = ({ da
     <List
       itemLayout="vertical"
       dataSource={data}
-      className="shadow-xl bg-white p-2"
+      className="shadow-xl bg-white p-2 rounded"
       pagination={{
         pageSize: 10,
       }}

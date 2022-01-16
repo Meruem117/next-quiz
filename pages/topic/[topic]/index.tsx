@@ -18,7 +18,7 @@ type contextType = {
 
 const TopicDetailPage: NextPage<propsType> = (props) => {
   return (
-    <div className="flex flex-col w-1/2 mx-auto space-y-4">
+    <div className="flex flex-col w-1/2 mx-auto space-y-4 rounded">
       <TopicBreadcrumb topic={props.topic} />
       <QuestionList data={props.questionData} />
     </div>

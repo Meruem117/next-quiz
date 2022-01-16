@@ -11,7 +11,7 @@ const QuestionList: React.FC<{ data: questionItem[] }> = ({ data }) => {
       itemLayout="vertical"
       size="large"
       dataSource={data}
-      className="bg-white shadow-xl p-2"
+      className="bg-white shadow-xl p-2 rounded"
       pagination={{
         pageSize: 3,
       }}
@@ -20,7 +20,6 @@ const QuestionList: React.FC<{ data: questionItem[] }> = ({ data }) => {
       }
       renderItem={item => (
         <List.Item
-          key={item.id}
           className="rounded p-2"
           actions={[
             <Tag color="volcano" key={item.id}>{item.topic}</Tag>,

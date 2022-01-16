@@ -30,7 +30,7 @@ export async function getStaticPaths() {
     fallback: false,
     paths: quizList.map(item => ({
       params: {
-        quizId: item.id
+        quizId: item.id.toString()
       }
     }))
   }
