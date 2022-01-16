@@ -3,9 +3,10 @@ export interface scheduleItem {
   quizId: number,
   quizName: string,
   round: number,
+  count: number,
   question: string,
   startTime: string,
-  endTime: string,
+  length: number,
   isStart: number,
   isEnd: number
 }

@@ -1,6 +1,8 @@
 export interface questionItem {
   id: number,
   question: string,
+  uploader: string,
+  uploaderId: number,
   topic: string,
   type: number,
   optionA: string,
@@ -8,7 +10,6 @@ export interface questionItem {
   optionC: string,
   optionD: string,
   answer: string,
-  score: number,
   createTime: string,
   updateTime: string
 }
