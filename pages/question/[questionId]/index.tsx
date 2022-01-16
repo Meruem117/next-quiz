@@ -4,7 +4,7 @@ import type { questionItem } from '@/models/question'
 import { getQuestionById } from '@/services/question'
 
 type propsType = {
-  questionDetail: questionItem
+  questionData: questionItem
 }
 
 type contextType = {
@@ -15,7 +15,7 @@ type contextType = {
 
 const QuestionDetailPage: NextPage<propsType> = (props) => {
   return (
-    <QuestionDetail data={props.questionDetail} />
+    <QuestionDetail data={props.questionData} />
   )
 }
 
@@ -36,7 +36,7 @@ export async function getStaticProps(context: contextType) {
 
   return {
     props: {
-      questionDetail: questionRes.data
+      questionData: questionRes.data
     },
     revalidate: 3600
   }

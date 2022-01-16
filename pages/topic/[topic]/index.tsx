@@ -18,7 +18,7 @@ type contextType = {
 
 const TopicDetailPage: NextPage<propsType> = (props) => {
   return (
-    <div className="w-1/2 mx-auto">
+    <div className="flex flex-col w-1/2 mx-auto space-y-4">
       <TopicBreadcrumb topic={props.topic} />
       <QuestionList data={props.questionData} />
     </div>
@@ -28,6 +28,7 @@ const TopicDetailPage: NextPage<propsType> = (props) => {
 export async function getStaticPaths() {
   const topicRes = await getTopicList()
   const topicList = topicRes.data
+
   return {
     fallback: false,
     paths: topicList.map(item => ({
