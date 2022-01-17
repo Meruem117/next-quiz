@@ -5,7 +5,7 @@ const AboutPage: NextPage = () => {
   return (
     <>
       <h1>About</h1>
-      <Link href={'/team/a'}>To Team A</Link>
+      <Link href={'/'}>To Home</Link>
     </>
   )
 }
