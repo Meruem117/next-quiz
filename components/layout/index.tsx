@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react'
 import Head from 'next/head'
 import { Layout, BackTop } from 'antd'
-import NavMenu from './nav-menu'
+import LayoutMenu from './layout-menu'
 
 const BaseLayout: React.FC = (props) => {
   return (
@@ -14,9 +14,9 @@ const BaseLayout: React.FC = (props) => {
       {/* layout */}
       <Layout className="layout h-screen w-full">
         {/* header */}
-        <Layout.Header className="flex justify-center space-x-4 px-4 pt-1.5 bg-white">
-          <div className="text-4xl font-semibold cursor-default select-none text-AiDeep">Quiz</div>
-          <NavMenu />
+        <Layout.Header className="flex justify-center space-x-4 pt-1.5 bg-white shadow-lg">
+          <div className="text-4xl font-semibold cursor-default text-AiDeep">Quiz</div>
+          <LayoutMenu />
         </Layout.Header>
         {/* content */}
         <Layout.Content className="bg-gray-100 p-5">
