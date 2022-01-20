@@ -1,4 +1,5 @@
 import type { NextPage } from 'next'
+import ExploreNav from '@/components/common/explore-nav'
 import QuizList from '@/components/quiz/quiz-list'
 import type { quizItem } from '@/models/quiz'
 import { getQuizList } from '@/services/quiz'
@@ -9,7 +10,10 @@ type propsType = {
 
 const QuizPage: NextPage<propsType> = (props) => {
   return (
-    <QuizList data={props.quizData} />
+    <div className="base-container">
+      <ExploreNav select='quiz' />
+      <QuizList data={props.quizData} />
+    </div>
   )
 }
 

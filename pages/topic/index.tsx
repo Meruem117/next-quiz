@@ -1,4 +1,5 @@
 import type { NextPage } from 'next'
+import ExploreNav from '@/components/common/explore-nav'
 import TopicList from '@/components/topic/topic-list'
 import type { topicItem } from '@/models/topic'
 import { getTopicList } from '@/services/topic'
@@ -9,7 +10,10 @@ type propsType = {
 
 const TopicPage: NextPage<propsType> = (props) => {
   return (
-    <TopicList data={props.topicData} />
+    <div className="base-container">
+      <ExploreNav select='topic' />
+      <TopicList data={props.topicData} />
+    </div>
   )
 }
 

@@ -14,3 +14,11 @@ body {
   font-family: "AiDeep";
   src: url('../assets/AiDeep.otf');
 }
+
+.base-container {
+  @apply flex;
+  @apply flex-col;
+  @apply w-1/2;
+  @apply mx-auto;
+  @apply space-y-4;
+}
