@@ -26,7 +26,15 @@ const QuizList: React.FC<{ data: quizItem[] }> = ({ data }) => {
           >
             <List.Item.Meta
               title={<Typography.Title level={4} title={item.quiz}>{item.quiz}</Typography.Title>}
-              description={item.description}
+              description={
+                <Typography.Paragraph
+                  type="secondary"
+                  ellipsis={true}
+                  className="w-48"
+                  title={item.description}
+                >{item.description}
+                </Typography.Paragraph>
+              }
             />
           </List.Item>
         </Link>

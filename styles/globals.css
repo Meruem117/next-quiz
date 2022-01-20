@@ -29,3 +29,14 @@ body {
   @apply rounded-lg;
   @apply p-3;
 }
+
+.base-info {
+  @apply flex;
+  @apply flex-col;
+  @apply bg-white;
+  @apply shadow-xl;
+  @apply rounded-lg;
+  @apply p-3;
+  @apply space-y-2;
+  width: 12.5%;
+}

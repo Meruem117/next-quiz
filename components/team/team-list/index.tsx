@@ -16,9 +16,17 @@ const TeamList: React.FC<{ data: teamItem[] }> = ({ data }) => {
         <Link href={`/team/${item.id}`} passHref>
           <List.Item className="p-2 rounded-md cursor-pointer hover:bg-blue-100 hover:shadow-lg ease-in-out duration-75">
             <List.Item.Meta
-              avatar={<Avatar shape="square" size={48} src={`https://ui-avatars.com/api/?name=${item.name}`} />}
+              avatar={<Avatar shape="square" size={48} className="bg-blue-400">{item.name}</Avatar>}
               title={<Typography.Title level={4} title={item.name}>{item.name}</Typography.Title>}
-              description={item.description}
+              description={
+                <Typography.Paragraph
+                  type="secondary"
+                  ellipsis={true}
+                  className="w-48"
+                  title={item.description}
+                >{item.description}
+                </Typography.Paragraph>
+              }
             />
           </List.Item>
         </Link>

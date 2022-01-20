@@ -29,10 +29,8 @@ const QuizDetailPage: NextPage<propsType> = (props) => {
 
   return (
     <div className="flex justify-center space-x-4">
-      <div>
-        <QuizDetail data={props.quizData} />
-      </div>
-      <div className="flex flex-col w-1/2 space-y-4">
+      <QuizDetail data={props.quizData} />
+      <div className="flex flex-col w-2/5 space-y-4">
         <ScheduleSelect select={select} handleChange={handleChange} />
         <ScheduleList data={props.scheduleData} select={select} />
       </div>

@@ -6,13 +6,18 @@ import type { quizItem } from '@/models/quiz'
 
 const QuizDetail: React.FC<{ data: quizItem }> = ({ data }) => {
   return (
-    <div className="flex flex-col bg-white shadow-xl rounded-lg p-3 space-y-2">
+    <div className="base-info">
       <Typography.Title level={3}>{data.quiz}</Typography.Title>
       <IconText icon={CrownOutlined} text={data.winner || '-'} title={`Winner: ${data.winner || 'Undecided'}`} />
       <IconText icon={TagOutlined} text={data.topic} title={`Topic: ${data.topic}`} />
       <IconText icon={UserOutlined} text={data.creator} title={`Creator: ${data.creator}`} />
       <IconText icon={FlagOutlined} text={data.round} title={`Total Rounds: ${data.round}`} />
-      <Typography.Paragraph type="secondary" ellipsis={true} title={data.description}>{data.description}</Typography.Paragraph>
+      <Typography.Paragraph
+        type="secondary"
+        ellipsis={{ rows: 2, expandable: true, symbol: 'more' }}
+        title={data.description}
+      >{data.description}
+      </Typography.Paragraph>
     </div>
   )
 }
