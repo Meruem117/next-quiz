@@ -17,7 +17,7 @@ const QuizList: React.FC<{ data: quizItem[] }> = ({ data }) => {
       renderItem={item => (
         <Link href={`/quiz/${item.id}`} passHref>
           <List.Item
-            className="p-2 rounded-md cursor-pointer hover:bg-orange-50 hover:shadow-lg ease-in-out duration-75"
+            className="p-2 rounded-md cursor-pointer hover:bg-gray-100 hover:shadow-lg ease-in-out duration-75"
             actions={[
               <Tag color="blue" key={item.id}>{item.topic}</Tag>,
               <IconText key={item.id} icon={UserOutlined} text={item.creator} title={`Creator: ${item.creator}`} />,

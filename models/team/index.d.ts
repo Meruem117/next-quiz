@@ -3,5 +3,6 @@ export interface teamItem {
   name: string,
   leader: string,
   leaderId: number,
+  description: string,
   createTime: string
 }
