@@ -10,7 +10,7 @@ const ScheduleList: React.FC<{ data: scheduleItem[], select: string[] }> = ({ da
   const ScheduleListItem = ({ item, color, text }: { item: scheduleItem, color: string, text: string }): ReactElement => (
     <Link href={`/quiz/${item.quizId}`} passHref>
       <List.Item
-        className="p-2 rounded"
+        className="p-2 rounded-md"
         actions={[
           <Tag key={item.id} color={color}>{text}</Tag>,
           <IconText
@@ -25,7 +25,7 @@ const ScheduleList: React.FC<{ data: scheduleItem[], select: string[] }> = ({ da
         }
       >
         <List.Item.Meta
-          title={<Typography.Title level={4} title={`Round: ${item.round}`}>{item.quizName} #{item.round}</Typography.Title>}
+          title={<Typography.Title level={4} title={`Round: ${item.round}`}>Round #{item.round}</Typography.Title>}
         />
       </List.Item>
     </Link>

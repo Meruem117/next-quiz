@@ -17,15 +17,15 @@ const QuizList: React.FC<{ data: quizItem[] }> = ({ data }) => {
       renderItem={item => (
         <Link href={`/quiz/${item.id}`} passHref>
           <List.Item
-            className="p-2 rounded group cursor-pointer hover:bg-blue-100 hover:shadow-lg ease-in-out duration-75"
+            className="p-2 rounded-md cursor-pointer hover:bg-orange-50 hover:shadow-lg ease-in-out duration-75"
             actions={[
-              <Tag color="volcano" key={item.id}>{item.topic}</Tag>,
+              <Tag color="blue" key={item.id}>{item.topic}</Tag>,
               <IconText key={item.id} icon={UserOutlined} text={item.creator} title={`Creator: ${item.creator}`} />,
               <IconText key={item.id} icon={FlagOutlined} text={item.round} title={`Total Rounds: ${item.round}`} />
             ]}
           >
             <List.Item.Meta
-              title={<Typography.Title level={4} title={item.quiz} className="group-hover:text-blue-700">{item.quiz}</Typography.Title>}
+              title={<Typography.Title level={4} title={item.quiz}>{item.quiz}</Typography.Title>}
               description={item.description}
             />
           </List.Item>

@@ -15,7 +15,7 @@ const ScheduleSelect: React.FC<{ select: string[], handleChange: (value: string[
 
   function tagRender(props: any): JSX.Element {
     const { value, label, onClose } = props
-    return <Tag color={value} closable={true} onClose={onClose} className="mr-2">{label}</Tag>
+    return <Tag color={value} closable={true} onClose={onClose} className="mr-2 text-base py-0.5">{label}</Tag>
   }
 
   return (
@@ -26,7 +26,7 @@ const ScheduleSelect: React.FC<{ select: string[], handleChange: (value: string[
       value={select}
       options={options}
       onChange={onChange}
-      className="w-full rounded shadow-md"
+      className="w-full shadow-md"
     />
   )
 }

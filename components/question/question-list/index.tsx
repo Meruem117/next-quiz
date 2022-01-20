@@ -20,9 +20,9 @@ const QuestionList: React.FC<{ data: questionItem[] }> = ({ data }) => {
       }
       renderItem={item => (
         <List.Item
-          className="rounded p-2"
+          className="p-2 rounded-md"
           actions={[
-            <Tag color="volcano" key={item.id}>{item.topic}</Tag>,
+            <Tag color="blue" key={item.id}>{item.topic}</Tag>,
             <Tag color="magenta" key={item.id}>{QUESTION_TYPE_TEXT[item.type]}</Tag>,
             <IconText key={item.id} icon={CalendarOutlined} text={item.updateTime.substring(0, 10)} title={`Last Update: ${item.updateTime}`} />,
             <IconText key={item.id} icon={UserOutlined} text={item.up} title={`Up: ${item.up}`} />
