@@ -32,7 +32,7 @@ const QuestionList: React.FC<{ data: questionItem[] }> = ({ data }) => {
           }
         >
           <List.Item.Meta
-            title={<Typography.Title level={4} title={item.question}>{item.question}</Typography.Title>}
+            title={<Typography.Title level={4} ellipsis={true} className="w-48" title={item.question}>{item.question}</Typography.Title>}
           />
         </List.Item>
       )}

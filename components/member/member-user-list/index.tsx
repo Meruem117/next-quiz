@@ -20,7 +20,7 @@ const MemberUserList: React.FC<{ data: memberItem[] }> = ({ data }) => {
         ]}
       >
         <List.Item.Meta
-          avatar={<Avatar src="https://joeschmoe.io/api/v1/random" />}
+          avatar={<Avatar className="bg-orange-500">{item.userName}</Avatar>}
           title={<Typography.Title level={4} title={item.userName}>{item.userName}</Typography.Title>}
         />
       </List.Item>
