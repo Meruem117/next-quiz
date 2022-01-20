@@ -35,7 +35,7 @@ const ScheduleList: React.FC<{ data: scheduleItem[], select: string[] }> = ({ da
     <List
       itemLayout="vertical"
       dataSource={data}
-      className="shadow-xl bg-white p-3 rounded"
+      className="base-list"
       renderItem={item => (
         // start but not end
         select.includes(SCHEDULE_STATUS.START.color) && (item.isStart === SCHEDULE_TYPE.START) && (item.isEnd === SCHEDULE_TYPE.NOT_END) &&

@@ -11,7 +11,7 @@ const QuestionList: React.FC<{ data: questionItem[] }> = ({ data }) => {
       itemLayout="vertical"
       size="large"
       dataSource={data}
-      className="bg-white shadow-xl p-3 rounded"
+      className="base-list"
       pagination={{
         pageSize: 3,
       }}

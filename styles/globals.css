@@ -22,3 +22,10 @@ body {
   @apply mx-auto;
   @apply space-y-4;
 }
+
+.base-list {
+  @apply shadow-xl;
+  @apply bg-white;
+  @apply rounded-lg;
+  @apply p-3;
+}

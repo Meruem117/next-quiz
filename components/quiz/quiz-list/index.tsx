@@ -10,7 +10,7 @@ const QuizList: React.FC<{ data: quizItem[] }> = ({ data }) => {
     <List
       itemLayout="vertical"
       dataSource={data}
-      className="w-1/2 mx-auto shadow-xl p-3 bg-white rounded"
+      className="base-list"
       pagination={{
         pageSize: 6,
       }}
