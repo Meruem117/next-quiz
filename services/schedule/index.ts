@@ -12,17 +12,17 @@ export async function getScheduleList(): Promise<responseItem<scheduleItem[]>> {
   return response.json()
 }
 
-export async function getScheduleStartList(): Promise<responseItem<scheduleItem[]>> {
-  const response = await fetch(baseUrl + '/schedule/start')
+export async function getScheduleStartList(limit: number): Promise<responseItem<scheduleItem[]>> {
+  const response = await fetch(baseUrl + '/schedule/start?limit=' + limit)
   return response.json()
 }
 
-export async function getScheduleEndList(): Promise<responseItem<scheduleItem[]>> {
-  const response = await fetch(baseUrl + '/schedule/end')
+export async function getScheduleEndList(limit: number): Promise<responseItem<scheduleItem[]>> {
+  const response = await fetch(baseUrl + '/schedule/end?limit=' + limit)
   return response.json()
 }
 
-export async function getScheduleRemainList(): Promise<responseItem<scheduleItem[]>> {
-  const response = await fetch(baseUrl + '/schedule/remain')
+export async function getScheduleRemainList(limit: number): Promise<responseItem<scheduleItem[]>> {
+  const response = await fetch(baseUrl + '/schedule/remain?limit=' + limit)
   return response.json()
 }

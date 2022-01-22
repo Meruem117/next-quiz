@@ -36,3 +36,8 @@ export const QUESTION_TYPE_TEXT: { [key: number]: string } = {
   1: 'Single Choice',
   0: 'Multiple Choice'
 }
+//* user
+export const GENDER: { [key: number]: string } = {
+  1: 'male',
+  0: 'female'
+}
