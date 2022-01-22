@@ -37,7 +37,11 @@ export const QUESTION_TYPE_TEXT: { [key: number]: string } = {
   0: 'Multiple Choice'
 }
 //* user
-export const GENDER: { [key: number]: string } = {
+export const GENDER_TEXT: { [key: number]: string } = {
   1: 'male',
   0: 'female'
+}
+export const GENDER_AVATAR_SRC: { [key: number]: string } = {
+  1: 'https://joeschmoe.io/api/v1/male/random',
+  0: 'https://joeschmoe.io/api/v1/female/random'
 }
