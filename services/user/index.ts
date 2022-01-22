@@ -4,7 +4,7 @@ import { baseUrl } from '@/constant'
 
 export async function checkUserPassword(login: userLoginItem): Promise<responseItem<boolean>> {
   const response = await fetch(baseUrl + '/user/check', {
-    method: "POST",
+    method: 'POST',
     body: JSON.stringify(login),
     headers: {
       'Content-Type': 'application/json'
