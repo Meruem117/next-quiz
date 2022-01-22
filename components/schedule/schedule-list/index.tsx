@@ -21,7 +21,7 @@ const ScheduleList: React.FC<{ data: scheduleItem[], select: string[] }> = ({ da
           <IconText key={item.id} icon={ClockCircleOutlined} text={`${item.length} minutes`} title={`Length: ${item.length} minutes`} />
         ]}
         extra={
-          <Button type="default">Detail</Button>
+          <Button type="primary">Detail</Button>
         }
       >
         <List.Item.Meta

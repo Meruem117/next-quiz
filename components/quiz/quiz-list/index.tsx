@@ -17,7 +17,7 @@ const QuizList: React.FC<{ data: quizItem[] }> = ({ data }) => {
       renderItem={item => (
         <Link href={`/quiz/${item.id}`} passHref>
           <List.Item
-            className="p-2 rounded-md cursor-pointer hover:bg-gray-100 hover:shadow-lg ease-in-out duration-75"
+            className="p-2 rounded-md cursor-pointer group hover:bg-gray-100 hover:shadow-lg ease-in-out duration-75"
             actions={[
               <Tag color="blue" key={item.id}>{item.topic}</Tag>,
               <IconText key={item.id} icon={UserOutlined} text={item.creator} title={`Creator: ${item.creator}`} />,
@@ -25,7 +25,7 @@ const QuizList: React.FC<{ data: quizItem[] }> = ({ data }) => {
             ]}
           >
             <List.Item.Meta
-              title={<Typography.Title level={4} title={item.quiz}>{item.quiz}</Typography.Title>}
+              title={<Typography.Title level={4} title={item.quiz} className="group-hover:text-gray-500">{item.quiz}</Typography.Title>}
               description={
                 <Typography.Paragraph
                   type="secondary"

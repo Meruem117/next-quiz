@@ -28,7 +28,7 @@ const QuestionList: React.FC<{ data: questionItem[] }> = ({ data }) => {
             <IconText key={item.id} icon={UserOutlined} text={item.up} title={`Up: ${item.up}`} />
           ]}
           extra={
-            <Button type="default" href={`/question/${item.id}`}>Detail</Button>
+            <Button type="primary" href={`/question/${item.id}`}>Detail</Button>
           }
         >
           <List.Item.Meta
