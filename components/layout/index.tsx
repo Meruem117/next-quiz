@@ -1,9 +1,14 @@
 import React, { Fragment } from 'react'
 import Head from 'next/head'
 import { Layout, Button, BackTop } from 'antd'
+import { useAppSelector, useAppDispatch } from '@/app/hooks'
+import { login, logout, selectLogin } from '@/features/login/loginSlice'
 import LayoutMenu from './layout-menu'
 
 const BaseLayout: React.FC = (props) => {
+  const dispatch = useAppDispatch()
+  const loginState = useAppSelector(selectLogin)
+
   return (
     <Fragment>
       <Head>
@@ -15,7 +20,10 @@ const BaseLayout: React.FC = (props) => {
           <div className="text-4xl font-semibold cursor-default text-AiDeep">Quiz</div>
           <LayoutMenu />
           <div className="flex w-full justify-end py-1">
-            <Button type="primary" size="large">Login</Button>
+            {
+              loginState.isLogin ? <Button type="primary" size="large" onClick={() => dispatch(logout())}>Logout</Button>
+                : <Button type="primary" size="large" onClick={() => dispatch(login())}>Login</Button>
+            }
           </div>
         </Layout.Header>
         <Layout.Content className="bg-gray-100 p-5">

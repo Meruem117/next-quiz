@@ -1,11 +1,11 @@
 import { checkUserPassword } from '@/services/user'
 
-function checkHandler(req: any, res: any) {
+function loginHandler(req: any, res: any) {
   if (req.method === 'POST') {
     const data = req.body
     console.log(data)
-    res.status(201).json({ message: 'success' })
+    res.status(200).json({ res: true })
   }
 }
 
-export default checkHandler
+export default loginHandler
