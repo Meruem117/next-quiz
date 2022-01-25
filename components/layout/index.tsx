@@ -9,6 +9,18 @@ const BaseLayout: React.FC = (props) => {
   const dispatch = useAppDispatch()
   const loginState = useAppSelector(selectLogin)
 
+  const handleLogin = async () => {
+    const response = await fetch('/api/login', {
+      method: 'POST',
+      body: JSON.stringify({ a: 1 }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    const data = await response.json()
+    console.log(data)
+  }
+
   return (
     <Fragment>
       <Head>
@@ -20,6 +32,7 @@ const BaseLayout: React.FC = (props) => {
           <div className="text-4xl font-semibold cursor-default text-AiDeep">Quiz</div>
           <LayoutMenu />
           <div className="flex w-full justify-end py-1">
+            <Button type="primary" size="large" onClick={handleLogin}>H</Button>
             {
               loginState.isLogin ? <Button type="primary" size="large" onClick={() => dispatch(logout())}>Logout</Button>
                 : <Button type="primary" size="large" onClick={() => dispatch(login())}>Login</Button>
