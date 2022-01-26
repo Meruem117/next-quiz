@@ -1,13 +1,52 @@
-import React from 'react'
-import { Avatar, Popover } from 'antd'
-import type { userItem } from '@/models/user'
+import React, { useState } from 'react'
+import { Avatar, Popover, Button, Modal, Form, Input } from 'antd'
+import { useAppSelector, useAppDispatch } from '@/app/hooks'
+import { login, logout, selectLogin } from '@/features/login/loginSlice'
+import type { userLoginItem } from '@/models/user'
 import { GENDER_AVATAR_SRC } from '@/constant'
+import UserLogin from '../user-login'
 
-const UserAvatar: React.FC<{ data: userItem }> = ({ data }) => {
+const UserAvatar: React.FC = () => {
+  const dispatch = useAppDispatch()
+  const loginState = useAppSelector(selectLogin)
+  const [visible, setVisible] = useState(false)
+
+  const showModal = () => setVisible(true)
+  const closeModal = () => setVisible(false)
+
+  const handleOk = () => {
+    setVisible(false)
+  }
+
+  const onFinish = (values: any) => {
+    console.log('Success:', values)
+  }
+
+  const handleLogin = async () => {
+    const response = await fetch('/api/login', {
+      method: 'POST',
+      body: JSON.stringify({ a: 1 }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    const data = await response.json()
+    console.log(data)
+  }
+
   return (
-    <Popover placement="bottomRight" content={<span>Not Login Yet</span>}>
-      <Avatar size="large" src={GENDER_AVATAR_SRC[data.gender]} />
-    </Popover>
+    <div className="flex w-full justify-end py-1">
+      {
+        loginState.isLogin ?
+          <Popover placement="bottomRight" content={<span>Not Login Yet</span>}>
+            <Avatar size="large" src={GENDER_AVATAR_SRC[1]} />
+          </Popover>
+          : <Button type="primary" size="large" onClick={showModal}>Login</Button>
+      }
+      <Modal title="Login" visible={visible} onOk={handleOk} onCancel={closeModal}>
+        <UserLogin />
+      </Modal>
+    </div>
   )
 }
 
