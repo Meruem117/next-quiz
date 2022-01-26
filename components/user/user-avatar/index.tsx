@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import { Avatar, Popover, Button, Modal, Form, Input } from 'antd'
 import { useAppSelector, useAppDispatch } from '@/app/hooks'
 import { login, logout, selectLogin } from '@/features/login/loginSlice'
@@ -10,16 +10,13 @@ const UserAvatar: React.FC = () => {
   const dispatch = useAppDispatch()
   const loginState = useAppSelector(selectLogin)
   const [visible, setVisible] = useState(false)
+  const childRef: React.MutableRefObject<any> = useRef()
 
   const showModal = () => setVisible(true)
   const closeModal = () => setVisible(false)
 
   const handleOk = () => {
-    setVisible(false)
-  }
-
-  const onFinish = (values: any) => {
-    console.log('Success:', values)
+    childRef.current.onOk()
   }
 
   const handleLogin = async () => {
@@ -44,7 +41,7 @@ const UserAvatar: React.FC = () => {
           : <Button type="primary" size="large" onClick={showModal}>Login</Button>
       }
       <Modal title="Login" visible={visible} onOk={handleOk} onCancel={closeModal}>
-        <UserLogin />
+        <UserLogin childRef={childRef} />
       </Modal>
     </div>
   )

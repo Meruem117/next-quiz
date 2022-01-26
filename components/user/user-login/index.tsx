@@ -1,7 +1,11 @@
-import React from 'react'
+import React, { useImperativeHandle } from 'react'
 import { Form, Input, Button } from 'antd'
 
-const UserLogin = () => {
+const UserLogin: React.FC<{ childRef: any }> = ({ childRef }) => {
+  useImperativeHandle(childRef, () => ({
+    onOk
+  }))
+
   const [form] = Form.useForm()
 
   const onFinish = (values: any) => {
