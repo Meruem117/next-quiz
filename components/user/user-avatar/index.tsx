@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import { Avatar, Popover, Button } from 'antd'
-import { useAppSelector } from '@/app/hooks'
-import { selectLogin } from '@/features/login/loginSlice'
+import { useAppSelector, useAppDispatch } from '@/app/hooks'
+import { selectLogin, logout } from '@/features/login/loginSlice'
 import { GENDER_AVATAR_SRC } from '@/constant'
 import UserLogin from '../user-login'
 import UserRegist from '../user-regist'
 
 const UserAvatar: React.FC = () => {
+  const dispatch = useAppDispatch()
   const loginState = useAppSelector(selectLogin)
   const [visible, setVisible] = useState(false)
   const [loginVisible, setLoginVisible] = useState(true)
@@ -16,11 +17,17 @@ const UserAvatar: React.FC = () => {
   const showLogin = () => setLoginVisible(true)
   const showRegist = () => setLoginVisible(false)
 
+  const content = (
+    <div>
+      <Button onClick={() => dispatch(logout())}>Logout</Button>
+    </div>
+  )
+
   return (
     <div className="flex w-full justify-end py-1">
       {
         loginState.isLogin ?
-          <Popover placement="bottomRight" content={<span>Not Login Yet</span>}>
+          <Popover placement="bottomRight" content={content}>
             <Avatar size="large" src={GENDER_AVATAR_SRC[1]} />
           </Popover>
           : <Button type="primary" size="large" onClick={showModal}>Login</Button>

@@ -1,9 +1,7 @@
 import React from 'react'
 import { Modal, Form, Input, Button, Select } from 'antd'
 
-type eventType = (e: React.MouseEvent<HTMLElement, MouseEvent>) => void
-
-const UserRegist: React.FC<{ visible: boolean, closeModal: eventType, changeModal: eventType }> = ({ visible, closeModal, changeModal }) => {
+const UserRegist: React.FC<{ visible: boolean, closeModal: VoidFunction, changeModal: VoidFunction }> = ({ visible, closeModal, changeModal }) => {
   const [form] = Form.useForm()
 
   const onFinish = (values: any) => {
@@ -37,8 +35,8 @@ const UserRegist: React.FC<{ visible: boolean, closeModal: eventType, changeModa
         </Form.Item>
         <Form.Item>
           <div className="flex justify-center space-x-4">
-            <Button type="primary" htmlType="submit"> Regist </Button>
-            <Button htmlType="button" onClick={onReset}> Reset </Button>
+            <Button type="primary" htmlType="submit">Regist</Button>
+            <Button htmlType="button" onClick={onReset}>Reset</Button>
           </div>
         </Form.Item>
       </Form>

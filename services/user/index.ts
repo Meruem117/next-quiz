@@ -22,3 +22,14 @@ export async function getUserList(): Promise<responseItem<userItem[]>> {
   const response = await fetch(baseUrl + '/user/list')
   return response.json()
 }
+
+export async function handleLogin(data: userLoginItem): Promise<{ data: boolean }> {
+  const response = await fetch('/api/login', {
+    method: 'POST',
+    body: JSON.stringify(data),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+  return response.json()
+}
