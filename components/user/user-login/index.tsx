@@ -1,11 +1,9 @@
-import React, { useImperativeHandle } from 'react'
-import { Form, Input, Button } from 'antd'
+import React from 'react'
+import { Modal, Form, Input, Button } from 'antd'
 
-const UserLogin: React.FC<{ childRef: any }> = ({ childRef }) => {
-  useImperativeHandle(childRef, () => ({
-    onOk
-  }))
+type eventType = (e: React.MouseEvent<HTMLElement, MouseEvent>) => void
 
+const UserLogin: React.FC<{ visible: boolean, closeModal: eventType, changeModal: eventType }> = ({ visible, closeModal, changeModal }) => {
   const [form] = Form.useForm()
 
   const onFinish = (values: any) => {
@@ -16,12 +14,8 @@ const UserLogin: React.FC<{ childRef: any }> = ({ childRef }) => {
     form.resetFields()
   }
 
-  const onOk = () => {
-    form.submit()
-  }
-
   return (
-    <>
+    <Modal title="Regist" visible={visible} onOk={changeModal} onCancel={closeModal}>
       <Form form={form} name="Login" labelCol={{ span: 6 }} wrapperCol={{ span: 18 }} onFinish={onFinish}>
         <Form.Item
           label="Username"
@@ -46,8 +40,7 @@ const UserLogin: React.FC<{ childRef: any }> = ({ childRef }) => {
           </Button>
         </Form.Item>
       </Form >
-      <Button onClick={onOk}>OK</Button>
-    </>
+    </Modal>
   )
 }
 

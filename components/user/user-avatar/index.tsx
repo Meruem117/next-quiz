@@ -1,23 +1,22 @@
-import React, { useState, useRef } from 'react'
-import { Avatar, Popover, Button, Modal, Form, Input } from 'antd'
+import React, { useState } from 'react'
+import { Avatar, Popover, Button } from 'antd'
 import { useAppSelector, useAppDispatch } from '@/app/hooks'
-import { login, logout, selectLogin } from '@/features/login/loginSlice'
+import { selectLogin } from '@/features/login/loginSlice'
 import type { userLoginItem } from '@/models/user'
 import { GENDER_AVATAR_SRC } from '@/constant'
 import UserLogin from '../user-login'
+import UserRegist from '../user-regist'
 
 const UserAvatar: React.FC = () => {
   const dispatch = useAppDispatch()
   const loginState = useAppSelector(selectLogin)
   const [visible, setVisible] = useState(false)
-  const childRef: React.MutableRefObject<any> = useRef()
+  const [loginVisible, setLoginVisible] = useState(true)
 
   const showModal = () => setVisible(true)
   const closeModal = () => setVisible(false)
-
-  const handleOk = () => {
-    childRef.current.onOk()
-  }
+  const showLogin = () => setLoginVisible(true)
+  const showRegist = () => setLoginVisible(false)
 
   const handleLogin = async () => {
     const response = await fetch('/api/login', {
@@ -40,9 +39,8 @@ const UserAvatar: React.FC = () => {
           </Popover>
           : <Button type="primary" size="large" onClick={showModal}>Login</Button>
       }
-      <Modal title="Login" visible={visible} onOk={handleOk} onCancel={closeModal}>
-        <UserLogin childRef={childRef} />
-      </Modal>
+      <UserLogin visible={visible && loginVisible} closeModal={closeModal} changeModal={showRegist} />
+      <UserRegist visible={visible && !loginVisible} closeModal={closeModal} changeModal={showLogin} />
     </div>
   )
 }
