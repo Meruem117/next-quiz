@@ -14,32 +14,34 @@ const UserLogin: React.FC<{ visible: boolean, closeModal: eventType, changeModal
     form.resetFields()
   }
 
+  const handleLogin = async () => {
+    const response = await fetch('/api/login', {
+      method: 'POST',
+      body: JSON.stringify({ a: 1 }),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+    const data = await response.json()
+    console.log(data)
+  }
+
   return (
-    <Modal title="Regist" visible={visible} onOk={changeModal} onCancel={closeModal}>
+    <Modal title="Login" visible={visible} onOk={changeModal} onCancel={closeModal} okType="link" okText='Regist'>
       <Form form={form} name="Login" labelCol={{ span: 6 }} wrapperCol={{ span: 18 }} onFinish={onFinish}>
-        <Form.Item
-          label="Username"
-          name="username"
-          rules={[{ required: true, message: 'Please input your username!' }]}
-        >
+        <Form.Item label="Email" name={['login', 'email']} rules={[{ type: 'email', required: true, message: 'Please input your email' }]}>
           <Input />
         </Form.Item>
-        <Form.Item
-          label="Password"
-          name="password"
-          rules={[{ required: true, message: 'Please input your password!' }]}
-        >
+        <Form.Item label="Password" name={['login', 'password']} rules={[{ required: true, message: 'Please input your password' }]}>
           <Input.Password />
         </Form.Item>
-        <Form.Item >
-          <Button type="primary" htmlType="submit">
-            Submit
-          </Button>
-          <Button htmlType="button" onClick={onReset}>
-            Reset
-          </Button>
+        <Form.Item>
+          <div className="flex justify-center space-x-4">
+            <Button type="primary" htmlType="submit"> Login </Button>
+            <Button htmlType="button" onClick={onReset}> Reset </Button>
+          </div>
         </Form.Item>
-      </Form >
+      </Form>
     </Modal>
   )
 }
