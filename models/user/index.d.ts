@@ -20,10 +20,9 @@ export interface userCheckItem {
 }
 
 export interface userInfoItem {
-  id?: number,
-  email?: string,
-  name?: string,
-  role?: number,
-  gender?: number,
+  id: number,
+  name: string,
+  role: number,
+  gender: number,
   location?: string
 }

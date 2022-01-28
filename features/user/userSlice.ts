@@ -2,12 +2,11 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import type { AppState } from '@/app/store'
 import type { userInfoItem } from '@/models/user'
 
-export interface userState {
-  userInfo: userInfoItem
-}
-
-const initialState: userState = {
-  userInfo: {}
+const initialState: userInfoItem = {
+  id: -1,
+  name: '',
+  role: -1,
+  gender: -1
 }
 
 export const userSlice = createSlice({
@@ -16,10 +15,10 @@ export const userSlice = createSlice({
   // The `reducers` field lets us define reducers and generate associated actions
   reducers: {
     set: (state, action: PayloadAction<userInfoItem>) => {
-      state.userInfo = action.payload
+      Object.assign(state, action.payload)
     },
     clear: (state) => {
-      state.userInfo = initialState.userInfo
+      Object.assign(state, initialState)
     }
   }
 })

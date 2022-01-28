@@ -46,7 +46,7 @@ const ScheduleList: React.FC<{ data: scheduleItem[], select: string[] }> = ({ da
         // not start
         || select.includes(SCHEDULE_STATUS.REMAIN.color) && (item.isStart === SCHEDULE_TYPE.NOT_START) &&
         <ScheduleListItem item={item} color={SCHEDULE_STATUS.REMAIN.color} text={SCHEDULE_STATUS.REMAIN.text} />
-        || <Fragment />
+        || undefined
       )}
     />
   )
