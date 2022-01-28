@@ -14,6 +14,11 @@ export interface userLoginItem {
   password: string
 }
 
+export interface userCheckItem {
+  check: boolean,
+  userInfo: userInfoItem
+}
+
 export interface userInfoItem {
   id?: number,
   email?: string,

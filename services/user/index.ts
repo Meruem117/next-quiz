@@ -1,8 +1,8 @@
 import { responseItem } from '@/models/base'
-import { userItem, userLoginItem } from '@/models/user'
+import type { userItem, userLoginItem, userCheckItem } from '@/models/user'
 import { baseUrl } from '@/constant'
 
-export async function checkUserPassword(login: userLoginItem): Promise<responseItem<boolean>> {
+export async function checkUserPassword(login: userLoginItem): Promise<responseItem<userCheckItem>> {
   const response = await fetch(baseUrl + '/user/check', {
     method: 'POST',
     body: JSON.stringify(login),
@@ -23,7 +23,7 @@ export async function getUserList(): Promise<responseItem<userItem[]>> {
   return response.json()
 }
 
-export async function handleLogin(data: userLoginItem): Promise<{ data: boolean }> {
+export async function handleLogin(data: userLoginItem): Promise<userCheckItem> {
   const response = await fetch('/api/login', {
     method: 'POST',
     body: JSON.stringify(data),

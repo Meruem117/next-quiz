@@ -2,6 +2,7 @@ import React from 'react'
 import { Modal, Form, Input, Button, message } from 'antd'
 import { useAppDispatch } from '@/app/hooks'
 import { login } from '@/features/login/loginSlice'
+import { set } from '@/features/user/userSlice'
 import type { userLoginItem } from '@/models/user'
 import { handleLogin } from '@/services/user'
 
@@ -11,7 +12,8 @@ const UserLogin: React.FC<{ visible: boolean, closeModal: VoidFunction, changeMo
 
   const onFinish = async (values: { login: userLoginItem }) => {
     const res = await handleLogin(values.login)
-    if (res.data === true) {
+    if (res.check === true) {
+      dispatch(set(res.userInfo))
       dispatch(login())
       onReset()
       closeModal()
