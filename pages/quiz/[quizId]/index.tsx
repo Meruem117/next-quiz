@@ -29,7 +29,9 @@ const QuizDetailPage: NextPage<propsType> = (props) => {
 
   return (
     <div className="base-x-container">
-      <QuizDetail data={props.quizData} />
+      <div style={{ width: '12.5%' }}>
+        <QuizDetail data={props.quizData} />
+      </div>
       <div className="flex flex-col w-2/5 space-y-4">
         <ScheduleSelect select={select} handleChange={handleChange} />
         <ScheduleList data={props.scheduleData} select={select} />

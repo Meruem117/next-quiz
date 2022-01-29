@@ -19,7 +19,7 @@ const QuestionDetail: React.FC<{ data: questionItem }> = ({ data }) => {
   ]
 
   return (
-    <div className="flex justify-center space-x-4">
+    <div className="base-x-container">
       <div className="flex flex-col w-2/5 bg-white space-y-4 p-3 shadow-xl rounded-lg">
         <Typography.Title level={3} title={data.question}>{data.question}</Typography.Title>
         {options.map(option => {

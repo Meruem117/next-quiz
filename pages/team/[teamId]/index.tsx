@@ -20,7 +20,9 @@ type contextType = {
 const TeamDetailPage: NextPage<propsType> = (props) => {
   return (
     <div className="base-x-container">
-      <TeamDetail data={props.teamData} />
+      <div style={{ width: '12.5%' }}>
+        <TeamDetail data={props.teamData} />
+      </div>
       <div className="w-1/3">
         <MemberUserList data={props.memberData} />
       </div>

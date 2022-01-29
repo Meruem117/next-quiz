@@ -1,5 +1,5 @@
 import type { NextPage } from 'next'
-import UserInfo from '@/components/user/user-info'
+import UserDetail from '@/components/user/user-detail'
 import MemberTeamList from '@/components/member/member-team-list'
 import type { userItem } from '@/models/user'
 import type { memberItem } from '@/models/member'
@@ -20,7 +20,7 @@ type contextType = {
 const UserDetailPage: NextPage<propsType> = (props) => {
   return (
     <div className="base-y-container">
-      <UserInfo data={props.userData} />
+      <UserDetail data={props.userData} />
       <MemberTeamList data={props.memberData} />
     </div>
   )
