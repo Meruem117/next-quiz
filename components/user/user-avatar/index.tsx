@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import Link from 'next/link'
 import { Avatar, Popover, Button, message } from 'antd'
 import { UserOutlined, EnvironmentOutlined } from '@ant-design/icons'
 import { useAppSelector, useAppDispatch } from '@/app/hooks'
@@ -31,6 +30,7 @@ const UserAvatar: React.FC = () => {
     <div className="flex flex-col space-y-2 w-24 overflow-clip">
       <IconText icon={UserOutlined} text={userState.name} title={userState.name} />
       {userState.location ? <IconText icon={EnvironmentOutlined} text={userState.location} title={userState.location} /> : undefined}
+      <Button size="small" href={`/user/${userState.id}`}>Mine</Button>
       <Button size="small" onClick={handleLogout}>Logout</Button>
     </div>
   )

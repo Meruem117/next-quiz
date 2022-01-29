@@ -15,12 +15,18 @@ body {
   src: url('../assets/AiDeep.otf');
 }
 
-.base-container {
+.base-y-container {
   @apply flex;
   @apply flex-col;
   @apply w-1/2;
   @apply mx-auto;
   @apply space-y-4;
+}
+
+.base-x-container {
+  @apply flex;
+  @apply justify-center;
+  @apply space-x-4;
 }
 
 .base-list {

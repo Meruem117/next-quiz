@@ -10,7 +10,7 @@ type propsType = {
 
 const QuizPage: NextPage<propsType> = (props) => {
   return (
-    <div className="base-container">
+    <div className="base-y-container">
       <ExploreNav select='quiz' />
       <QuizList data={props.quizData} />
     </div>

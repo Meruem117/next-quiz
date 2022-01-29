@@ -10,7 +10,7 @@ type propsType = {
 
 const TopicPage: NextPage<propsType> = (props) => {
   return (
-    <div className="base-container">
+    <div className="base-y-container">
       <ExploreNav select='topic' />
       <TopicList data={props.topicData} />
     </div>

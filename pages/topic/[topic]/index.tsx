@@ -18,7 +18,7 @@ type contextType = {
 
 const TopicDetailPage: NextPage<propsType> = (props) => {
   return (
-    <div className="base-container">
+    <div className="base-y-container">
       <TopicBreadcrumb topic={props.topic} />
       <QuestionList data={props.questionData} />
     </div>
