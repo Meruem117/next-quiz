@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Avatar, Popover, Button, message } from 'antd'
+import { Popover, Avatar, Button, message } from 'antd'
 import { UserOutlined, EnvironmentOutlined } from '@ant-design/icons'
 import { useAppSelector, useAppDispatch } from '@/app/hooks'
 import { selectLogin, logout } from '@/features/login/loginSlice'

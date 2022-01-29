@@ -1,5 +1,5 @@
-import { responseItem } from '@/models/base'
-import { scheduleItem } from '@/models/schedule'
+import type { responseItem } from '@/models/base'
+import type { scheduleItem } from '@/models/schedule'
 import { baseUrl } from '@/constant'
 
 export async function getScheduleListByQuizId(quizId: number): Promise<responseItem<scheduleItem[]>> {

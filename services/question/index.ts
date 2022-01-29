@@ -1,5 +1,5 @@
-import { responseItem } from '@/models/base'
-import { questionItem } from '@/models/question'
+import type { responseItem } from '@/models/base'
+import type { questionItem } from '@/models/question'
 import { baseUrl } from '@/constant'
 
 export async function getQuestionById(id: number): Promise<responseItem<questionItem>> {

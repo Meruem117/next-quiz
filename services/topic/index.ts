@@ -1,5 +1,5 @@
-import { responseItem, pageRequestItem, pageResponseItem } from '@/models/base'
-import { topicItem } from '@/models/topic'
+import type { responseItem, pageRequestItem, pageResponseItem } from '@/models/base'
+import type { topicItem } from '@/models/topic'
 import { baseUrl } from '@/constant'
 import { jsonToQuery } from '@/utils'
 

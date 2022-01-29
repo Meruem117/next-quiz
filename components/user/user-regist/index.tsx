@@ -1,5 +1,5 @@
 import React from 'react'
-import { Modal, Form, Input, Button, Select } from 'antd'
+import { Modal, Form, Input, Select, Button } from 'antd'
 
 const UserRegist: React.FC<{ visible: boolean, closeModal: VoidFunction, changeModal: VoidFunction }> = ({ visible, closeModal, changeModal }) => {
   const [form] = Form.useForm()

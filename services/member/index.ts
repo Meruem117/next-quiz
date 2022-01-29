@@ -1,5 +1,5 @@
-import { responseItem } from '@/models/base'
-import { memberItem } from '@/models/member'
+import type { responseItem } from '@/models/base'
+import type { memberItem } from '@/models/member'
 import { baseUrl } from '@/constant'
 
 export async function getTeamListByUserId(id: number): Promise<responseItem<memberItem[]>> {

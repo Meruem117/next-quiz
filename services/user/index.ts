@@ -1,4 +1,4 @@
-import { responseItem } from '@/models/base'
+import type { responseItem } from '@/models/base'
 import type { userItem, userLoginItem, userCheckItem } from '@/models/user'
 import { baseUrl } from '@/constant'
 
