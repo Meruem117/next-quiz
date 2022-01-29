@@ -8,7 +8,7 @@ const TeamList: React.FC<{ data: teamItem[] }> = ({ data }) => {
     <List
       itemLayout="vertical"
       dataSource={data}
-      className="base-list"
+      className="base-box"
       pagination={{
         pageSize: 6,
       }}

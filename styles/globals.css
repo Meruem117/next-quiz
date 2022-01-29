@@ -29,7 +29,7 @@ body {
   @apply space-x-4;
 }
 
-.base-list {
+.base-box {
   @apply shadow-xl;
   @apply bg-white;
   @apply rounded-lg;

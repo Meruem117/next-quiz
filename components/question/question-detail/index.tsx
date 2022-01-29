@@ -3,7 +3,7 @@ import { Typography, Tag, Collapse } from 'antd'
 import { UserOutlined, CalendarOutlined } from '@ant-design/icons'
 import IconText from '@/components/common/icon-text'
 import type { questionItem } from '@/models/question'
-import { QUESTION_TYPE_TEXT } from '@/constant'
+import { QUESTION_TEXT } from '@/constant'
 
 type optionItem = {
   key: string,
@@ -40,7 +40,7 @@ const QuestionDetail: React.FC<{ data: questionItem }> = ({ data }) => {
           <IconText icon={UserOutlined} text={data.up} title={`Up: ${data.up}`} />
           <div className="flex space-x-2">
             <Tag color="blue">{data.topic}</Tag>
-            <Tag color="magenta">{QUESTION_TYPE_TEXT[data.type]}</Tag>
+            <Tag color="magenta">{QUESTION_TEXT[data.type]}</Tag>
           </div>
           <div className="flex space-x-2">
             <IconText icon={CalendarOutlined} text={data.createTime.substring(0, 10)} title={`Created: ${data.createTime}`} />

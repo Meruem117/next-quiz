@@ -1,17 +1,21 @@
 export const baseUrl = 'http://localhost:8080'
-export const PAGE_SIZE = 10
 //* user
 export const ROLE = {
   ROOT: 2,
   ADMIN: 1,
   USER: 0
 }
+export const ROLE_TEXT: { [key: number]: { text: string, color: string } } = {
+  0: { text: 'User', color: 'cyan' },
+  1: { text: 'Admin', color: 'green' },
+  2: { text: 'Root', color: 'volcano' }
+}
 //* quiz
 export const IS_TEAM_TYPE = {
   TEAM: 1,
   USER: 0
 }
-export const IS_TEAM_TYPE_TEXT: { [key: number]: string } = {
+export const IS_TEAM_TEXT: { [key: number]: string } = {
   1: 'team',
   0: 'user'
 }
@@ -32,14 +36,18 @@ export const QUESTION_TYPE = {
   SINGLE_CHOICE: 1,
   MULTIPLE_CHOICE: 0
 }
-export const QUESTION_TYPE_TEXT: { [key: number]: string } = {
+export const QUESTION_TEXT: { [key: number]: string } = {
   1: 'Single Choice',
   0: 'Multiple Choice'
 }
 //* user
+export const GENDER_TYPE = {
+  Male: 1,
+  Female: 0
+}
 export const GENDER_TEXT: { [key: number]: string } = {
-  1: 'male',
-  0: 'female'
+  1: 'Male',
+  0: 'Female'
 }
 export const GENDER_AVATAR_SRC: { [key: number]: string } = {
   1: 'https://joeschmoe.io/api/v1/male/random',

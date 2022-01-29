@@ -8,7 +8,7 @@ const TopicList: React.FC<{ data: topicItem[] }> = ({ data }) => {
     <List
       itemLayout="horizontal"
       dataSource={data}
-      className="base-list"
+      className="base-box"
       pagination={{
         pageSize: 6,
       }}

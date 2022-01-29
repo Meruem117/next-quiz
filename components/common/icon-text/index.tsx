@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react"
+import React, { ReactElement } from 'react'
 import { Space } from 'antd'
 
 const IconText = ({ icon, text, title }: { icon: React.FC, text: string | number, title?: string }): ReactElement => (

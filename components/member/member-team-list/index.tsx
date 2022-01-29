@@ -3,7 +3,7 @@ import type { memberItem } from '@/models/member'
 
 const MemberTeamList: React.FC<{ data: memberItem[] }> = ({ data }) => {
   return (
-    <div>{data[0].teamName}</div>
+    <div className="base-box">{data[0].teamName}</div>
   )
 }
 
