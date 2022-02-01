@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { ReactElement } from 'react'
 import { Select, Tag } from 'antd'
 import { SCHEDULE_STATUS } from '@/constant'
 
@@ -13,7 +13,7 @@ const ScheduleSelect: React.FC<{ select: string[], handleChange: (value: string[
     handleChange(value)
   }
 
-  function tagRender(props: any): JSX.Element {
+  function tagRender(props: any): ReactElement {
     const { value, label, onClose } = props
     return <Tag color={value} closable={true} onClose={onClose} className="mr-2 text-base py-0.5">{label}</Tag>
   }

@@ -1,13 +1,13 @@
-import React, { useState } from 'react'
+import React, { ReactElement, useState } from 'react'
 import { Popover, Avatar, Button, message } from 'antd'
 import { UserOutlined, EnvironmentOutlined } from '@ant-design/icons'
 import { useAppSelector, useAppDispatch } from '@/app/hooks'
 import { selectLogin, logout } from '@/features/login/loginSlice'
 import { selectUser, clear } from '@/features/user/userSlice'
 import IconText from '@/components/common/icon-text'
-import { GENDER_AVATAR_SRC } from '@/constant'
 import UserLogin from '../user-login'
 import UserRegist from '../user-regist'
+import { GENDER_AVATAR_SRC } from '@/constant'
 
 const UserAvatar: React.FC = () => {
   const dispatch = useAppDispatch()
@@ -26,7 +26,7 @@ const UserAvatar: React.FC = () => {
     message.info('logout successfully')
   }
 
-  const content = (
+  const content: ReactElement = (
     <div className="flex flex-col space-y-2 w-24 overflow-clip">
       <IconText icon={UserOutlined} text={userState.name} title={userState.name} />
       {userState.location ? <IconText icon={EnvironmentOutlined} text={userState.location} title={userState.location} /> : undefined}

@@ -23,13 +23,13 @@ const QuestionDetail: React.FC<{ data: questionItem }> = ({ data }) => {
     <div className="base-x-container">
       <div className="flex flex-col w-2/5 bg-white space-y-4 p-3 shadow-xl rounded-lg">
         <Typography.Title level={3} title={data.question}>{data.question}</Typography.Title>
-        {options.map(option => {
-          if (data[option.value]) {
-            return (
-              <div key={option.key} className="text-xl">{option.key}. {data[option.value]}</div>
-            )
-          }
-        })}
+        {
+          options.map(option => {
+            if (data[option.value]) {
+              return <div key={option.key} className="text-xl">{option.key}. {data[option.value]}</div>
+            }
+          })
+        }
         <Collapse collapsible="header">
           <Collapse.Panel header="Answer" key="question-answer">
             <Typography.Text>{data.answer}</Typography.Text>
