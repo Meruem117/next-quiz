@@ -2,6 +2,7 @@ import React from 'react'
 import { Typography, Tag, Collapse } from 'antd'
 import { UserOutlined, CalendarOutlined } from '@ant-design/icons'
 import IconText from '@/components/common/icon-text'
+import IconLink from '@/components/common/icon-link'
 import type { questionItem } from '@/models/question'
 import { QUESTION_TEXT } from '@/constant'
 
@@ -37,7 +38,7 @@ const QuestionDetail: React.FC<{ data: questionItem }> = ({ data }) => {
       </div>
       <div>
         <div className="flex flex-col bg-white space-y-4 p-3 shadow-xl rounded-lg">
-          <IconText icon={UserOutlined} text={data.up} title={`Up: ${data.up}`} />
+          <IconLink icon={UserOutlined} text={data.up} title={`Up: ${data.up}`} href={`/user/${data.upId}`} />
           <div className="flex space-x-2">
             <Tag color="blue">{data.topic}</Tag>
             <Tag color="magenta">{QUESTION_TEXT[data.type]}</Tag>

@@ -1,4 +1,5 @@
 import React from 'react'
+import Link from 'next/link'
 import { List, Avatar, Typography } from 'antd'
 import { CalendarOutlined } from '@ant-design/icons'
 import IconText from '@/components/common/icon-text'
@@ -22,7 +23,13 @@ const MemberUserList: React.FC<{ data: memberItem[] }> = ({ data }) => {
       >
         <List.Item.Meta
           avatar={<Avatar className="bg-orange-500">{convertUsername(item.userName)}</Avatar>}
-          title={<Typography.Title level={4} title={item.userName}>{item.userName}</Typography.Title>}
+          title={
+            <Link href={`/user/${item.userId}`} passHref>
+              <Typography.Title level={4} title={item.userName} className="cursor-pointer hover:text-blue-600">
+                {item.userName}
+              </Typography.Title>
+            </Link>
+          }
         />
       </List.Item>
     )}
