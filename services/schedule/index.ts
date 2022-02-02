@@ -2,13 +2,18 @@ import type { responseItem } from '@/models/base'
 import type { scheduleItem } from '@/models/schedule'
 import { baseUrl } from '@/constant'
 
-export async function getScheduleListByQuizId(quizId: number): Promise<responseItem<scheduleItem[]>> {
-  const response = await fetch(baseUrl + '/schedule/get?quizId=' + quizId)
+export async function getScheduleById(id: number): Promise<responseItem<scheduleItem>> {
+  const response = await fetch(baseUrl + '/schedule/get?id=' + id)
   return response.json()
 }
 
 export async function getScheduleList(): Promise<responseItem<scheduleItem[]>> {
   const response = await fetch(baseUrl + '/schedule/list')
+  return response.json()
+}
+
+export async function getScheduleListByQuizId(quizId: number): Promise<responseItem<scheduleItem[]>> {
+  const response = await fetch(baseUrl + '/schedule/quiz?quizId=' + quizId)
   return response.json()
 }
 
