@@ -38,6 +38,7 @@ export async function getStaticPaths() {
 export async function getStaticProps(context: contextType) {
   const scheduleId = context.params.scheduleId
   const scheduleRes = await getScheduleById(scheduleId)
+  console.log(scheduleRes.data.question)
 
   return {
     props: {

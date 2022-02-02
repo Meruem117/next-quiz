@@ -1,5 +1,4 @@
 import React, { ReactElement } from 'react'
-import Link from 'next/link'
 import { List, Typography, Tag, Button } from 'antd'
 import { CalendarOutlined, ClockCircleOutlined } from '@ant-design/icons'
 import IconText from '@/components/common/icon-text'
@@ -8,27 +7,25 @@ import { SCHEDULE, SCHEDULE_STATUS } from '@/constant'
 
 const ScheduleList: React.FC<{ data: scheduleItem[], select: string[] }> = ({ data, select }) => {
   const ScheduleListItem = ({ item, color, text }: { item: scheduleItem, color: string, text: string }): ReactElement => (
-    <Link href={`/quiz/${item.quizId}`} passHref>
-      <List.Item
-        className="p-2 rounded-md"
-        actions={[
-          <Tag key={item.id} color={color}>{text}</Tag>,
-          <IconText
-            key={item.id}
-            icon={CalendarOutlined}
-            text={item.startTime.substring(0, 10)} title={`Start at: ${item.startTime.substring(0, 16)}`}
-          />,
-          <IconText key={item.id} icon={ClockCircleOutlined} text={`${item.length} minutes`} title={`Length: ${item.length} minutes`} />
-        ]}
-        extra={
-          <Button type="primary">Detail</Button>
-        }
-      >
-        <List.Item.Meta
-          title={<Typography.Title level={4} title={`Round: ${item.round}`}>Round #{item.round}</Typography.Title>}
-        />
-      </List.Item>
-    </Link>
+    <List.Item
+      className="p-2 rounded-md"
+      actions={[
+        <Tag key={item.id} color={color}>{text}</Tag>,
+        <IconText
+          key={item.id}
+          icon={CalendarOutlined}
+          text={item.startTime.substring(0, 10)} title={`Start at: ${item.startTime.substring(0, 16)}`}
+        />,
+        <IconText key={item.id} icon={ClockCircleOutlined} text={`${item.length} minutes`} title={`Length: ${item.length} minutes`} />
+      ]}
+      extra={
+        <Button type="primary" href={`/schedule/${item.id}`}>Detail</Button>
+      }
+    >
+      <List.Item.Meta
+        title={<Typography.Title level={4} title={`Round: ${item.round}`}>Round #{item.round}</Typography.Title>}
+      />
+    </List.Item>
   )
 
   return (
