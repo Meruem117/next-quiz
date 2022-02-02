@@ -2,6 +2,7 @@ import type { NextPage } from 'next'
 import ScheduleDetail from '@/components/schedule/schedule-detail'
 import type { scheduleItem } from '@/models/schedule'
 import { getScheduleList, getScheduleById } from '@/services/schedule'
+import { getQuestionListBySchedule } from '@/services/question'
 
 type propsType = {
   scheduleData: scheduleItem
@@ -38,7 +39,8 @@ export async function getStaticPaths() {
 export async function getStaticProps(context: contextType) {
   const scheduleId = context.params.scheduleId
   const scheduleRes = await getScheduleById(scheduleId)
-  console.log(scheduleRes.data.question)
+  const questionData = await getQuestionListBySchedule(scheduleRes.data.question)
+  console.log(questionData)
 
   return {
     props: {

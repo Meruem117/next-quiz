@@ -11,3 +11,8 @@ export async function getQuestionListByTopic(topic: string): Promise<responseIte
   const response = await fetch(baseUrl + '/question/list?topic=' + topic)
   return response.json()
 }
+
+export async function getQuestionListBySchedule(question: string): Promise<responseItem<questionItem[]>> {
+  const response = await fetch(baseUrl + '/question/schedule?question=' + question)
+  return response.json()
+}
