@@ -8,6 +8,7 @@ body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
     Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  @apply bg-gray-100;
 }
 
 @font-face {
@@ -21,12 +22,14 @@ body {
   @apply w-1/2;
   @apply mx-auto;
   @apply space-y-4;
+  @apply pb-28;
 }
 
 .base-x-container {
   @apply flex;
   @apply justify-center;
   @apply space-x-4;
+  @apply pb-28;
 }
 
 .base-box {

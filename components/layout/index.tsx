@@ -20,7 +20,7 @@ const BaseLayout: React.FC = (props) => {
         <Layout.Content className="bg-gray-100 p-5">
           <div className="h-full w-full p-3">{props.children}</div>
         </Layout.Content>
-        <Layout.Footer className="fixed bottom-0 w-full text-center text-base">
+        <Layout.Footer className="fixed bottom-0 w-full text-center text-base bg-gray-200">
           Quiz ©2022 Created by Meruem
         </Layout.Footer>
       </Layout>
