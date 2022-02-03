@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
 import UserDetail from '@/components/user/user-detail'
-import MemberTeamList from '@/components/member/member-team-list'
+import UserContent from '@/components/user/user-content'
 import type { userItem } from '@/models/user'
 import type { memberItem } from '@/models/member'
 import { getUserById, getUserList } from '@/services/user'
@@ -21,7 +21,7 @@ const UserDetailPage: NextPage<propsType> = (props) => {
   return (
     <div className="base-y-container">
       <UserDetail data={props.userData} />
-      <MemberTeamList data={props.memberData} />
+      <UserContent memberData={props.memberData} />
     </div>
   )
 }

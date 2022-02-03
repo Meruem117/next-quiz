@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { Menu } from 'antd'
 import { HomeOutlined, GlobalOutlined } from '@ant-design/icons'
 
-const NavMenu: React.FC = () => {
+const BaseMenu: React.FC = () => {
   return (
     <Menu mode="horizontal" defaultSelectedKeys={['']} className="text-lg font-medium w-1/2">
       <Menu.Item key="home" icon={<HomeOutlined />}>
@@ -16,4 +16,4 @@ const NavMenu: React.FC = () => {
   )
 }
 
-export default NavMenu
+export default BaseMenu

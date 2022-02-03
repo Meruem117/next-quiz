@@ -5,8 +5,8 @@ import { useAppSelector, useAppDispatch } from '@/app/hooks'
 import { selectLogin, logout } from '@/features/login/loginSlice'
 import { selectUser, clear } from '@/features/user/userSlice'
 import IconText from '@/components/common/icon-text'
-import UserLogin from '../user-login'
-import UserRegist from '../user-regist'
+import UserLogin from './user-login'
+import UserRegist from './user-regist'
 import { GENDER_AVATAR_SRC } from '@/constant'
 
 const UserAvatar: React.FC = () => {

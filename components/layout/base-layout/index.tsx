@@ -1,8 +1,8 @@
 import React, { Fragment } from 'react'
 import Head from 'next/head'
 import { Layout, BackTop } from 'antd'
-import LayoutMenu from './layout-menu'
-import UserAvatar from '../user/user-avatar'
+import BaseMenu from './base-menu'
+import UserAvatar from '@/components/user/user-avatar'
 
 const BaseLayout: React.FC = (props) => {
   return (
@@ -14,7 +14,7 @@ const BaseLayout: React.FC = (props) => {
       <Layout className="layout h-screen w-full">
         <Layout.Header className="flex space-x-4 pt-1.5 bg-white">
           <div className="text-4xl font-semibold cursor-default text-AiDeep">Quiz</div>
-          <LayoutMenu />
+          <BaseMenu />
           <UserAvatar />
         </Layout.Header>
         <Layout.Content className="bg-gray-100 p-5">

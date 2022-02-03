@@ -8,7 +8,7 @@ import { ROLE_TYPE, GENDER, GENDER_TEXT, GENDER_AVATAR_SRC } from '@/constant'
 const UserDetail: React.FC<{ data: userItem }> = ({ data }) => {
   return (
     <Badge.Ribbon text={ROLE_TYPE[data.role].text} color={ROLE_TYPE[data.role].color}>
-      <div className="flex rounded-lg bg-white shadow p-3">
+      <div className="base-box flex">
         <Avatar size={96} src={GENDER_AVATAR_SRC[data.gender]} />
         <div className="flex flex-col p-4">
           <Space>

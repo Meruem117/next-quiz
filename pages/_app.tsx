@@ -3,7 +3,7 @@ import React from 'react'
 import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react'
 import store, { persistor } from '@/app/store'
-import Layout from '@/components/layout'
+import Layout from '@/components/layout/base-layout'
 import 'antd/dist/antd.css'
 import '@/styles/globals.css'
 
