@@ -56,3 +56,10 @@ export const QUESTION_TEXT: { [key: number]: string } = {
   1: 'Single Choice',
   0: 'Multiple Choice'
 }
+
+//* result
+export const STATUS: { [key: number]: { text: string, color: string } } = {
+  0: { text: 'Remain', color: 'magenta' },
+  1: { text: 'Start', color: 'green' },
+  2: { text: 'End', color: 'red' }
+}

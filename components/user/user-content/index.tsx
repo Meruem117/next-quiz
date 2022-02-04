@@ -2,10 +2,13 @@ import React, { ReactElement } from 'react'
 import { Tabs } from 'antd'
 import { TeamOutlined, SolutionOutlined, BookOutlined } from '@ant-design/icons'
 import MemberTeamList from '@/components/member/member-team-list'
+import ResultQuizList from '@/components/result/result-quiz-list'
 import type { memberItem } from '@/models/member'
+import type { resultItem } from '@/models/result'
 
 type propsType = {
-  memberData: memberItem[]
+  memberData: memberItem[],
+  resultData: resultItem[]
 }
 
 const UserContent: React.FC<propsType> = (props) => {
@@ -22,7 +25,7 @@ const UserContent: React.FC<propsType> = (props) => {
         <MemberTeamList data={props.memberData} />
       </Tabs.TabPane>
       <Tabs.TabPane key="quiz" tab={<IconTab icon={SolutionOutlined} text='Quiz' />} >
-        Quiz
+        <ResultQuizList data={props.resultData} />
       </Tabs.TabPane>
       <Tabs.TabPane key="question" tab={<IconTab icon={BookOutlined} text='Question' />} >
         Question
