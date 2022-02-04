@@ -58,8 +58,13 @@ export const QUESTION_TEXT: { [key: number]: string } = {
 }
 
 //* result
+export const STATUS_TYPE = {
+  NOT_START: { value: 0, text: 'Not Start' },
+  START: { value: 1, text: 'Start' },
+  END: { value: 2, text: 'END' }
+}
 export const STATUS: { [key: number]: { text: string, color: string } } = {
-  0: { text: 'Remain', color: 'magenta' },
+  0: { text: 'Not Start', color: 'magenta' },
   1: { text: 'Start', color: 'green' },
   2: { text: 'End', color: 'red' }
 }

@@ -7,6 +7,11 @@ export async function getQuestionById(id: number): Promise<responseItem<question
   return response.json()
 }
 
+export async function getQuestionListByUpId(id: number): Promise<responseItem<questionItem>> {
+  const response = await fetch(baseUrl + '/question/up?id=' + id)
+  return response.json()
+}
+
 export async function getQuestionListByTopic(topic: string): Promise<responseItem<questionItem[]>> {
   const response = await fetch(baseUrl + '/question/list?topic=' + topic)
   return response.json()

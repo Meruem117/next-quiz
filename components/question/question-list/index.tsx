@@ -13,7 +13,7 @@ const QuestionList: React.FC<{ data: questionItem[] }> = ({ data }) => {
       dataSource={data}
       className="base-box"
       pagination={{
-        pageSize: 3,
+        pageSize: 5,
       }}
       footer={
         <a>Upload questions here</a>
