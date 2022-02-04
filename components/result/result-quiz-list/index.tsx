@@ -1,29 +1,40 @@
-import React from 'react'
-import { List, Card, Tag } from 'antd'
+import React, { useState } from 'react'
+import { List, Radio, Space, Typography, Tag } from 'antd'
+import { groupBy } from 'lodash'
 import type { resultItem } from '@/models/result'
 import { STATUS } from '@/constant'
 
 const ResultQuizList: React.FC<{ data: resultItem[] }> = ({ data }) => {
+  const [status, setStatus] = useState<number>(1)
+  const dataSource = groupBy(data, 'status')
+
+  const handleChange = (e: any): void => {
+    setStatus(e.target.value)
+  }
+
   return (
-    <List
-      grid={{
-        gutter: 16,
-        xs: 1,
-        sm: 2,
-        md: 2,
-        lg: 3,
-        xl: 3,
-        xxl: 3,
-      }}
-      dataSource={data}
-      renderItem={item => (
-        <List.Item>
-          <Card title={`${item.quizName} #${item.round}`} className="cursor-pointer rounded-md shadow hover:shadow-xl duration-150">
-            <Tag color={STATUS[item.status].color}>{STATUS[item.status].text}</Tag>
-          </Card>
-        </List.Item>
-      )}
-    />
+    <div className="flex flex-col space-y-4">
+      <Radio.Group onChange={handleChange} value={status}>
+        <Radio.Button value={1}>Start</Radio.Button>
+        <Radio.Button value={2}>End</Radio.Button>
+        <Radio.Button value={0}>Not Start</Radio.Button>
+      </Radio.Group>
+      <List
+        itemLayout="horizontal"
+        dataSource={dataSource[status]}
+        pagination={{
+          pageSize: 5,
+        }}
+        renderItem={item => (
+          <List.Item className="p-2 cursor-pointer rounded-md shadow-md hover:shadow-lg duration-150">
+            <Space size="middle">
+              <div className="text-xl font-semibold">{`${item.quizName} #${item.round}`}</div>
+              <Tag color={STATUS[item.status].color}>{STATUS[item.status].text}</Tag>
+            </Space>
+          </List.Item>
+        )}
+      />
+    </div>
   )
 }
 
