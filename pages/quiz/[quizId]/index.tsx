@@ -7,7 +7,7 @@ import type { quizItem } from '@/models/quiz'
 import type { scheduleItem } from '@/models/schedule'
 import { getQuizList, getQuizById } from '@/services/quiz'
 import { getScheduleListByQuizId } from '@/services/schedule'
-import { SCHEDULE_STATUS } from '@/constant'
+import { STATUS } from '@/constant'
 
 type propsType = {
   quizData: quizItem,
@@ -21,7 +21,7 @@ type contextType = {
 }
 
 const QuizDetailPage: NextPage<propsType> = (props) => {
-  const [select, setSelect] = useState<string[]>([SCHEDULE_STATUS.START.color, SCHEDULE_STATUS.END.color, SCHEDULE_STATUS.REMAIN.color])
+  const [select, setSelect] = useState<string[]>([STATUS.START.color, STATUS.END.color, STATUS.NOT_START.color])
 
   function handleChange(value: string[]): void {
     setSelect(value)

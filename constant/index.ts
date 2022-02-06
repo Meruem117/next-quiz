@@ -35,16 +35,15 @@ export const IS_TEAM_TEXT: { [key: number]: string } = {
 }
 
 //* schedule
-export const SCHEDULE = {
-  START: 1,
-  NOT_START: 0,
-  END: 1,
-  NOT_END: 0
+export const STATUS = {
+  NOT_START: { value: 0, text: 'Not Start', color: 'magenta' },
+  START: { value: 1, text: 'Start', color: 'green' },
+  END: { value: 2, text: 'End', color: 'red' }
 }
-export const SCHEDULE_STATUS = {
-  START: { text: 'Start', color: 'green' },
-  REMAIN: { text: 'Remain', color: 'magenta' },
-  END: { text: 'End', color: 'red' }
+export const STATUS_TYPE: { [key: number]: { text: string, color: string } } = {
+  0: { text: 'Not Start', color: 'magenta' },
+  1: { text: 'Start', color: 'green' },
+  2: { text: 'End', color: 'red' }
 }
 
 //* question
@@ -55,16 +54,4 @@ export const QUESTION = {
 export const QUESTION_TEXT: { [key: number]: string } = {
   1: 'Single Choice',
   0: 'Multiple Choice'
-}
-
-//* result
-export const STATUS_TYPE = {
-  NOT_START: { value: 0, text: 'Not Start' },
-  START: { value: 1, text: 'Start' },
-  END: { value: 2, text: 'END' }
-}
-export const STATUS: { [key: number]: { text: string, color: string } } = {
-  0: { text: 'Not Start', color: 'magenta' },
-  1: { text: 'Start', color: 'green' },
-  2: { text: 'End', color: 'red' }
 }

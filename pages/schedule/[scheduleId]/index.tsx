@@ -18,6 +18,8 @@ type contextType = {
 }
 
 const ScheduleDetailPage: NextPage<propsType> = (props) => {
+  const { } = props.scheduleData
+
   return (
     <div className="base-x-container">
       <div className="flex flex-col w-1/2 space-y-4">

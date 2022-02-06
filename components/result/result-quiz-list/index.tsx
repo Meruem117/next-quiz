@@ -16,9 +16,9 @@ const ResultQuizList: React.FC<{ data: resultItem[] }> = ({ data }) => {
   return (
     <div className="flex flex-col space-y-4">
       <Radio.Group onChange={handleChange} value={status}>
-        <Radio.Button value={STATUS_TYPE.START.text}>{STATUS_TYPE.START.text}</Radio.Button>
-        <Radio.Button value={STATUS_TYPE.NOT_START.text}>{STATUS_TYPE.NOT_START.text}</Radio.Button>
-        <Radio.Button value={STATUS_TYPE.END.text}>{STATUS_TYPE.END.text}</Radio.Button>
+        <Radio.Button value={STATUS.START.value}>{STATUS.START.text}</Radio.Button>
+        <Radio.Button value={STATUS.NOT_START.value}>{STATUS.NOT_START.text}</Radio.Button>
+        <Radio.Button value={STATUS.END.value}>{STATUS.END.text}</Radio.Button>
       </Radio.Group>
       <List
         itemLayout="horizontal"
@@ -31,7 +31,7 @@ const ResultQuizList: React.FC<{ data: resultItem[] }> = ({ data }) => {
             <List.Item className="p-2 cursor-pointer rounded-md hover:shadow-lg duration-150">
               <Space size="middle">
                 <div className="text-xl font-semibold">{`${item.quizName} #${item.round}`}</div>
-                <Tag color={STATUS[item.status].color}>{STATUS[item.status].text}</Tag>
+                <Tag color={STATUS_TYPE[item.status].color}>{STATUS_TYPE[item.status].text}</Tag>
               </Space>
             </List.Item>
           </Link>

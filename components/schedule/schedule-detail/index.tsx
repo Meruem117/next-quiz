@@ -1,36 +1,13 @@
-import React, { useState, useEffect } from 'react'
+import React from 'react'
 import { Typography, Space, Badge } from 'antd'
 import { CalendarOutlined, ClockCircleOutlined, FileTextOutlined } from '@ant-design/icons'
 import IconText from '@/components/common/icon-text'
 import type { scheduleItem } from '@/models/schedule'
-import { SCHEDULE, SCHEDULE_STATUS } from '@/constant'
-
-type statusItem = {
-  text: string,
-  color: string
-}
+import { STATUS_TYPE } from '@/constant'
 
 const ScheduleDetail: React.FC<{ data: scheduleItem }> = ({ data }) => {
-  const [status, setStatus] = useState<statusItem>()
-
-  useEffect(() => {
-    const status = getScheduleStatus(data)
-    setStatus(status)
-  }, [data])
-
-  const getScheduleStatus = (schedule: scheduleItem): statusItem => {
-    const { isStart, isEnd } = schedule
-    if (isStart === SCHEDULE.NOT_START) {
-      return SCHEDULE_STATUS.REMAIN
-    } else if (isEnd === SCHEDULE.END) {
-      return SCHEDULE_STATUS.END
-    } else {
-      return SCHEDULE_STATUS.START
-    }
-  }
-
   return (
-    <Badge.Ribbon text={status?.text} color={status?.color}>
+    <Badge.Ribbon text={STATUS_TYPE[data.status].text} color={STATUS_TYPE[data.status].color}>
       <div className="base-box flex flex-col">
         <Typography.Title level={3} title={`${data.quizName} - Round ${data.round}`}>{data.quizName} #{data.round}</Typography.Title>
         <Space size="middle">
