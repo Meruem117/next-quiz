@@ -1,10 +1,12 @@
 import type { NextPage } from 'next'
+import { Alert } from 'antd'
 import ScheduleDetail from '@/components/schedule/schedule-detail'
 import QuestionInfoList from '@/components/question/question-info-list'
 import type { scheduleItem } from '@/models/schedule'
 import type { questionItem } from '@/models/question'
 import { getScheduleList, getScheduleById } from '@/services/schedule'
 import { getQuestionListBySchedule } from '@/services/question'
+import { STATUS } from '@/constant'
 
 type propsType = {
   scheduleData: scheduleItem,
@@ -18,13 +20,23 @@ type contextType = {
 }
 
 const ScheduleDetailPage: NextPage<propsType> = (props) => {
-  const { } = props.scheduleData
+  const { status } = props.scheduleData
 
   return (
     <div className="base-x-container">
       <div className="flex flex-col w-1/2 space-y-4">
         <ScheduleDetail data={props.scheduleData} />
-        <QuestionInfoList data={props.questionData} />
+        {
+          status === STATUS.END.value ?
+            <QuestionInfoList data={props.questionData} />
+            : <Alert
+              message="Warning"
+              description="This quiz round has not ended yet, you can view the question list after it ends."
+              type="warning"
+              showIcon
+              className="shadow-md rounded-md"
+            />
+        }
       </div>
     </div>
   )
