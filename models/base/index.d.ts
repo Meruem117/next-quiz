@@ -4,6 +4,11 @@ export interface responseItem<T> {
   message: string
 }
 
+export interface requestItem<T> {
+  method: string,
+  body: T
+}
+
 export interface pageDataItem<T> {
   records: T,
   total: number,

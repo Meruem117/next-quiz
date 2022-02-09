@@ -18,11 +18,13 @@ type contextType = {
 }
 
 const ScheduleDetailPage: NextPage<propsType> = (props) => {
+  const { id, status } = props.scheduleData
+
   return (
     <div className="base-x-container">
       <div className="flex flex-col w-1/2 space-y-4">
         <ScheduleDetail data={props.scheduleData} />
-        <ScheduleContent status={props.scheduleData.status} data={props.questionData} />
+        <ScheduleContent scheduleId={id} status={status} data={props.questionData} />
       </div>
     </div>
   )

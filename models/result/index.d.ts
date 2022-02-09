@@ -13,3 +13,9 @@ export interface resultItem {
   errorList: string,
   isOut: number
 }
+
+export interface attendItem {
+  scheduleId: number,
+  participantId: number,
+  isTeam: number
+}
