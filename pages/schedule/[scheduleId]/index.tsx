@@ -1,16 +1,20 @@
 import type { NextPage } from 'next'
 import { Alert } from 'antd'
+import { useAppSelector } from '@/app/hooks'
+import { selectUser } from '@/features/user/userSlice'
 import ScheduleDetail from '@/components/schedule/schedule-detail'
 import QuestionInfoList from '@/components/question/question-info-list'
 import type { scheduleItem } from '@/models/schedule'
 import type { questionItem } from '@/models/question'
 import { getScheduleList, getScheduleById } from '@/services/schedule'
 import { getQuestionListBySchedule } from '@/services/question'
-import { STATUS } from '@/constant'
+import { checkParticipant } from '@/services/result'
+import { STATUS, IS_TEAM } from '@/constant'
 
 type propsType = {
   scheduleData: scheduleItem,
-  questionData: questionItem[]
+  questionData: questionItem[],
+  check: boolean
 }
 
 type contextType = {
@@ -60,11 +64,16 @@ export async function getStaticProps(context: contextType) {
   const scheduleId = context.params.scheduleId
   const scheduleRes = await getScheduleById(scheduleId)
   const questionRes = await getQuestionListBySchedule(scheduleRes.data.question)
+  // eslint-disable-next-line react-hooks/rules-of-hooks
+  const userState = useAppSelector(selectUser)
+  //TODO ROLE TYPE CHECK
+  const checkRes = await checkParticipant(scheduleId, userState.id, IS_TEAM.USER)
 
   return {
     props: {
       scheduleData: scheduleRes.data,
-      questionData: questionRes.data
+      questionData: questionRes.data,
+      check: checkRes.data
     },
     revalidate: 3600
   }

@@ -7,8 +7,9 @@ import type { resultItem } from '@/models/result'
 import { questionItem } from '@/models/question'
 import { getUserById, getUserList } from '@/services/user'
 import { getTeamListByUserId } from '@/services/member'
-import { getUserResultListByUserId } from '@/services/result'
+import { getResultListByParticipantId } from '@/services/result'
 import { getQuestionListByUpId } from '@/services/question'
+import { IS_TEAM } from '@/constant'
 
 type propsType = {
   userData: userItem,
@@ -50,7 +51,8 @@ export async function getStaticProps(context: contextType) {
   const userId = context.params.userId
   const userRes = await getUserById(userId)
   const memberRes = await getTeamListByUserId(userId)
-  const resultRes = await getUserResultListByUserId(userId)
+  //TODO ROLE TYPE CHECK
+  const resultRes = await getResultListByParticipantId(userId, IS_TEAM.USER)
   const questionRes = await getQuestionListByUpId(userId)
 
   return {
