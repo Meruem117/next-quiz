@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
 import { Alert } from 'antd'
-import ScheduleInfo from '@/components/schedule/schedule-info'
+import ScheduleTitle from '@/components/schedule/schedule-title'
 import QuestionPaper from '@/components/question/question-paper'
 import type { scheduleItem } from '@/models/schedule'
 import type { questionItem } from '@/models/question'
@@ -29,7 +29,7 @@ const TakePage: NextPage<propsType> = (props) => {
       {
         props.resultData ?
           <div className="base-y-container">
-            <ScheduleInfo data={props.scheduleData} />
+            <ScheduleTitle data={props.scheduleData} />
             <QuestionPaper data={props.questionData} />
           </div> :
           <Alert
