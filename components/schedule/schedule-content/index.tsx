@@ -4,15 +4,12 @@ import { useAppSelector } from '@/app/hooks'
 import { selectUser } from '@/features/user/userSlice'
 import QuestionInfoList from '@/components/question/question-info-list'
 import type { questionItem } from '@/models/question'
-import { getResultAttend } from '@/services/result'
 import { STATUS, IS_TEAM } from '@/constant'
 
 const ScheduleContent: React.FC<{ scheduleId: number, status: number, data: questionItem[] }> = ({ scheduleId, status, data }) => {
   const userState = useAppSelector(selectUser)
 
   const onAttend = async (): Promise<void> => {
-    const res = await getResultAttend(scheduleId, userState.id, IS_TEAM.USER)
-    console.log(res)
   }
 
   if (status === STATUS.END.value) {
