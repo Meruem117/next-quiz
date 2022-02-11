@@ -5,7 +5,7 @@ import IconText from '@/components/common/icon-text'
 import IconLink from '@/components/common/icon-link'
 import type { quizItem } from '@/models/quiz'
 
-const QuizDetail: React.FC<{ data: quizItem }> = ({ data }) => {
+const QuizInfo: React.FC<{ data: quizItem }> = ({ data }) => {
   return (
     <div className="base-info">
       <Typography.Title level={3}>{data.quiz}</Typography.Title>
@@ -23,4 +23,4 @@ const QuizDetail: React.FC<{ data: quizItem }> = ({ data }) => {
   )
 }
 
-export default QuizDetail
+export default QuizInfo

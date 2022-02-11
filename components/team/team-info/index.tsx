@@ -5,7 +5,7 @@ import IconText from '@/components/common/icon-text'
 import IconLink from '@/components/common/icon-link'
 import type { teamItem } from '@/models/team'
 
-const TeamDetail: React.FC<{ data: teamItem }> = ({ data }) => {
+const TeamInfo: React.FC<{ data: teamItem }> = ({ data }) => {
   return (
     <div className="base-info">
       <Typography.Title level={3}>{data.name}</Typography.Title>
@@ -21,4 +21,4 @@ const TeamDetail: React.FC<{ data: teamItem }> = ({ data }) => {
   )
 }
 
-export default TeamDetail
+export default TeamInfo

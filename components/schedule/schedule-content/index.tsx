@@ -1,4 +1,5 @@
 import React from 'react'
+import { useRouter } from 'next/router'
 import { Alert, Button } from 'antd'
 import { useAppSelector } from '@/app/hooks'
 import { selectUser } from '@/features/user/userSlice'
@@ -8,8 +9,17 @@ import { STATUS, IS_TEAM } from '@/constant'
 
 const ScheduleContent: React.FC<{ scheduleId: number, status: number, data: questionItem[] }> = ({ scheduleId, status, data }) => {
   const userState = useAppSelector(selectUser)
+  const router = useRouter()
 
-  const onAttend = async (): Promise<void> => {
+  const onAttend = (): void => {
+    router.push({
+      pathname: '/take',
+      query: {
+        scheduleId,
+        participantId: userState.id,
+        isTeam: IS_TEAM.USER
+      }
+    })
   }
 
   if (status === STATUS.END.value) {
@@ -18,13 +28,13 @@ const ScheduleContent: React.FC<{ scheduleId: number, status: number, data: ques
     return <Alert
       description="This quiz round has not started yet, you can view the question list after it ends."
       type="info"
-      className="shadow-md rounded-md"
+      className="base-alert"
     />
   } else {
     return <Alert
       description="This quiz round has started, you can join the quiz if you have signed up."
       type="warning"
-      className="shadow-md rounded-md"
+      className="base-alert"
       action={<Button type="ghost" onClick={onAttend}>Attend</Button>}
     />
   }

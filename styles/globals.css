@@ -48,3 +48,8 @@ body {
   @apply p-3;
   @apply space-y-2;
 }
+
+.base-alert {
+  @apply shadow-md;
+  @apply rounded-md
+}

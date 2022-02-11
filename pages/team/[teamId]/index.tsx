@@ -1,5 +1,5 @@
 import type { NextPage } from 'next'
-import TeamDetail from '@/components/team/team-detail'
+import TeamInfo from '@/components/team/team-info'
 import MemberUserList from '@/components/member/member-user-list'
 import type { teamItem } from '@/models/team'
 import type { memberItem } from '@/models/member'
@@ -21,7 +21,7 @@ const TeamDetailPage: NextPage<propsType> = (props) => {
   return (
     <div className="base-x-container">
       <div style={{ width: '12.5%' }}>
-        <TeamDetail data={props.teamData} />
+        <TeamInfo data={props.teamData} />
       </div>
       <div className="w-1/3">
         <MemberUserList data={props.memberData} />

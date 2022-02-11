@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
 import { useState } from 'react'
-import QuizDetail from '@/components/quiz/quiz-detail'
+import QuizInfo from '@/components/quiz/quiz-info'
 import ScheduleSelect from '@/components/schedule/schedule-select'
 import ScheduleList from '@/components/schedule/schedule-list'
 import type { quizItem } from '@/models/quiz'
@@ -30,7 +30,7 @@ const QuizDetailPage: NextPage<propsType> = (props) => {
   return (
     <div className="base-x-container">
       <div style={{ width: '12.5%' }}>
-        <QuizDetail data={props.quizData} />
+        <QuizInfo data={props.quizData} />
       </div>
       <div className="flex flex-col w-2/5 space-y-4">
         <ScheduleSelect select={select} handleChange={handleChange} />
