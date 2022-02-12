@@ -28,7 +28,7 @@ const TakePage: NextPage<propsType> = (props) => {
     <div className="base-y-container">
       {
         props.resultData ?
-          <div className="base-y-container">
+          <div className="flex flex-col space-y-4 mx-auto w-full">
             <ScheduleTitle data={props.scheduleData} />
             <QuestionPaper data={props.questionData} />
           </div> :
