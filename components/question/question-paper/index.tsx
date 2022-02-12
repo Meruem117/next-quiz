@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Space, Typography, Radio, List, Button, message } from 'antd'
+import { Space, Typography, Radio, List, Button, message, RadioChangeEvent } from 'antd'
 import { cloneDeep } from 'lodash'
 import type { questionItem } from '@/models/question'
 
@@ -8,7 +8,7 @@ const QuestionPaper: React.FC<{ data: questionItem[] }> = ({ data }) => {
   const [index, setIndex] = useState<number>(0)
   const [answers, setAnswers] = useState<string[]>([])
 
-  const onChange = (e: { target: { value: string } }) => {
+  const onChange = (e: RadioChangeEvent) => {
     const currentAnswers = cloneDeep(answers)
     currentAnswers[index] = e.target.value
     setAnswers(currentAnswers)
