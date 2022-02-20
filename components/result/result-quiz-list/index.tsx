@@ -3,7 +3,7 @@ import Link from 'next/link'
 import { List, Radio, Space, Tag } from 'antd'
 import { groupBy } from 'lodash'
 import type { resultItem } from '@/models/result'
-import { STATUS, STATUS_TYPE } from '@/constant'
+import { STATUS, STATUS_TYPE, IS_TAKE_TEXT } from '@/constant'
 
 const ResultQuizList: React.FC<{ data: resultItem[] }> = ({ data }) => {
   const [status, setStatus] = useState<number>(1)
@@ -32,6 +32,7 @@ const ResultQuizList: React.FC<{ data: resultItem[] }> = ({ data }) => {
               <Space size="middle">
                 <div className="text-xl font-semibold">{`${item.quizName} #${item.round}`}</div>
                 <Tag color={STATUS_TYPE[item.status].color}>{STATUS_TYPE[item.status].text}</Tag>
+                <Tag color="blue">{IS_TAKE_TEXT[item.isTake]}</Tag>
               </Space>
             </List.Item>
           </Link>

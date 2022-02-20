@@ -8,6 +8,7 @@ export interface resultItem {
   participantName: string,
   isTeam: number,
   status: number,
+  isTake: number,
   correct: number,
   correctRate: number,
   errorList: string,
