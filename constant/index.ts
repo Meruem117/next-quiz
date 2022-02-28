@@ -2,16 +2,6 @@
 export const baseUrl = 'http://localhost:8080'
 
 //* user
-export const ROLE = {
-  ROOT: 2,
-  ADMIN: 1,
-  USER: 0
-}
-export const ROLE_TYPE: { text: string, color: string }[] = [
-  { text: 'User', color: 'cyan' },
-  { text: 'Admin', color: 'green' },
-  { text: 'Root', color: 'volcano' }
-]
 export const GENDER = {
   Male: 1,
   Female: 0

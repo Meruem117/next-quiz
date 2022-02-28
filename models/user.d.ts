@@ -3,7 +3,6 @@ export interface userItem {
   email: string,
   name: string,
   password: string,
-  role: number,
   gender: number,
   location: string,
   createTime: string
