@@ -18,8 +18,7 @@ type propsType = {
 type contextType = {
   query: {
     scheduleId: number,
-    participantId: number,
-    isTeam: number
+    userId: number
   }
 }
 
@@ -44,8 +43,8 @@ const TakePage: NextPage<propsType> = (props) => {
 }
 
 export async function getServerSideProps(context: contextType) {
-  const { scheduleId, participantId, isTeam } = context.query
-  const resultRes = await getResultWhenAttend(scheduleId, participantId, isTeam)
+  const { scheduleId, userId } = context.query
+  const resultRes = await getResultWhenAttend(scheduleId, userId, 0)
   const scheduleRes = await getScheduleById(scheduleId)
   const questionRes = await getQuestionListBySchedule(scheduleRes.data.question)
 

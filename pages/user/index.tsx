@@ -5,7 +5,7 @@ import type { userItem } from '@/models/user'
 import type { memberItem } from '@/models/member'
 import type { resultItem } from '@/models/result'
 import { questionItem } from '@/models/question'
-import { getUserList, getUserById } from '@/services/user'
+import { getUserById } from '@/services/user'
 import { getTeamListByUserId } from '@/services/member'
 import { getResultListByParticipantId } from '@/services/result'
 import { getQuestionListByUpId } from '@/services/question'
@@ -19,12 +19,12 @@ type propsType = {
 }
 
 type contextType = {
-  params: {
-    userId: number
+  query: {
+    id: number
   }
 }
 
-const UserDetailPage: NextPage<propsType> = (props) => {
+const UserPage: NextPage<propsType> = (props) => {
   return (
     <div className="base-y-container">
       <UserDetail data={props.userData} />
@@ -33,22 +33,8 @@ const UserDetailPage: NextPage<propsType> = (props) => {
   )
 }
 
-export async function getStaticPaths() {
-  const userRes = await getUserList()
-  const userList = userRes.data
-
-  return {
-    fallback: true,
-    paths: userList.map(item => ({
-      params: {
-        userId: item.id.toString()
-      }
-    }))
-  }
-}
-
-export async function getStaticProps(context: contextType) {
-  const userId = context.params.userId
+export async function getServerSideProps(context: contextType) {
+  const userId = context.query.id
   const userRes = await getUserById(userId)
   const memberRes = await getTeamListByUserId(userId)
   const resultRes = await getResultListByParticipantId(userId, IS_TEAM.USER)
@@ -60,9 +46,8 @@ export async function getStaticProps(context: contextType) {
       memberData: memberRes.data,
       resultData: resultRes.data,
       questionData: questionRes.data
-    },
-    revalidate: 3600
+    }
   }
 }
 
-export default UserDetailPage
+export default UserPage

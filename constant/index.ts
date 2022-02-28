@@ -3,26 +3,26 @@ export const baseUrl = 'http://localhost:8080'
 
 //* user
 export const GENDER = {
-  Male: 1,
-  Female: 0
+  Female: 0,
+  Male: 1
 }
 export const GENDER_TEXT: string[] = [
-  'Male',
-  'Female'
+  'Female',
+  'Male'
 ]
 export const GENDER_AVATAR_SRC: string[] = [
-  'https://joeschmoe.io/api/v1/male/random',
-  'https://joeschmoe.io/api/v1/female/random'
+  'https://joeschmoe.io/api/v1/female/random',
+  'https://joeschmoe.io/api/v1/male/random'
 ]
 
 //* quiz
 export const IS_TEAM = {
-  TEAM: 1,
-  USER: 0
+  USER: 0,
+  TEAM: 1
 }
-export const IS_TEAM_TEXT: string[] = [
-  'Team',
-  'User'
+export const IS_TEAM_TYPE: { text: string, color: string }[] = [
+  { text: 'User', color: 'green' },
+  { text: 'Team', color: 'blue' },
 ]
 
 //* schedule
@@ -39,20 +39,20 @@ export const STATUS_TYPE: { text: string, color: string }[] = [
 
 //* question
 export const QUESTION = {
-  SINGLE_CHOICE: 1,
-  MULTIPLE_CHOICE: 0
+  MULTIPLE_CHOICE: 0,
+  SINGLE_CHOICE: 1
 }
 export const QUESTION_TEXT: string[] = [
-  'Single Choice',
-  'Multiple Choice'
+  'Multiple Choice',
+  'Single Choice'
 ]
 
 //* result
 export const IS_TAKE = {
-  TAKE: 1,
-  NOT_TAKE: 0
+  NOT_TAKE: 0,
+  TAKE: 1
 }
 export const IS_TAKE_TEXT: string[] = [
   'Not Take',
-  'Take'
+  'Taken'
 ]

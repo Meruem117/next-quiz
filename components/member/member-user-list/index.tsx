@@ -11,7 +11,6 @@ const MemberUserList: React.FC<{ data: memberItem[] }> = ({ data }) => {
     <List
       itemLayout="horizontal"
       dataSource={data}
-      className="base-box"
       pagination={{
         pageSize: 6,
       }}

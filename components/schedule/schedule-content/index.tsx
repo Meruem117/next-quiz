@@ -5,7 +5,7 @@ import { useAppSelector } from '@/app/hooks'
 import { selectUser } from '@/features/user/userSlice'
 import QuestionInfoList from '@/components/question/question-info-list'
 import type { questionItem } from '@/models/question'
-import { STATUS, IS_TEAM } from '@/constant'
+import { STATUS } from '@/constant'
 
 const ScheduleContent: React.FC<{ scheduleId: number, status: number, data: questionItem[] }> = ({ scheduleId, status, data }) => {
   const userState = useAppSelector(selectUser)
@@ -16,8 +16,7 @@ const ScheduleContent: React.FC<{ scheduleId: number, status: number, data: ques
       pathname: '/take',
       query: {
         scheduleId,
-        participantId: userState.id,
-        isTeam: IS_TEAM.USER
+        userId: userState.id
       }
     })
   }
