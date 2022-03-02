@@ -24,6 +24,7 @@ type contextType = {
   }
 }
 
+//? Not in use
 const UserPage: NextPage<propsType> = (props) => {
   return (
     <div className="base-y-container">

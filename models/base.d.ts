@@ -4,7 +4,12 @@ export interface responseItem<T> {
   message: string
 }
 
-export interface requestItem<T> {
+export interface getRequestItem<T> {
+  method: string,
+  query: T
+}
+
+export interface postRequestItem<T> {
   method: string,
   body: T
 }
