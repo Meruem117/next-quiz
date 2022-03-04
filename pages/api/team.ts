@@ -5,7 +5,7 @@ async function teamHandler(req: getRequestItem<{ id: number }>, res: any) {
   if (req.method === 'GET') {
     const leaderId = req.query.id
     const response = await getTeamListByLeaderId(leaderId)
-    res.status(200).json(...response.data)
+    res.status(200).json(response.data)
   }
 }
 
