@@ -11,3 +11,8 @@ export async function getResultWhenAttend(scheduleId: number, participantId: num
   const response = await fetch(baseUrl + `/result/attend?scheduleId=${scheduleId}&participantId=${participantId}&isTeam=${isTeam}`)
   return response.json()
 }
+
+export async function handleAttend(scheduleId: number, participantId: number, isTeam: number): Promise<resultItem | boolean> {
+  const response = await fetch(`/api/attend?scheduleId=${scheduleId}&participantId=${participantId}&isTeam=${isTeam}`)
+  return response.json()
+}

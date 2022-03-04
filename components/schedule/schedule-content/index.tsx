@@ -1,6 +1,6 @@
 import React, { ReactElement, useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
-import { Alert, Button, Space, Dropdown, Menu } from 'antd'
+import { Alert, Button, Dropdown, Menu, message } from 'antd'
 import { UserOutlined, TeamOutlined, DownOutlined } from '@ant-design/icons'
 import { useAppSelector } from '@/app/hooks'
 import { selectUser } from '@/features/user/userSlice'
@@ -8,6 +8,7 @@ import QuestionInfoList from '@/components/question/question-info-list'
 import type { teamItem } from '@/models/team'
 import type { questionItem } from '@/models/question'
 import { handleTeam } from '@/services/team'
+import { handleAttend } from '@/services/result'
 import { STATUS, IS_TEAM } from '@/constant'
 
 const ScheduleContent: React.FC<{ scheduleId: number, status: number, data: questionItem[] }> = ({ scheduleId, status, data }) => {
@@ -16,22 +17,27 @@ const ScheduleContent: React.FC<{ scheduleId: number, status: number, data: ques
   const [teamList, setTeamList] = useState<teamItem[]>([])
   const [visible, setVisible] = useState<boolean>(false)
   const [role, setRole] = useState<string>(userState.name)
-  const [isTeam, setIsTeam] = useState<number>(IS_TEAM.USER)
   const [participantId, setParticipantId] = useState<number>(userState.id)
+  const [isTeam, setIsTeam] = useState<number>(IS_TEAM.USER)
 
   useEffect(() => {
     handleTeam(userState.id).then(res => setTeamList(res))
   }, [userState])
 
-  const onAttend = (): void => {
-    console.log(role, isTeam, participantId)
-    // router.push({
-    //   pathname: '/take',
-    //   query: {
-    //     scheduleId,
-    //     userId: userState.id
-    //   }
-    // })
+  const onAttend = async (): Promise<void> => {
+    const res = await handleAttend(scheduleId, participantId, isTeam)
+    if (res !== false) {
+      router.push({
+        pathname: '/take',
+        query: {
+          scheduleId,
+          participantId,
+          isTeam
+        }
+      })
+    } else {
+      message.error('You have not signed up for the quiz!')
+    }
   }
 
   const menu: ReactElement = (

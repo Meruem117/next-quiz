@@ -20,3 +20,8 @@ export interface attendItem {
   participantId: number,
   isTeam: number
 }
+
+export interface participantItem {
+  participantId: number,
+  isTeam: number
+}

@@ -2,8 +2,9 @@ import React, { useState } from 'react'
 import { Space, Typography, Radio, List, Button, message, RadioChangeEvent } from 'antd'
 import { cloneDeep } from 'lodash'
 import type { questionItem } from '@/models/question'
+import type { participantItem } from '@/models/result'
 
-const QuestionPaper: React.FC<{ data: questionItem[] }> = ({ data }) => {
+const QuestionPaper: React.FC<{ data: questionItem[], participantInfo: participantItem }> = ({ data, participantInfo }) => {
   const total = data.length
   const [current, setCurrent] = useState<number>(0)
   const [answers, setAnswers] = useState<string[]>([])
