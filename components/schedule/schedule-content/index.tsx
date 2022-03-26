@@ -36,7 +36,7 @@ const ScheduleContent: React.FC<{ scheduleId: number, status: number, data: ques
         }
       })
     } else {
-      message.error('You have not signed up for the quiz!')
+      message.error(`${role} has not signed up for the quiz!`)
     }
   }
 

@@ -11,7 +11,8 @@ export interface resultItem {
   isTake: number,
   correct: number,
   correctRate: number,
-  errorList: string,
+  answers: string,
+  errors: string,
   isOut: number
 }
 

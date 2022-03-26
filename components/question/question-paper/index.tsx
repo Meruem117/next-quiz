@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Space, Typography, Radio, List, Button, message, RadioChangeEvent } from 'antd'
+import { Space, Typography, Radio, List, Button, Popconfirm, message, RadioChangeEvent } from 'antd'
 import { cloneDeep } from 'lodash'
 import type { questionItem } from '@/models/question'
 import type { participantItem } from '@/models/result'
@@ -9,14 +9,16 @@ const QuestionPaper: React.FC<{ data: questionItem[], participantInfo: participa
   const [current, setCurrent] = useState<number>(0)
   const [answers, setAnswers] = useState<string[]>([])
   const [tags, setTags] = useState<boolean[]>([])
+  const [visible, setVisible] = useState<boolean>(false)
+  const [title, setTitle] = useState<string>('')
 
-  const onChange = (e: RadioChangeEvent) => {
+  const onChange = (e: RadioChangeEvent): void => {
     const currentAnswers = cloneDeep(answers)
     currentAnswers[current] = e.target.value
     setAnswers(currentAnswers)
   }
 
-  const onNext = () => {
+  const onNext = (): void => {
     if (current + 1 < total) {
       setCurrent(current + 1)
     } else {
@@ -24,14 +26,24 @@ const QuestionPaper: React.FC<{ data: questionItem[], participantInfo: participa
     }
   }
 
-  const onTag = () => {
+  const onTag = (): void => {
     const currentTags = cloneDeep(tags)
     currentTags[current] = currentTags[current] ? !currentTags[current] : true
     setTags(currentTags)
   }
 
-  const onSubmit = () => {
+  const onSubmit = (): void => {
+    if (answers.length !== total) {
+      setTitle('You have not finished all the questions, are you sure to submit?')
+    } else {
+      setTitle('Are you sure to submit?')
+    }
+    setVisible(true)
+  }
+
+  const onConfirm = () => {
     console.log(answers)
+    setVisible(false)
   }
 
   const NumberButton = ({ index }: { index: number }) => {
@@ -74,7 +86,14 @@ const QuestionPaper: React.FC<{ data: questionItem[], participantInfo: participa
         </div>
         <div className="flex justify-end space-x-4">
           <Button type="primary" onClick={onTag}>Tag</Button>
-          <Button type="primary" onClick={onSubmit}>Submit</Button>
+          <Popconfirm
+            title={title}
+            visible={visible}
+            onConfirm={onConfirm}
+            onCancel={() => setVisible(false)}
+          >
+            <Button type="primary" onClick={onSubmit}>Submit</Button>
+          </Popconfirm>
           <Button type="primary" onClick={onNext}>Next</Button>
         </div>
       </div>
@@ -97,7 +116,7 @@ const QuestionPaper: React.FC<{ data: questionItem[], participantInfo: participa
           )}
         />
       </div>
-    </div >
+    </div>
   )
 }
 
