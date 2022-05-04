@@ -12,7 +12,8 @@ export const GENDER_TEXT: string[] = [
 ]
 export const GENDER_AVATAR_SRC: string[] = [
   'https://joeschmoe.io/api/v1/female/random',
-  'https://joeschmoe.io/api/v1/male/random'
+  'https://joeschmoe.io/api/v1/male/random',
+  'https://joeschmoe.io/api/v1/random'
 ]
 
 //* quiz

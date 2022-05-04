@@ -15,13 +15,12 @@ export interface userLoginItem {
 
 export interface userCheckItem {
   check: boolean,
-  userInfo: userInfoItem
+  info: userInfoItem
 }
 
 export interface userInfoItem {
   id: number,
   name: string,
-  role: number,
-  gender: number,
+  gender?: number,
   location?: string
 }

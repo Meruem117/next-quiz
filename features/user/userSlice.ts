@@ -4,9 +4,7 @@ import type { userInfoItem } from '@/models/user'
 
 const initialState: userInfoItem = {
   id: -1,
-  name: '',
-  role: -1,
-  gender: -1
+  name: ''
 }
 
 export const userSlice = createSlice({

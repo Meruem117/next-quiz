@@ -13,7 +13,7 @@ const UserLogin: React.FC<{ visible: boolean, closeModal: VoidFunction, changeMo
   const onFinish = async (values: { login: userLoginItem }) => {
     const res = await handleLogin(values.login)
     if (res.check === true) {
-      dispatch(set(res.userInfo))
+      dispatch(set(res.info))
       dispatch(login())
       onReset()
       closeModal()

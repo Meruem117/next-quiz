@@ -40,7 +40,7 @@ const UserAvatar: React.FC = () => {
       {
         loginState.isLogin ?
           <Popover placement="bottomRight" content={content}>
-            <Avatar size="large" src={GENDER_AVATAR_SRC[userState.gender]} />
+            <Avatar size="large" src={GENDER_AVATAR_SRC[userState.gender || 2]} />
           </Popover>
           : <Button type="primary" size="large" onClick={showModal}>Login</Button>
       }
