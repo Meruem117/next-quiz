@@ -29,6 +29,6 @@ export interface pageResponseItem<T> {
 }
 
 export interface pageRequestItem {
-  pageNum: number,
-  pageSize: number
+  page: number,
+  size: number
 }
