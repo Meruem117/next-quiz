@@ -1,16 +1,18 @@
 import type { NextPage } from 'next'
 import TopicRadio from '@/components/topic/topic-radio'
 import QuestionList from '@/components/question/question-list'
+import QuizList from '@/components/quiz/quiz-list'
 import type { topicItem } from '@/models/topic'
 import type { questionItem } from '@/models/question'
-import type { scheduleItem } from '@/models/schedule'
+import type { quizItem } from '@/models/quiz'
 import { getTopicList } from '@/services/topic'
 import { getQuestionListByTopic } from '@/services/question'
+import { getQuizList } from '@/services/quiz'
 
 type propsType = {
   topicList: topicItem[],
   questionList: questionItem[],
-  scheduleList: scheduleItem[]
+  quizList: quizItem[]
 }
 
 type contextType = {
@@ -21,26 +23,31 @@ type contextType = {
 
 const IndexPage: NextPage<propsType> = (props) => {
   return (
-    <div className="flex w-full h-full space-x-6">
-      <div className="flex flex-col w-3/4 h-full space-y-6">
-        <TopicRadio data={props.topicList} />
-        <QuestionList data={props.questionList} />
-      </div>
-      <div className="w-1/3 h-full">
+    <div className="flex flex-col w-full h-full space-y-6">
+      <TopicRadio data={props.topicList} />
+      <div className="flex w-full h-full space-x-6">
+        <div className="w-3/4">
+          <QuestionList data={props.questionList} />
+        </div>
+        <div className="w-1/4">
+          <QuizList data={props.quizList} />
+        </div>
       </div>
     </div>
   )
 }
 
 export async function getServerSideProps(context: contextType) {
-  const { topic } = context.query
+  const topic = context.query.topic || ''
   const topicRes = await getTopicList()
   const questionRes = await getQuestionListByTopic(topic)
+  const quizRes = await getQuizList()
 
   return {
     props: {
       topicList: topicRes.data,
       questionList: questionRes.data,
+      quizList: quizRes.data
     }
   }
 }
