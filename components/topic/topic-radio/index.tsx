@@ -8,7 +8,7 @@ const TopicList: React.FC<{ data: topicItem[] }> = ({ data }) => {
     <Radio.Group defaultValue={data[0].id} size="large" className="space-x-1" >
       {
         data.map(item => (
-          <Link href={`/${item.topic}`} key={item.id} passHref>
+          <Link href={`/?topic=${item.topic}`} key={item.id} passHref>
             <Radio.Button value={item.id} key={item.id} > {item.topic} </Radio.Button>
           </Link>
         ))
