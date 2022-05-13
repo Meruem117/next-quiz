@@ -8,5 +8,6 @@ export interface quizItem {
   description: string,
   winner: string,
   winnerId: number,
-  isTeam: number
+  isTeam: number,
+  createTime: string
 }

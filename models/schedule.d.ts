@@ -7,5 +7,6 @@ export interface scheduleItem {
   question: string,
   startTime: string,
   length: number,
-  status: number
+  status: number,
+  createTime: string
 }
