@@ -4,7 +4,7 @@ export interface memberItem {
   teamName: string,
   userId: number,
   userName: string,
-  pass: number,
+  pass: string,
   joinTime: string,
   createTime: string
 }
