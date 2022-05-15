@@ -1,21 +1,30 @@
 import React from 'react'
-import Link from 'next/link'
-import { Radio } from 'antd'
+import Router from 'next/router'
+import { Radio, message, RadioChangeEvent } from 'antd'
+import { useAppSelector } from '@/app/hooks'
+import { selectLogin } from '@/features/login/loginSlice'
 import type { topicItem } from '@/models/topic'
 
 const TopicList: React.FC<{ data: topicItem[] }> = ({ data }) => {
-  const defaultAllValue = 0
+  const defaultAllKey = 0
+  const defaultAllValue = ''
+  const loginState = useAppSelector(selectLogin)
+
+  const toTopic = (e: RadioChangeEvent): void => {
+    const topic = e.target.value
+    if (loginState.isLogin) {
+      Router.push(`/?topic=${topic}`)
+    } else {
+      message.warn('You must login first!')
+    }
+  }
 
   return (
-    <Radio.Group defaultValue={defaultAllValue} size="large" className="space-x-1" >
-      <Link href={`/?topic=`} key={defaultAllValue} passHref>
-        <Radio.Button value={defaultAllValue} key={defaultAllValue}> All </Radio.Button>
-      </Link>
+    <Radio.Group defaultValue={defaultAllValue} size="large" className="space-x-1" onChange={toTopic}>
+      <Radio.Button value={defaultAllValue} key={defaultAllKey}>All</Radio.Button>
       {
         data.map(item => (
-          <Link href={`/?topic=${item.topic}`} key={item.id} passHref>
-            <Radio.Button value={item.id} key={item.id} > {item.topic} </Radio.Button>
-          </Link>
+          <Radio.Button value={item.topic} key={item.id}>{item.topic}</Radio.Button>
         ))
       }
     </Radio.Group>
