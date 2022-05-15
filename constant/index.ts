@@ -6,11 +6,11 @@ export const GENDER = {
   Female: 0,
   Male: 1
 }
-export const GENDER_TEXT: string[] = [
+export const GENDER_TEXT = [
   'Female',
   'Male'
 ]
-export const GENDER_AVATAR_SRC: string[] = [
+export const GENDER_AVATAR_SRC = [
   'https://joeschmoe.io/api/v1/female/random',
   'https://joeschmoe.io/api/v1/male/random',
   'https://joeschmoe.io/api/v1/random'
@@ -43,9 +43,13 @@ export const QUESTION = {
   MULTIPLE_CHOICE: 0,
   SINGLE_CHOICE: 1
 }
-export const QUESTION_TEXT: string[] = [
+export const QUESTION_TEXT = [
   'Multiple Choice',
   'Single Choice'
+]
+export const QUESTION_SELECT: { name: string, value: number }[] = [
+  { name: 'Single Choice', value: 1 },
+  { name: 'Multiple Choice', value: 0 }
 ]
 
 //* result
@@ -53,7 +57,7 @@ export const IS_TAKE = {
   NOT_TAKE: 0,
   TAKE: 1
 }
-export const IS_TAKE_TEXT: string[] = [
+export const IS_TAKE_TEXT = [
   'Not Take',
   'Taken'
 ]

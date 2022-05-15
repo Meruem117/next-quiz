@@ -1,9 +1,10 @@
 import React from 'react'
-import { Modal, Form, Input } from 'antd'
+import { Modal, Form, Input, Select, message } from 'antd'
 import { useAppSelector } from '@/app/hooks'
 import { selectUser } from '@/features/user/userSlice'
 import { questionItem } from '@/models/question'
 import { uploadQuestion } from '@/services/question'
+import { QUESTION_SELECT } from '@/constant'
 
 const QuestionUploadModal: React.FC<{ visible: boolean, closeModal: VoidFunction }> = ({ visible, closeModal }) => {
   const [form] = Form.useForm()
@@ -16,6 +17,7 @@ const QuestionUploadModal: React.FC<{ visible: boolean, closeModal: VoidFunction
       console.log(userState.id, userState.name)
       closeModal()
       form.resetFields()
+      message.success('Upload successfully')
     })
   }
 
@@ -27,26 +29,32 @@ const QuestionUploadModal: React.FC<{ visible: boolean, closeModal: VoidFunction
   return (
     <Modal title="Upload" visible={visible} onCancel={cancel} okText="Upload" onOk={upload} >
       <Form form={form} layout="vertical">
-        <Form.Item name="question" label="Question">
-          <Input.TextArea autoSize={autoSize} />
+        <Form.Item name="question" label="Question" >
+          <Input.TextArea autoSize={autoSize} placeholder="Input question" />
         </Form.Item>
         <Form.Item name="topic" label="Topic">
           <Input />
         </Form.Item>
         <Form.Item name="type" label="Type">
-          <Input />
+          <Select placeholder="Select a type">
+            {
+              QUESTION_SELECT.map(item => (
+                <Select.Option value={item.value} key={item.value}>{item.name}</Select.Option>
+              ))
+            }
+          </Select>
         </Form.Item>
         <Form.Item name="option_a" label="Option A">
-          <Input.TextArea autoSize={autoSize} />
+          <Input.TextArea autoSize={autoSize} placeholder="Input option A" />
         </Form.Item>
         <Form.Item name="option_b" label="Option B">
-          <Input.TextArea autoSize={autoSize} />
+          <Input.TextArea autoSize={autoSize} placeholder="Input option B" />
         </Form.Item>
         <Form.Item name="option_c" label="Option C">
-          <Input.TextArea autoSize={autoSize} />
+          <Input.TextArea autoSize={autoSize} placeholder="Input option C" />
         </Form.Item>
         <Form.Item name="option_d" label="Option D">
-          <Input.TextArea autoSize={autoSize} />
+          <Input.TextArea autoSize={autoSize} placeholder="Input option D" />
         </Form.Item>
         <Form.Item name="answer" label="Answer">
           <Input />
