@@ -1,5 +1,5 @@
 import React from 'react'
-import Router from 'next/router'
+import { useRouter } from 'next/router'
 import { Radio, message, RadioChangeEvent } from 'antd'
 import { useAppSelector } from '@/app/hooks'
 import { selectLogin } from '@/features/login/loginSlice'
@@ -8,12 +8,13 @@ import type { topicItem } from '@/models/topic'
 const TopicList: React.FC<{ data: topicItem[] }> = ({ data }) => {
   const defaultAllKey = 0
   const defaultAllValue = ''
+  const router = useRouter()
   const loginState = useAppSelector(selectLogin)
 
   const toTopic = (e: RadioChangeEvent): void => {
     const topic = e.target.value
     if (loginState.isLogin) {
-      Router.push(`/?topic=${topic}`)
+      router.push(`/?topic=${topic}`)
     } else {
       message.warn('You must login first!')
     }

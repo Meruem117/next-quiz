@@ -21,3 +21,14 @@ export async function getQuestionListBySchedule(question: string): Promise<respo
   const response = await fetch(baseUrl + '/question/schedule?question=' + question)
   return response.json()
 }
+
+export async function uploadQuestion(data: questionItem): Promise<responseItem<number>> {
+  const response = await fetch(baseUrl + '/question/add', {
+    method: 'POST',
+    body: JSON.stringify(data),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+  return response.json()
+}
