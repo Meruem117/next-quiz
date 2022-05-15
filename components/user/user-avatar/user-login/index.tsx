@@ -15,8 +15,8 @@ const UserLogin: React.FC<{ visible: boolean, closeModal: VoidFunction, changeMo
     if (res.check === true) {
       dispatch(set(res.info))
       dispatch(login())
-      onReset()
       closeModal()
+      onReset()
       message.success('Login successfully')
     } else {
       message.error('Wrong email or password')
