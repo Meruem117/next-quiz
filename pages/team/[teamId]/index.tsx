@@ -11,8 +11,8 @@ import { IS_TEAM } from '@/constant'
 
 type propsType = {
   teamData: teamItem,
-  memberData: memberItem[],
-  resultData: resultItem[]
+  memberList: memberItem[],
+  resultList: resultItem[]
 }
 
 type contextType = {
@@ -28,7 +28,7 @@ const TeamDetailPage: NextPage<propsType> = (props) => {
         <TeamInfo data={props.teamData} />
       </div>
       <div className="w-1/3">
-        <TeamContent memberData={props.memberData} resultData={props.resultData} />
+        <TeamContent memberData={props.memberList} resultData={props.resultList} />
       </div>
     </div>
   )
@@ -57,8 +57,8 @@ export async function getStaticProps(context: contextType) {
   return {
     props: {
       teamData: teamRes.data,
-      memberData: memberRes.data,
-      resultData: resultRes.data
+      memberList: memberRes.data,
+      resultList: resultRes.data
     },
     revalidate: 3600
   }

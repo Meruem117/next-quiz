@@ -3,10 +3,11 @@ import { List, Button, Tag, Typography } from 'antd'
 import { CalendarOutlined, UserOutlined } from '@ant-design/icons'
 import QuestionUploadModal from '../question-upload-modal'
 import IconText from '@/components/common/icon-text'
+import type { topicItem } from '@/models/topic'
 import type { questionItem } from '@/models/question'
 import { QUESTION_TEXT } from '@/constant'
 
-const QuestionList: React.FC<{ data: questionItem[], topic: string }> = ({ data, topic }) => {
+const QuestionList: React.FC<{ data: questionItem[], topic: string, topicList: topicItem[] }> = ({ data, topic, topicList }) => {
   const [visible, setVisible] = useState<boolean>(false)
 
   const showModal = (): void => {
@@ -49,7 +50,7 @@ const QuestionList: React.FC<{ data: questionItem[], topic: string }> = ({ data,
           </List.Item>
         )}
       />
-      <QuestionUploadModal topic={topic} visible={visible} closeModal={closeModal} />
+      <QuestionUploadModal topic={topic} topicList={topicList} visible={visible} closeModal={closeModal} />
     </Fragment>
   )
 }

@@ -5,14 +5,14 @@ import type { quizItem } from '@/models/quiz'
 import { getQuizList } from '@/services/quiz'
 
 type propsType = {
-  quizData: quizItem[]
+  quizList: quizItem[]
 }
 
 const QuizPage: NextPage<propsType> = (props) => {
   return (
     <div className="base-y-container">
       <ExploreNav select='quiz' />
-      <QuizList data={props.quizData} />
+      <QuizList data={props.quizList} />
     </div>
   )
 }
@@ -22,7 +22,7 @@ export async function getStaticProps() {
 
   return {
     props: {
-      quizData: quizRes.data
+      quizList: quizRes.data
     },
     revalidate: 3600
   }

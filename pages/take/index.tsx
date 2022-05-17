@@ -9,7 +9,7 @@ import { getQuestionListBySchedule } from '@/services/question'
 
 type propsType = {
   scheduleData: scheduleItem,
-  questionData: questionItem[],
+  questionList: questionItem[],
   participantInfo: participantItem
 }
 
@@ -25,7 +25,7 @@ const TakePage: NextPage<propsType> = (props) => {
   return (
     <div className="base-y-container">
       <ScheduleTitle data={props.scheduleData} />
-      <QuestionPaper data={props.questionData} participantInfo={props.participantInfo} />
+      <QuestionPaper data={props.questionList} participantInfo={props.participantInfo} />
     </div>
   )
 }
@@ -38,7 +38,7 @@ export async function getServerSideProps(context: contextType) {
   return {
     props: {
       scheduleData: scheduleRes.data,
-      questionData: questionRes.data,
+      questionList: questionRes.data,
       participantInfo: { participantId, isTeam }
     }
   }

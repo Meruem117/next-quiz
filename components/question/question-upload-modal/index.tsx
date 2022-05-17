@@ -2,11 +2,14 @@ import React from 'react'
 import { Modal, Form, Input, Select, message } from 'antd'
 import { useAppSelector } from '@/app/hooks'
 import { selectUser } from '@/features/user/userSlice'
-import { questionItem } from '@/models/question'
+import type { topicItem } from '@/models/topic'
+import type { questionItem } from '@/models/question'
 import { uploadQuestion } from '@/services/question'
 import { QUESTION_SELECT } from '@/constant'
 
-const QuestionUploadModal: React.FC<{ topic: string, visible: boolean, closeModal: VoidFunction }> = ({ topic, visible, closeModal }) => {
+const QuestionUploadModal: React.FC<{
+  topic: string, topicList: topicItem[], visible: boolean, closeModal: VoidFunction
+}> = ({ topic, topicList, visible, closeModal }) => {
   const [form] = Form.useForm()
   const userState = useAppSelector(selectUser)
   const autoSize = { minRows: 1, maxRows: 5 }
@@ -33,7 +36,13 @@ const QuestionUploadModal: React.FC<{ topic: string, visible: boolean, closeModa
           <Input.TextArea autoSize={autoSize} placeholder="Input question" />
         </Form.Item>
         <Form.Item name="topic" label="Topic">
-          <Input />
+          <Select placeholder="Select a topic" defaultValue={topic}>
+            {
+              topicList.map(item => (
+                <Select.Option value={item.topic} key={item.topic}>{item.topic}</Select.Option>
+              ))
+            }
+          </Select>
         </Form.Item>
         <Form.Item name="type" label="Type">
           <Select placeholder="Select a type">

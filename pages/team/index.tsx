@@ -5,14 +5,14 @@ import type { teamItem } from '@/models/team'
 import { getTeamList } from '@/services/team'
 
 type propsType = {
-  teamData: teamItem[]
+  teamList: teamItem[]
 }
 
 const TeamPage: NextPage<propsType> = (props) => {
   return (
     <div className="base-y-container">
       <ExploreNav select='team' />
-      <TeamList data={props.teamData} />
+      <TeamList data={props.teamList} />
     </div>
   )
 }
@@ -22,7 +22,7 @@ export async function getStaticProps() {
 
   return {
     props: {
-      teamData: teamRes.data
+      teamList: teamRes.data
     },
     revalidate: 3600
   }

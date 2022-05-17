@@ -8,7 +8,7 @@ import { getQuestionListBySchedule } from '@/services/question'
 
 type propsType = {
   scheduleData: scheduleItem,
-  questionData: questionItem[]
+  questionList: questionItem[]
 }
 
 type contextType = {
@@ -24,7 +24,7 @@ const ScheduleDetailPage: NextPage<propsType> = (props) => {
     <div className="base-x-container">
       <div className="flex flex-col w-1/2 space-y-4">
         <ScheduleDetail data={props.scheduleData} />
-        <ScheduleContent scheduleId={id} status={status} data={props.questionData} />
+        <ScheduleContent scheduleId={id} status={status} data={props.questionList} />
       </div>
     </div>
   )
@@ -52,7 +52,7 @@ export async function getStaticProps(context: contextType) {
   return {
     props: {
       scheduleData: scheduleRes.data,
-      questionData: questionRes.data
+      questionList: questionRes.data
     },
     revalidate: 3600
   }

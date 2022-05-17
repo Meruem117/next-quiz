@@ -5,14 +5,14 @@ import type { topicItem } from '@/models/topic'
 import { getTopicList } from '@/services/topic'
 
 type propsType = {
-  topicData: topicItem[]
+  topicList: topicItem[]
 }
 
 const TopicPage: NextPage<propsType> = (props) => {
   return (
     <div className="base-y-container">
       <ExploreNav select='topic' />
-      <TopicList data={props.topicData} />
+      <TopicList data={props.topicList} />
     </div>
   )
 }
@@ -22,7 +22,7 @@ export async function getStaticProps() {
 
   return {
     props: {
-      topicData: topicRes.data
+      topicList: topicRes.data
     },
     revalidate: 3600
   }

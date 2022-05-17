@@ -28,7 +28,7 @@ const IndexPage: NextPage<propsType> = (props) => {
       <TopicRadio data={props.topicList} />
       <div className="flex w-full h-full space-x-6">
         <div className="w-3/4">
-          <QuestionList data={props.questionList} topic={props.topic} />
+          <QuestionList data={props.questionList} topic={props.topic} topicList={props.topicList} />
         </div>
         <div className="w-1/4">
           <QuizList data={props.quizList} />

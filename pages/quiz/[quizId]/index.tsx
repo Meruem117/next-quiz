@@ -11,7 +11,7 @@ import { STATUS } from '@/constant'
 
 type propsType = {
   quizData: quizItem,
-  scheduleData: scheduleItem[]
+  scheduleList: scheduleItem[]
 }
 
 type contextType = {
@@ -34,7 +34,7 @@ const QuizDetailPage: NextPage<propsType> = (props) => {
       </div>
       <div className="flex flex-col w-2/5 space-y-4">
         <ScheduleSelect select={select} handleChange={handleChange} />
-        <ScheduleList data={props.scheduleData} select={select} />
+        <ScheduleList data={props.scheduleList} select={select} />
       </div>
     </div>
   )
@@ -62,7 +62,7 @@ export async function getStaticProps(context: contextType) {
   return {
     props: {
       quizData: quizRes.data,
-      scheduleData: scheduleRes.data
+      scheduleList: scheduleRes.data
     },
     revalidate: 3600
   }
