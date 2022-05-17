@@ -1,26 +1,43 @@
-import React from 'react'
-import { Modal, Form, Input, Select, message } from 'antd'
+import React, { useState } from 'react'
+import { Modal, Form, Input, Select, Checkbox, Radio, message } from 'antd'
+import type { CheckboxValueType } from 'antd/lib/checkbox/Group'
 import { useAppSelector } from '@/app/hooks'
 import { selectUser } from '@/features/user/userSlice'
 import type { topicItem } from '@/models/topic'
 import type { questionItem } from '@/models/question'
 import { uploadQuestion } from '@/services/question'
-import { QUESTION_SELECT } from '@/constant'
+import { QUESTION, QUESTION_SELECT } from '@/constant'
 
 const QuestionUploadModal: React.FC<{
   topic: string, topicList: topicItem[], visible: boolean, closeModal: VoidFunction
 }> = ({ topic, topicList, visible, closeModal }) => {
   const [form] = Form.useForm()
   const userState = useAppSelector(selectUser)
+  const [type, setType] = useState<number>(QUESTION.SINGLE_CHOICE)
+  const [answer, setAnswer] = useState<string>('')
   const autoSize = { minRows: 1, maxRows: 5 }
+  const answerOptions = [
+    { label: 'A', value: 'a' },
+    { label: 'B', value: 'b' },
+    { label: 'C', value: 'c' },
+    { label: 'D', value: 'd' }
+  ]
 
   const upload = (): void => {
-    form.validateFields().then((values: questionItem) => {
-      console.log(values)
-      console.log(userState.id, userState.name)
-      closeModal()
-      form.resetFields()
-      message.success('Upload successfully')
+    form.validateFields().then(async (values: questionItem) => {
+      values.up = userState.name
+      values.upId = userState.id
+      if (typeof values.answer !== 'string') {
+        values.answer = answer
+      }
+      const res = await uploadQuestion(values)
+      if (res.data) {
+        closeModal()
+        form.resetFields()
+        message.success('Upload successfully')
+      } else {
+        message.error('Fail to upload')
+      }
     })
   }
 
@@ -45,7 +62,7 @@ const QuestionUploadModal: React.FC<{
           </Select>
         </Form.Item>
         <Form.Item name="type" label="Type">
-          <Select placeholder="Select a type">
+          <Select placeholder="Select a type" onSelect={(value: number) => setType(value)}>
             {
               QUESTION_SELECT.map(item => (
                 <Select.Option value={item.value} key={item.value}>{item.name}</Select.Option>
@@ -66,7 +83,11 @@ const QuestionUploadModal: React.FC<{
           <Input.TextArea autoSize={autoSize} placeholder="Input option D" />
         </Form.Item>
         <Form.Item name="answer" label="Answer">
-          <Input />
+          {
+            type === QUESTION.SINGLE_CHOICE ?
+              <Radio.Group options={answerOptions} /> :
+              <Checkbox.Group options={answerOptions} onChange={(checkedValue: CheckboxValueType[]) => setAnswer(checkedValue.join(','))} />
+          }
         </Form.Item>
       </Form>
     </Modal>
