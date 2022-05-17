@@ -20,7 +20,7 @@ const TopicDetailPage: NextPage<propsType> = (props) => {
   return (
     <div className="base-y-container">
       <TopicBreadcrumb topic={props.topic} />
-      <QuestionList data={props.questionData} />
+      <QuestionList data={props.questionData} topic={props.topic} />
     </div>
   )
 }
@@ -40,7 +40,7 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps(context: contextType) {
-  const topic = context.params.topic
+  const topic = context.params.topic || ''
   const questionRes = await getQuestionListByTopic(topic)
 
   return {

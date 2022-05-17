@@ -10,6 +10,7 @@ import { getQuestionListByTopic } from '@/services/question'
 import { getQuizList } from '@/services/quiz'
 
 type propsType = {
+  topic: string,
   topicList: topicItem[],
   questionList: questionItem[],
   quizList: quizItem[]
@@ -27,7 +28,7 @@ const IndexPage: NextPage<propsType> = (props) => {
       <TopicRadio data={props.topicList} />
       <div className="flex w-full h-full space-x-6">
         <div className="w-3/4">
-          <QuestionList data={props.questionList} />
+          <QuestionList data={props.questionList} topic={props.topic} />
         </div>
         <div className="w-1/4">
           <QuizList data={props.quizList} />
@@ -45,6 +46,7 @@ export async function getServerSideProps(context: contextType) {
 
   return {
     props: {
+      topic,
       topicList: topicRes.data,
       questionList: questionRes.data,
       quizList: quizRes.data

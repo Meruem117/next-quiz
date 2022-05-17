@@ -6,7 +6,7 @@ import { questionItem } from '@/models/question'
 import { uploadQuestion } from '@/services/question'
 import { QUESTION_SELECT } from '@/constant'
 
-const QuestionUploadModal: React.FC<{ visible: boolean, closeModal: VoidFunction }> = ({ visible, closeModal }) => {
+const QuestionUploadModal: React.FC<{ topic: string, visible: boolean, closeModal: VoidFunction }> = ({ topic, visible, closeModal }) => {
   const [form] = Form.useForm()
   const userState = useAppSelector(selectUser)
   const autoSize = { minRows: 1, maxRows: 5 }

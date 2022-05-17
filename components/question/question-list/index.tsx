@@ -6,7 +6,7 @@ import IconText from '@/components/common/icon-text'
 import type { questionItem } from '@/models/question'
 import { QUESTION_TEXT } from '@/constant'
 
-const QuestionList: React.FC<{ data: questionItem[] }> = ({ data }) => {
+const QuestionList: React.FC<{ data: questionItem[], topic: string }> = ({ data, topic }) => {
   const [visible, setVisible] = useState<boolean>(false)
 
   const showModal = (): void => {
@@ -49,7 +49,7 @@ const QuestionList: React.FC<{ data: questionItem[] }> = ({ data }) => {
           </List.Item>
         )}
       />
-      <QuestionUploadModal visible={visible} closeModal={closeModal} />
+      <QuestionUploadModal topic={topic} visible={visible} closeModal={closeModal} />
     </Fragment>
   )
 }
