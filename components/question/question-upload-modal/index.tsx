@@ -31,8 +31,8 @@ const QuestionUploadModal: React.FC<{
 
   return (
     <Modal title="Upload" visible={visible} onCancel={cancel} okText="Upload" onOk={upload} >
-      <Form form={form} layout="vertical">
-        <Form.Item name="question" label="Question" >
+      <Form form={form} layout="vertical" initialValues={{ topic }}>
+        <Form.Item name="question" label="Question">
           <Input.TextArea autoSize={autoSize} placeholder="Input question" />
         </Form.Item>
         <Form.Item name="topic" label="Topic">

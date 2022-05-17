@@ -25,7 +25,7 @@ type contextType = {
 const IndexPage: NextPage<propsType> = (props) => {
   return (
     <div className="flex flex-col w-full h-full space-y-6">
-      <TopicRadio data={props.topicList} />
+      <TopicRadio data={props.topicList} select={props.topic} />
       <div className="flex w-full h-full space-x-6">
         <div className="w-3/4">
           <QuestionList data={props.questionList} topic={props.topic} topicList={props.topicList} />
