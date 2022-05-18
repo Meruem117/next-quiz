@@ -5,7 +5,7 @@ import { useAppSelector } from '@/app/hooks'
 import { selectUser } from '@/features/user/userSlice'
 import type { topicItem } from '@/models/topic'
 import type { questionItem } from '@/models/question'
-import { uploadQuestion } from '@/services/question'
+import { handleUpload } from '@/services/question'
 import { QUESTION, QUESTION_SELECT } from '@/constant'
 
 const QuestionUploadModal: React.FC<{
@@ -30,8 +30,8 @@ const QuestionUploadModal: React.FC<{
       if (typeof values.answer !== 'string') {
         values.answer = answer
       }
-      const res = await uploadQuestion(values)
-      if (res.data) {
+      const res = await handleUpload(values)
+      if (res) {
         closeModal()
         form.resetFields()
         message.success('Upload successfully')
