@@ -70,16 +70,16 @@ const QuestionUploadModal: React.FC<{
             }
           </Select>
         </Form.Item>
-        <Form.Item name="option_a" label="Option A">
+        <Form.Item name="optionA" label="Option A">
           <Input.TextArea autoSize={autoSize} placeholder="Input option A" />
         </Form.Item>
-        <Form.Item name="option_b" label="Option B">
+        <Form.Item name="optionB" label="Option B">
           <Input.TextArea autoSize={autoSize} placeholder="Input option B" />
         </Form.Item>
-        <Form.Item name="option_c" label="Option C">
+        <Form.Item name="optionC" label="Option C">
           <Input.TextArea autoSize={autoSize} placeholder="Input option C" />
         </Form.Item>
-        <Form.Item name="option_d" label="Option D">
+        <Form.Item name="optionD" label="Option D">
           <Input.TextArea autoSize={autoSize} placeholder="Input option D" />
         </Form.Item>
         <Form.Item name="answer" label="Answer">
