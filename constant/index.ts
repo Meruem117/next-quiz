@@ -1,3 +1,5 @@
+import type { BaseType } from "antd/lib/typography/Base"
+
 //* base
 export const baseUrl = 'http://localhost:8080'
 
@@ -51,6 +53,11 @@ export const QUESTION_SELECT: { name: string, value: number }[] = [
   { name: 'Single Choice', value: 1 },
   { name: 'Multiple Choice', value: 0 }
 ]
+export const PASS: { [key: string]: { name: string, type: BaseType } } = {
+  '0': { name: 'Pending', type: 'secondary' },
+  '1': { name: 'Pass', type: 'success' },
+  '2': { name: 'Denied', type: 'danger' }
+}
 
 //* result
 export const IS_TAKE = {

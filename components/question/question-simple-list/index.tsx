@@ -2,7 +2,7 @@ import React from 'react'
 import Link from 'next/link'
 import { List, Tag, Typography } from 'antd'
 import type { questionItem } from '@/models/question'
-import { QUESTION_TEXT } from '@/constant'
+import { QUESTION_TEXT, PASS } from '@/constant'
 
 const QuestionSimpleList: React.FC<{ data: questionItem[] }> = ({ data }) => {
   return (
@@ -18,7 +18,10 @@ const QuestionSimpleList: React.FC<{ data: questionItem[] }> = ({ data }) => {
             className="p-2 cursor-pointer rounded-md hover:shadow-lg duration-150"
             actions={[
               <Tag color="blue" key={item.id}>{item.topic}</Tag>,
-              <Tag color="magenta" key={item.id}>{QUESTION_TEXT[item.type]}</Tag>
+              <Tag color="magenta" key={item.id}>{QUESTION_TEXT[item.type]}</Tag>,
+              <div className="w-14 text-center" key={item.id}>
+                <Typography.Text type={PASS[item.pass].type}>{PASS[item.pass].name}</Typography.Text>
+              </div>
             ]}
           >
             <List.Item.Meta
