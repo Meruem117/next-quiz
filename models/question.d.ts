@@ -10,6 +10,7 @@ export interface questionItem {
   optionC: string,
   optionD: string,
   answer: string,
+  pass: string,
   createTime: string,
   updateTime: string
 }
