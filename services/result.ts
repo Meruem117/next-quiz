@@ -12,7 +12,29 @@ export async function getResultWhenAttend(scheduleId: number, participantId: num
   return response.json()
 }
 
+export async function submitResult(data: resultItem): Promise<responseItem<number>> {
+  const response = await fetch(baseUrl + '/result/add', {
+    method: 'POST',
+    body: JSON.stringify(data),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+  return response.json()
+}
+
 export async function handleAttend(scheduleId: number, participantId: number, isTeam: number): Promise<resultItem | boolean> {
   const response = await fetch(`/api/attend?scheduleId=${scheduleId}&participantId=${participantId}&isTeam=${isTeam}`)
+  return response.json()
+}
+
+export async function handleSubmit(data: resultItem): Promise<number> {
+  const response = await fetch('/api/submit', {
+    method: 'POST',
+    body: JSON.stringify(data),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
   return response.json()
 }
