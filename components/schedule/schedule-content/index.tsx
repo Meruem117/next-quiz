@@ -26,13 +26,12 @@ const ScheduleContent: React.FC<{ scheduleId: number, status: number, data: ques
 
   const onAttend = async (): Promise<void> => {
     const res = await handleAttend(scheduleId, participantId, isTeam)
-    if (res !== false) {
+    if (res) {
       router.push({
         pathname: '/take',
         query: {
-          scheduleId,
-          participantId,
-          isTeam
+          resultId: res.id,
+          scheduleId
         }
       })
     } else {

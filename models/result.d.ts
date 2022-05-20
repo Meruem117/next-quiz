@@ -13,17 +13,13 @@ export interface resultItem {
   correctRate: number,
   answers: string,
   errors: string,
-  isOut: number,
+  isOut: string,
+  takeTime: string,
   createTime: string
 }
 
 export interface attendItem {
   scheduleId: number,
-  participantId: number,
-  isTeam: number
-}
-
-export interface participantItem {
   participantId: number,
   isTeam: number
 }

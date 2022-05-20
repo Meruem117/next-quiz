@@ -1,10 +1,13 @@
-import React, { useState } from 'react'
+import React, { useState, ReactElement } from 'react'
 import { Space, Typography, Radio, List, Button, Popconfirm, message, RadioChangeEvent } from 'antd'
 import { cloneDeep } from 'lodash'
 import type { questionItem } from '@/models/question'
-import type { participantItem } from '@/models/result'
+import type { resultItem } from '@/models/result'
+import { handleSubmit } from '@/services/result'
 
-const QuestionPaper: React.FC<{ data: questionItem[], participantInfo: participantItem }> = ({ data, participantInfo }) => {
+const QuestionPaper: React.FC<{
+  data: questionItem[], result: resultItem
+}> = ({ data, result }) => {
   const total = data.length
   const [current, setCurrent] = useState<number>(0)
   const [answers, setAnswers] = useState<string[]>([])
@@ -41,12 +44,18 @@ const QuestionPaper: React.FC<{ data: questionItem[], participantInfo: participa
     setVisible(true)
   }
 
-  const onConfirm = () => {
-    console.log(answers)
+  const onConfirm = async () => {
+    result.answers = answers.join(',')
+    const res = await handleSubmit(result)
+    if (res) {
+      message.info('Submit successfully')
+    } else {
+      message.error('Fail to submit')
+    }
     setVisible(false)
   }
 
-  const NumberButton = ({ index }: { index: number }) => {
+  const NumberButton = ({ index }: { index: number }): ReactElement => {
     let classes = 'w-9 h-9 p-1 text-base text-center cursor-pointer shadow-md bg-white'
 
     if (index === current) {
@@ -60,11 +69,7 @@ const QuestionPaper: React.FC<{ data: questionItem[], participantInfo: participa
     }
 
     return (
-      <div
-        onClick={() => setCurrent(index)}
-        className={classes}
-        title={`${index + 1}`}
-      >
+      <div className={classes} title={`${index + 1}`} onClick={() => setCurrent(index)}>
         {index + 1}
       </div>
     )

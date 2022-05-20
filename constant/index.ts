@@ -1,4 +1,4 @@
-import type { BaseType } from "antd/lib/typography/Base"
+import type { BaseType } from 'antd/lib/typography/Base'
 
 //* base
 export const baseUrl = 'http://localhost:8080'
