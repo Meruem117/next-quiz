@@ -45,7 +45,19 @@ const QuestionPaper: React.FC<{
   }
 
   const onConfirm = async () => {
+    let correct = 0
+    let errors = []
+    for (let i = 0; i < answers.length; i++) {
+      if (answers[i] === data[i].answer) {
+        correct++
+      } else {
+        errors.push(data[i].id)
+      }
+    }
+    result.correct = correct
+    result.correctRate = Math.round(correct / total * 100)
     result.answers = answers.join(',')
+    result.errors = errors.join(',')
     const res = await handleSubmit(result)
     if (res) {
       message.info('Submit successfully')
