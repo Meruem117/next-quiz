@@ -39,6 +39,22 @@ const ScheduleContent: React.FC<{ scheduleId: number, status: number, data: ques
     }
   }
 
+  const onSignUp = async (): Promise<void> => {
+    console.log(1)
+    // const res = await handleAttend(scheduleId, participantId, isTeam)
+    // if (res.data) {
+    //   router.push({
+    //     pathname: '/take',
+    //     query: {
+    //       resultId: res.data.id,
+    //       scheduleId
+    //     }
+    //   })
+    // } else {
+    //   message.warning(res.message)
+    // }
+  }
+
   const menu: ReactElement = (
     <Menu onClick={item => { setRole(item.key), setVisible(false) }}>
       <Menu.Item key={userState.name} icon={<UserOutlined />} onClick={() => { setIsTeam(IS_TEAM.USER), setParticipantId(userState.id) }}>
@@ -62,6 +78,16 @@ const ScheduleContent: React.FC<{ scheduleId: number, status: number, data: ques
         description="This quiz round has not started yet."
         type="info"
         className="base-alert"
+        action={
+          <div>
+            <Button type="ghost" onClick={onSignUp}>Sign up</Button>
+            <Dropdown overlay={menu} visible={visible}>
+              <Button type="link" onClick={() => setVisible(!visible)}>
+                as {role} <DownOutlined />
+              </Button>
+            </Dropdown>
+          </div>
+        }
       />
     )
   } else {
