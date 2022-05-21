@@ -12,8 +12,9 @@ type propsType = {
 }
 
 type contextType = {
-  params: {
-    resultId: number
+  query: {
+    resultId: number,
+    scheduleId: number
   }
 }
 
@@ -21,31 +22,26 @@ const ResultDetailPage: NextPage<propsType> = (props) => {
   return (
     <div className="base-x-container">
       <div className="w-4/5">
-        <QuestionInfoList data={props.questionList} />
+        <QuestionInfoList data={props.questionList} result={props.resultData} />
       </div>
     </div>
   )
 }
 
-export async function getStaticPaths() {
-  return {
-    fallback: true,
-    paths: []
+export async function getServerSideProps(context: contextType) {
+  const { resultId, scheduleId } = context.query
+  let resultRes = null
+  if (resultId) {
+    resultRes = await getResultById(resultId)
   }
-}
-
-export async function getStaticProps(context: contextType) {
-  const resultId = context.params.resultId
-  const resultRes = await getResultById(resultId)
-  const scheduleRes = await getScheduleById(resultRes.data.scheduleId)
+  const scheduleRes = await getScheduleById(scheduleId)
   const questionRes = await getQuestionListBySchedule(scheduleRes.data.question)
 
   return {
     props: {
-      resultData: resultRes.data,
+      resultData: resultRes ? resultRes.data : null,
       questionList: questionRes.data
-    },
-    revalidate: 3600
+    }
   }
 }
 

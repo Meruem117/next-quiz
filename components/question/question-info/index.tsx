@@ -1,5 +1,6 @@
 import React from 'react'
-import { Typography, Collapse } from 'antd'
+import { Typography, Collapse, Tag } from 'antd'
+import { CheckCircleOutlined, CloseCircleOutlined } from '@ant-design/icons'
 import type { questionItem } from '@/models/question'
 
 type optionItem = {
@@ -7,7 +8,8 @@ type optionItem = {
   value: (keyof questionItem)
 }
 
-const QuestionInfo: React.FC<{ data: questionItem }> = ({ data }) => {
+const QuestionInfo: React.FC<{ data: questionItem, answer?: string }> = ({ data, answer }) => {
+  const isCorrect = data.answer === answer
   const options: optionItem[] = [
     { key: 'A', value: 'optionA' },
     { key: 'B', value: 'optionB' },
@@ -27,7 +29,17 @@ const QuestionInfo: React.FC<{ data: questionItem }> = ({ data }) => {
       }
       <Collapse collapsible="header">
         <Collapse.Panel header="Answer" key="question-answer">
-          <Typography.Text>{data.answer}</Typography.Text>
+          <Typography.Text>Correct answer: {data.answer}</Typography.Text>
+          {
+            answer ? (
+              <div className="flex mt-4">
+                {isCorrect ?
+                  <Tag icon={<CheckCircleOutlined />} color="success">Correct</Tag> :
+                  <Tag icon={<CloseCircleOutlined />} color="error">Wrong</Tag>}
+                <Typography.Text>Your answer: {answer}</Typography.Text>
+              </div>
+            ) : undefined
+          }
         </Collapse.Panel>
       </Collapse>
     </div>

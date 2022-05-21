@@ -60,13 +60,13 @@ const ScheduleContent: React.FC<{ schedule: scheduleItem }> = ({ schedule }) => 
 
   const onReview = async (): Promise<void> => {
     const res = await handleReview(schedule.id, participantId, isTeam)
-    if (res.data) {
-      router.push({
-        pathname: `/result/${res.data.id}`
-      })
-    } else {
-      message.warning(res.message)
-    }
+    router.push({
+      pathname: '/result',
+      query: {
+        resultId: res.data ? res.data.id : '',
+        scheduleId: schedule.id
+      }
+    })
   }
 
   const menu: ReactElement = (
