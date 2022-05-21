@@ -26,16 +26,16 @@ const ScheduleContent: React.FC<{ scheduleId: number, status: number, data: ques
 
   const onAttend = async (): Promise<void> => {
     const res = await handleAttend(scheduleId, participantId, isTeam)
-    if (res) {
+    if (res.data) {
       router.push({
         pathname: '/take',
         query: {
-          resultId: res.id,
+          resultId: res.data.id,
           scheduleId
         }
       })
     } else {
-      message.error(`${role} has not signed up for the quiz!`)
+      message.warning(res.message)
     }
   }
 

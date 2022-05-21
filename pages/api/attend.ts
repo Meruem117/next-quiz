@@ -5,11 +5,7 @@ async function attendHandler(req: getRequestItem<{ scheduleId: number, participa
   if (req.method === 'GET') {
     const { scheduleId, participantId, isTeam } = req.query
     const response = await getResultWhenAttend(scheduleId, participantId, isTeam)
-    if (response.data) {
-      res.status(200).json(response.data)
-    } else {
-      res.status(200).json(false)
-    }
+    res.status(200).json(response)
   }
 }
 
