@@ -23,7 +23,7 @@ export async function checkUserPassword(login: userLoginItem): Promise<responseI
   return response.json()
 }
 
-export async function handleLogin(data: userLoginItem): Promise<userCheckItem> {
+export async function handleLogin(data: userLoginItem): Promise<responseItem<userCheckItem>> {
   const response = await fetch('/api/login', {
     method: 'POST',
     body: JSON.stringify(data),

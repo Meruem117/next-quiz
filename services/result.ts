@@ -33,7 +33,7 @@ export async function handleAttend(scheduleId: number, participantId: number, is
   return response.json()
 }
 
-export async function handleSubmit(data: resultItem): Promise<boolean> {
+export async function handleSubmit(data: resultItem): Promise<responseItem<boolean>> {
   const response = await fetch('/api/submit', {
     method: 'POST',
     body: JSON.stringify(data),

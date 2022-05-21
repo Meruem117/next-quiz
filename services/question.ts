@@ -33,7 +33,7 @@ export async function uploadQuestion(data: questionItem): Promise<responseItem<n
   return response.json()
 }
 
-export async function handleUpload(data: questionItem): Promise<number> {
+export async function handleUpload(data: questionItem): Promise<responseItem<number>> {
   const response = await fetch('/api/upload', {
     method: 'POST',
     body: JSON.stringify(data),

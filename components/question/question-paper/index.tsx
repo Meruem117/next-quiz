@@ -62,7 +62,7 @@ const QuestionPaper: React.FC<{
     result.errors = errors.join(',')
     result.isOut = correct >= schedule.passNum ? IS_OUT.NOT_OUT : IS_OUT.OUT
     const res = await handleSubmit(result)
-    if (res) {
+    if (res.data) {
       message.info('Submit successfully')
     } else {
       message.error('Fail to submit')

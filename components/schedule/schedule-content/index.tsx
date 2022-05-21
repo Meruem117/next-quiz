@@ -21,7 +21,7 @@ const ScheduleContent: React.FC<{ scheduleId: number, status: number, data: ques
   const [isTeam, setIsTeam] = useState<number>(IS_TEAM.USER)
 
   useEffect(() => {
-    handleTeam(userState.id).then(res => setTeamList(res))
+    handleTeam(userState.id).then(res => setTeamList(res.data))
   }, [userState])
 
   const onAttend = async (): Promise<void> => {

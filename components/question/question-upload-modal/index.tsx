@@ -31,7 +31,7 @@ const QuestionUploadModal: React.FC<{
         values.answer = answer
       }
       const res = await handleUpload(values)
-      if (res) {
+      if (res.data) {
         closeModal()
         form.resetFields()
         message.success('Upload successfully')
