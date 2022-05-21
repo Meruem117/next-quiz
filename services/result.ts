@@ -1,5 +1,5 @@
 import type { responseItem } from '@/models/base'
-import type { resultItem } from '@/models/result'
+import type { resultItem, signItem } from '@/models/result'
 import { baseUrl } from '@/constant'
 
 export async function getResultById(id: number): Promise<responseItem<resultItem>> {
@@ -28,7 +28,7 @@ export async function submitResult(data: resultItem): Promise<responseItem<boole
   return response.json()
 }
 
-export async function addResult(data: resultItem): Promise<responseItem<number>> {
+export async function addResult(data: signItem): Promise<responseItem<number>> {
   const response = await fetch(baseUrl + '/result/add', {
     method: 'POST',
     body: JSON.stringify(data),
@@ -55,7 +55,7 @@ export async function handleSubmit(data: resultItem): Promise<responseItem<boole
   return response.json()
 }
 
-export async function handleSign(data: resultItem): Promise<responseItem<number>> {
+export async function handleSign(data: signItem): Promise<responseItem<number>> {
   const response = await fetch('/api/sign', {
     method: 'POST',
     body: JSON.stringify(data),

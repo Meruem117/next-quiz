@@ -5,13 +5,14 @@ import { UserOutlined, TeamOutlined, DownOutlined } from '@ant-design/icons'
 import { useAppSelector } from '@/app/hooks'
 import { selectUser } from '@/features/user/userSlice'
 import QuestionInfoList from '@/components/question/question-info-list'
+import type { scheduleItem } from '@/models/schedule'
 import type { teamItem } from '@/models/team'
 import type { questionItem } from '@/models/question'
 import { handleTeam } from '@/services/team'
 import { handleAttend, handleSign } from '@/services/result'
 import { STATUS, IS_TEAM } from '@/constant'
 
-const ScheduleContent: React.FC<{ scheduleId: number, status: number, data: questionItem[] }> = ({ scheduleId, status, data }) => {
+const ScheduleContent: React.FC<{ schedule: scheduleItem, data: questionItem[] }> = ({ schedule, data }) => {
   const userState = useAppSelector(selectUser)
   const router = useRouter()
   const [teamList, setTeamList] = useState<teamItem[]>([])
@@ -25,13 +26,13 @@ const ScheduleContent: React.FC<{ scheduleId: number, status: number, data: ques
   }, [userState])
 
   const onAttend = async (): Promise<void> => {
-    const res = await handleAttend(scheduleId, participantId, isTeam)
+    const res = await handleAttend(schedule.id, participantId, isTeam)
     if (res.data) {
       router.push({
         pathname: '/take',
         query: {
           resultId: res.data.id,
-          scheduleId
+          scheduleId: schedule.id
         }
       })
     } else {
@@ -40,11 +41,22 @@ const ScheduleContent: React.FC<{ scheduleId: number, status: number, data: ques
   }
 
   const onSign = async (): Promise<void> => {
-    // const res = await handleSign(scheduleId)
-    // if (res.data) {
-    // } else {
-    //   message.warning(res.message)
-    // }
+    const { quizId, quizName, round, id, status } = schedule
+    const res = await handleSign({
+      quizId,
+      quizName,
+      round,
+      scheduleId: id,
+      participantId,
+      participantName: role,
+      isTeam,
+      status
+    })
+    if (res.data) {
+      message.success('Sign up successfully')
+    } else {
+      message.warning(res.message)
+    }
   }
 
   const menu: ReactElement = (
@@ -62,9 +74,9 @@ const ScheduleContent: React.FC<{ scheduleId: number, status: number, data: ques
     </Menu>
   )
 
-  if (status === STATUS.END.value) {
+  if (schedule.status === STATUS.END.value) {
     return <QuestionInfoList data={data} />
-  } else if (status === STATUS.NOT_START.value) {
+  } else if (schedule.status === STATUS.NOT_START.value) {
     return (
       <Alert
         description="This quiz round has not started yet."

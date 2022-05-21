@@ -23,3 +23,14 @@ export interface attendItem {
   participantId: number,
   isTeam: number
 }
+
+export interface signItem {
+  quizId: number,
+  quizName: string,
+  round: number,
+  scheduleId: number,
+  participantId: number,
+  participantName: string,
+  isTeam: number,
+  status: number,
+}
