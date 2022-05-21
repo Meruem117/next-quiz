@@ -8,7 +8,7 @@ import QuestionInfoList from '@/components/question/question-info-list'
 import type { teamItem } from '@/models/team'
 import type { questionItem } from '@/models/question'
 import { handleTeam } from '@/services/team'
-import { handleAttend } from '@/services/result'
+import { handleAttend, handleSign } from '@/services/result'
 import { STATUS, IS_TEAM } from '@/constant'
 
 const ScheduleContent: React.FC<{ scheduleId: number, status: number, data: questionItem[] }> = ({ scheduleId, status, data }) => {
@@ -39,17 +39,9 @@ const ScheduleContent: React.FC<{ scheduleId: number, status: number, data: ques
     }
   }
 
-  const onSignUp = async (): Promise<void> => {
-    console.log(1)
-    // const res = await handleAttend(scheduleId, participantId, isTeam)
+  const onSign = async (): Promise<void> => {
+    // const res = await handleSign(scheduleId)
     // if (res.data) {
-    //   router.push({
-    //     pathname: '/take',
-    //     query: {
-    //       resultId: res.data.id,
-    //       scheduleId
-    //     }
-    //   })
     // } else {
     //   message.warning(res.message)
     // }
@@ -80,7 +72,7 @@ const ScheduleContent: React.FC<{ scheduleId: number, status: number, data: ques
         className="base-alert"
         action={
           <div>
-            <Button type="ghost" onClick={onSignUp}>Sign up</Button>
+            <Button type="ghost" onClick={onSign}>Sign up</Button>
             <Dropdown overlay={menu} visible={visible}>
               <Button type="link" onClick={() => setVisible(!visible)}>
                 as {role} <DownOutlined />
