@@ -1,13 +1,15 @@
 import React, { useState, ReactElement } from 'react'
 import { Space, Typography, Radio, List, Button, Popconfirm, message, RadioChangeEvent } from 'antd'
 import { cloneDeep } from 'lodash'
+import type { scheduleItem } from '@/models/schedule'
 import type { questionItem } from '@/models/question'
 import type { resultItem } from '@/models/result'
 import { handleSubmit } from '@/services/result'
+import { IS_OUT } from '@/constant'
 
 const QuestionPaper: React.FC<{
-  data: questionItem[], result: resultItem
-}> = ({ data, result }) => {
+  data: questionItem[], schedule: scheduleItem, result: resultItem
+}> = ({ data, schedule, result }) => {
   const total = data.length
   const [current, setCurrent] = useState<number>(0)
   const [answers, setAnswers] = useState<string[]>([])
@@ -58,6 +60,7 @@ const QuestionPaper: React.FC<{
     result.correctRate = Math.round(correct / total * 100)
     result.answers = answers.join(',')
     result.errors = errors.join(',')
+    result.isOut = correct >= schedule.passNum ? IS_OUT.NOT_OUT : IS_OUT.OUT
     const res = await handleSubmit(result)
     if (res) {
       message.info('Submit successfully')

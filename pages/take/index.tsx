@@ -25,7 +25,7 @@ const TakePage: NextPage<propsType> = (props) => {
   return (
     <div className="base-y-container">
       <ScheduleTitle data={props.scheduleData} />
-      <QuestionPaper data={props.questionList} result={props.resultData} />
+      <QuestionPaper data={props.questionList} schedule={props.scheduleData} result={props.resultData} />
     </div>
   )
 }

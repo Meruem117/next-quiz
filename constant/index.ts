@@ -68,3 +68,8 @@ export const IS_TAKE_TEXT = [
   'Not Take',
   'Taken'
 ]
+export const IS_OUT = {
+  PENDING: '0',
+  NOT_OUT: '1',
+  OUT: '2'
+}
