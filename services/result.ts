@@ -28,6 +28,11 @@ export async function submitResult(data: resultItem): Promise<responseItem<boole
   return response.json()
 }
 
+export async function reviewResult(scheduleId: number, participantId: number, isTeam: number): Promise<responseItem<resultItem>> {
+  const response = await fetch(baseUrl + `/result/review?scheduleId=${scheduleId}&participantId=${participantId}&isTeam=${isTeam}`)
+  return response.json()
+}
+
 export async function addResult(data: signItem): Promise<responseItem<number>> {
   const response = await fetch(baseUrl + '/result/add', {
     method: 'POST',
@@ -63,5 +68,10 @@ export async function handleSign(data: signItem): Promise<responseItem<number>> 
       'Content-Type': 'application/json'
     }
   })
+  return response.json()
+}
+
+export async function handleReview(scheduleId: number, participantId: number, isTeam: number): Promise<responseItem<resultItem>> {
+  const response = await fetch(`/api/review?scheduleId=${scheduleId}&participantId=${participantId}&isTeam=${isTeam}`)
   return response.json()
 }

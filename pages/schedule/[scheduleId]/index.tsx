@@ -22,7 +22,7 @@ const ScheduleDetailPage: NextPage<propsType> = (props) => {
     <div className="base-x-container">
       <div className="flex flex-col w-1/2 space-y-4">
         <ScheduleDetail data={props.scheduleData} />
-        <ScheduleContent schedule={props.scheduleData} data={props.questionList} />
+        <ScheduleContent schedule={props.scheduleData} />
       </div>
     </div>
   )

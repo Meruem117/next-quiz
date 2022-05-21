@@ -1,18 +1,17 @@
-import React, { ReactElement, useEffect, useState } from 'react'
+import React, { useState, useEffect, ReactElement } from 'react'
 import { useRouter } from 'next/router'
 import { Alert, Button, Dropdown, Menu, message } from 'antd'
 import { UserOutlined, TeamOutlined, DownOutlined } from '@ant-design/icons'
 import { useAppSelector } from '@/app/hooks'
 import { selectUser } from '@/features/user/userSlice'
-import QuestionInfoList from '@/components/question/question-info-list'
 import type { scheduleItem } from '@/models/schedule'
 import type { teamItem } from '@/models/team'
 import type { questionItem } from '@/models/question'
 import { handleTeam } from '@/services/team'
-import { handleAttend, handleSign } from '@/services/result'
+import { handleAttend, handleSign, handleReview } from '@/services/result'
 import { STATUS, IS_TEAM } from '@/constant'
 
-const ScheduleContent: React.FC<{ schedule: scheduleItem, data: questionItem[] }> = ({ schedule, data }) => {
+const ScheduleContent: React.FC<{ schedule: scheduleItem }> = ({ schedule }) => {
   const userState = useAppSelector(selectUser)
   const router = useRouter()
   const [teamList, setTeamList] = useState<teamItem[]>([])
@@ -59,6 +58,17 @@ const ScheduleContent: React.FC<{ schedule: scheduleItem, data: questionItem[] }
     }
   }
 
+  const onReview = async (): Promise<void> => {
+    const res = await handleReview(schedule.id, participantId, isTeam)
+    if (res.data) {
+      router.push({
+        pathname: `/result/${res.data.id}`
+      })
+    } else {
+      message.warning(res.message)
+    }
+  }
+
   const menu: ReactElement = (
     <Menu onClick={item => { setRole(item.key), setVisible(false) }}>
       <Menu.Item key={userState.name} icon={<UserOutlined />} onClick={() => { setIsTeam(IS_TEAM.USER), setParticipantId(userState.id) }}>
@@ -75,7 +85,23 @@ const ScheduleContent: React.FC<{ schedule: scheduleItem, data: questionItem[] }
   )
 
   if (schedule.status === STATUS.END.value) {
-    return <QuestionInfoList data={data} />
+    return (
+      <Alert
+        description="This quiz round has ended."
+        type="success"
+        className="base-alert"
+        action={
+          <div>
+            <Button type="ghost" onClick={onReview}>Review</Button>
+            <Dropdown overlay={menu} visible={visible}>
+              <Button type="link" onClick={() => setVisible(!visible)}>
+                as {role} <DownOutlined />
+              </Button>
+            </Dropdown>
+          </div>
+        }
+      />
+    )
   } else if (schedule.status === STATUS.NOT_START.value) {
     return (
       <Alert
