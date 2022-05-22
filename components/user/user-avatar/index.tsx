@@ -33,7 +33,7 @@ const UserAvatar: React.FC = () => {
       {userState.location ? <IconText icon={EnvironmentOutlined} text={userState.location} title={userState.location} /> : undefined}
       <Button size="small" href={`/user/${userState.id}`}>Mine</Button>
       <Popconfirm
-        title='Are you sure to apply?'
+        title='Are you sure to logout?'
         visible={popconfirm}
         onConfirm={handleLogout}
         onCancel={() => setPopconfirm(false)}
