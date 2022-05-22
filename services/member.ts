@@ -1,5 +1,5 @@
 import type { responseItem } from '@/models/base'
-import type { memberItem } from '@/models/member'
+import type { memberItem, memberApplyItem } from '@/models/member'
 import { baseUrl } from '@/constant'
 
 export async function getTeamListByUserId(id: number): Promise<responseItem<memberItem[]>> {
@@ -12,7 +12,7 @@ export async function getUserListByTeamId(id: number): Promise<responseItem<memb
   return response.json()
 }
 
-export async function addMember(data: memberItem): Promise<responseItem<number>> {
+export async function addMember(data: memberApplyItem): Promise<responseItem<number>> {
   const response = await fetch(baseUrl + '/member/add', {
     method: 'POST',
     body: JSON.stringify(data),
@@ -23,7 +23,7 @@ export async function addMember(data: memberItem): Promise<responseItem<number>>
   return response.json()
 }
 
-export async function handleApply(data: memberItem): Promise<responseItem<number>> {
+export async function handleApply(data: memberApplyItem): Promise<responseItem<number>> {
   const response = await fetch('/api/apply', {
     method: 'POST',
     body: JSON.stringify(data),
