@@ -29,7 +29,7 @@ const TeamInfo: React.FC<{ data: teamItem }> = ({ data }) => {
     if (res.data) {
       message.info('Apply successfully')
     } else {
-      message.warn('Fail to apply')
+      message.warn(res.message)
     }
     setVisible(false)
   }
