@@ -1,5 +1,5 @@
-import type { responseItem, deleteRequestItem } from '@/models/base'
-import type { memberItem, memberApplyItem } from '@/models/member'
+import type { responseItem } from '@/models/base'
+import type { memberItem, memberApplyItem, memberQuitItem } from '@/models/member'
 import { baseUrl } from '@/constant'
 
 export async function getTeamListByUserId(id: number): Promise<responseItem<memberItem[]>> {
@@ -28,8 +28,8 @@ export async function addMember(data: memberApplyItem): Promise<responseItem<num
   return response.json()
 }
 
-export async function deleteMember(data: deleteRequestItem): Promise<responseItem<number>> {
-  const response = await fetch(baseUrl + '/member/delete', {
+export async function quitMember(data: memberQuitItem): Promise<responseItem<boolean>> {
+  const response = await fetch(baseUrl + '/member/quit', {
     method: 'POST',
     body: JSON.stringify(data),
     headers: {
@@ -55,7 +55,7 @@ export async function handleApply(data: memberApplyItem): Promise<responseItem<n
   return response.json()
 }
 
-export async function handleQuit(data: deleteRequestItem): Promise<responseItem<number>> {
+export async function handleQuit(data: memberQuitItem): Promise<responseItem<boolean>> {
   const response = await fetch('/api/member/quit', {
     method: 'POST',
     body: JSON.stringify(data),

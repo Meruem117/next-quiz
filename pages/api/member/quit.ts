@@ -1,10 +1,11 @@
-import type { postRequestItem, deleteRequestItem } from '@/models/base'
-import { deleteMember } from '@/services/member'
+import type { postRequestItem } from '@/models/base'
+import type { memberQuitItem } from '@/models/member'
+import { quitMember } from '@/services/member'
 
-async function quitHandler(req: postRequestItem<deleteRequestItem>, res: any) {
+async function quitHandler(req: postRequestItem<memberQuitItem>, res: any) {
   if (req.method === 'POST') {
     const data = req.body
-    const response = await deleteMember(data)
+    const response = await quitMember(data)
     res.status(200).json(response)
   }
 }

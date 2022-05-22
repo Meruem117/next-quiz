@@ -5,6 +5,7 @@ export interface memberItem {
   userId: number,
   userName: string,
   pass: string,
+  quit: number,
   joinTime: string,
   createTime: string
 }
@@ -14,4 +15,8 @@ export interface memberApplyItem {
   teamName: string,
   userId: number,
   userName: string,
+}
+
+export interface memberQuitItem {
+  id: number
 }
