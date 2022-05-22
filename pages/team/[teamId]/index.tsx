@@ -28,7 +28,7 @@ const TeamDetailPage: NextPage<propsType> = (props) => {
         <TeamInfo data={props.teamData} />
       </div>
       <div className="w-1/3">
-        <TeamContent memberData={props.memberList} resultData={props.resultList} />
+        <TeamContent teamData={props.teamData} memberData={props.memberList} resultData={props.resultList} />
       </div>
     </div>
   )

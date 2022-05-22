@@ -17,6 +17,7 @@ const UserRegister: React.FC<{ visible: boolean, closeModal: VoidFunction, chang
       dispatch(set({ ...values.register, id: res.data }))
       dispatch(login())
       closeModal()
+      changeModal()
       onReset()
     } else {
       message.warn(res.message)

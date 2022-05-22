@@ -1,22 +1,29 @@
 import React from 'react'
 import { Tabs } from 'antd'
 import { TeamOutlined, SolutionOutlined } from '@ant-design/icons'
+import { useAppSelector } from '@/app/hooks'
+import { selectUser } from '@/features/user/userSlice'
 import MemberUserList from '@/components/member/member-user-list'
 import ResultQuizList from '@/components/result/result-quiz-list'
 import IconTab from '@/components/common/icon-tab'
+import type { teamItem } from '@/models/team'
 import type { memberItem } from '@/models/member'
 import type { resultItem } from '@/models/result'
 
 type propsType = {
+  teamData: teamItem,
   memberData: memberItem[],
   resultData: resultItem[]
 }
 
 const TeamContent: React.FC<propsType> = (props) => {
+  const userState = useAppSelector(selectUser)
+  const isLeader = props.teamData.leaderId === userState.id
+
   return (
     <Tabs defaultActiveKey="member" className="base-box">
       <Tabs.TabPane key="member" tab={<IconTab icon={TeamOutlined} text='Member' />} >
-        <MemberUserList data={props.memberData} />
+        <MemberUserList data={props.memberData} isLeader={isLeader} />
       </Tabs.TabPane>
       <Tabs.TabPane key="quiz" tab={<IconTab icon={SolutionOutlined} text='Quiz' />} >
         <ResultQuizList data={props.resultData} />
