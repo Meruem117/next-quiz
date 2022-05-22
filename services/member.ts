@@ -12,6 +12,11 @@ export async function getUserListByTeamId(id: number): Promise<responseItem<memb
   return response.json()
 }
 
+export async function checkMembership(teamId: number, userId: number): Promise<responseItem<number>> {
+  const response = await fetch(baseUrl + `/member/check?teamId=${teamId}&userId=${userId}`)
+  return response.json()
+}
+
 export async function addMember(data: memberApplyItem): Promise<responseItem<number>> {
   const response = await fetch(baseUrl + '/member/add', {
     method: 'POST',
@@ -34,6 +39,11 @@ export async function deleteMember(data: deleteRequestItem): Promise<responseIte
   return response.json()
 }
 
+export async function handleCheck(teamId: number, userId: number): Promise<responseItem<number>> {
+  const response = await fetch(`/api/member/check?teamId=${teamId}&userId=${userId}`)
+  return response.json()
+}
+
 export async function handleApply(data: memberApplyItem): Promise<responseItem<number>> {
   const response = await fetch('/api/member/apply', {
     method: 'POST',
@@ -45,8 +55,8 @@ export async function handleApply(data: memberApplyItem): Promise<responseItem<n
   return response.json()
 }
 
-export async function handleDeleteMember(data: deleteRequestItem): Promise<responseItem<number>> {
-  const response = await fetch('/api/member/delete', {
+export async function handleQuit(data: deleteRequestItem): Promise<responseItem<number>> {
+  const response = await fetch('/api/member/quit', {
     method: 'POST',
     body: JSON.stringify(data),
     headers: {

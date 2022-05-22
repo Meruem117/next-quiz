@@ -5,7 +5,7 @@ import { CalendarOutlined } from '@ant-design/icons'
 import { cloneDeep } from 'lodash'
 import IconText from '@/components/common/icon-text'
 import type { memberItem } from '@/models/member'
-import { handleDeleteMember } from '@/services/member'
+import { handleQuit } from '@/services/member'
 import { convertUsername } from '@/utils'
 
 const MemberUserList: React.FC<{ data: memberItem[], isLeader: boolean }> = ({ data, isLeader }) => {
@@ -24,7 +24,7 @@ const MemberUserList: React.FC<{ data: memberItem[], isLeader: boolean }> = ({ d
   }
 
   const deleteMember = async (id: number, index: number): Promise<void> => {
-    const res = await handleDeleteMember({ id })
+    const res = await handleQuit({ id })
     if (res.data) {
       message.info('Delete successfully')
     } else {
