@@ -35,7 +35,7 @@ export async function deleteMember(data: deleteRequestItem): Promise<responseIte
 }
 
 export async function handleApply(data: memberApplyItem): Promise<responseItem<number>> {
-  const response = await fetch('/api/apply', {
+  const response = await fetch('/api/member/apply', {
     method: 'POST',
     body: JSON.stringify(data),
     headers: {
@@ -46,7 +46,7 @@ export async function handleApply(data: memberApplyItem): Promise<responseItem<n
 }
 
 export async function handleDeleteMember(data: deleteRequestItem): Promise<responseItem<number>> {
-  const response = await fetch('/api/delete/member', {
+  const response = await fetch('/api/member/delete', {
     method: 'POST',
     body: JSON.stringify(data),
     headers: {

@@ -35,7 +35,7 @@ export async function addUser(data: userRegisterItem): Promise<responseItem<numb
 }
 
 export async function handleLogin(data: userLoginItem): Promise<responseItem<userCheckItem>> {
-  const response = await fetch('/api/login', {
+  const response = await fetch('/api/user/login', {
     method: 'POST',
     body: JSON.stringify(data),
     headers: {
@@ -46,7 +46,7 @@ export async function handleLogin(data: userLoginItem): Promise<responseItem<use
 }
 
 export async function handleRegister(data: userRegisterItem): Promise<responseItem<number>> {
-  const response = await fetch('/api/register', {
+  const response = await fetch('/api/user/register', {
     method: 'POST',
     body: JSON.stringify(data),
     headers: {

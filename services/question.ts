@@ -34,7 +34,7 @@ export async function uploadQuestion(data: questionItem): Promise<responseItem<n
 }
 
 export async function handleUpload(data: questionItem): Promise<responseItem<number>> {
-  const response = await fetch('/api/upload', {
+  const response = await fetch('/api/question/upload', {
     method: 'POST',
     body: JSON.stringify(data),
     headers: {
