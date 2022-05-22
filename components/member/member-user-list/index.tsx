@@ -4,9 +4,14 @@ import { List, Avatar, Typography, Button } from 'antd'
 import { CalendarOutlined } from '@ant-design/icons'
 import IconText from '@/components/common/icon-text'
 import type { memberItem } from '@/models/member'
+import { handleDeleteMember } from '@/services/member'
 import { convertUsername } from '@/utils'
 
 const MemberUserList: React.FC<{ data: memberItem[], isLeader: boolean }> = ({ data, isLeader }) => {
+  const deleteMember = async (id: number): Promise<void> => {
+    console.log(id)
+  }
+
   return (
     <List
       itemLayout="horizontal"
@@ -19,7 +24,7 @@ const MemberUserList: React.FC<{ data: memberItem[], isLeader: boolean }> = ({ d
           className="p-2 rounded-md"
           actions={[
             <IconText key={item.id} icon={CalendarOutlined} text={item.joinTime} title={`Joined time: ${item.joinTime}`} />,
-            isLeader ? <Button key={item.id} type="link" danger>Delete</Button> : undefined
+            isLeader ? <Button key={item.id} type="link" danger onClick={() => deleteMember(item.id)}>Delete</Button> : undefined
           ]}
         >
           <List.Item.Meta
