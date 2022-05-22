@@ -32,3 +32,7 @@ export interface pageRequestItem {
   page: number,
   size: number
 }
+
+export interface deleteRequestItem {
+  id: number
+}
