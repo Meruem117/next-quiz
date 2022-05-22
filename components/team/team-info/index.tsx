@@ -1,5 +1,5 @@
-import React from 'react'
-import { Typography } from 'antd'
+import React, { useState } from 'react'
+import { Typography, Popconfirm } from 'antd'
 import { UserOutlined, CalendarOutlined } from '@ant-design/icons'
 import { useAppSelector } from '@/app/hooks'
 import { selectUser } from '@/features/user/userSlice'
@@ -9,6 +9,7 @@ import type { teamItem } from '@/models/team'
 
 const TeamInfo: React.FC<{ data: teamItem }> = ({ data }) => {
   const userState = useAppSelector(selectUser)
+  const [visible, setVisible] = useState<boolean>(false)
 
   const onApply = async (): Promise<void> => {
     console.log(11)
@@ -25,7 +26,14 @@ const TeamInfo: React.FC<{ data: teamItem }> = ({ data }) => {
         title={data.description}
       >{data.description}
       </Typography.Paragraph>
-      <Typography.Link onClick={onApply}>Apply for the team.</Typography.Link>
+      <Popconfirm
+        title='Are you sure to apply?'
+        visible={visible}
+        onConfirm={onApply}
+        onCancel={() => setVisible(false)}
+      >
+        <Typography.Link onClick={() => setVisible(true)}>Apply for the team.</Typography.Link>
+      </Popconfirm>
     </div>
   )
 }

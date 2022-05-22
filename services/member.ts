@@ -11,3 +11,25 @@ export async function getUserListByTeamId(id: number): Promise<responseItem<memb
   const response = await fetch(baseUrl + '/member/user?id=' + id)
   return response.json()
 }
+
+export async function addMember(data: memberItem): Promise<responseItem<number>> {
+  const response = await fetch(baseUrl + '/member/add', {
+    method: 'POST',
+    body: JSON.stringify(data),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+  return response.json()
+}
+
+export async function handleApply(data: memberItem): Promise<responseItem<number>> {
+  const response = await fetch('/api/apply', {
+    method: 'POST',
+    body: JSON.stringify(data),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+  return response.json()
+}
