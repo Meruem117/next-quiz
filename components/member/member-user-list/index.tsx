@@ -1,15 +1,36 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Link from 'next/link'
-import { List, Avatar, Typography, Button } from 'antd'
+import { List, Avatar, Typography, Button, Popconfirm, message } from 'antd'
 import { CalendarOutlined } from '@ant-design/icons'
+import { cloneDeep } from 'lodash'
 import IconText from '@/components/common/icon-text'
 import type { memberItem } from '@/models/member'
 import { handleDeleteMember } from '@/services/member'
 import { convertUsername } from '@/utils'
 
 const MemberUserList: React.FC<{ data: memberItem[], isLeader: boolean }> = ({ data, isLeader }) => {
-  const deleteMember = async (id: number): Promise<void> => {
-    console.log(id)
+  const [visible, setVisible] = useState<boolean[]>([])
+
+  const showPopconfirm = (index: number): void => {
+    const currentVisible = cloneDeep(visible)
+    currentVisible[index] = true
+    setVisible(currentVisible)
+  }
+
+  const closePopconfirm = (index: number): void => {
+    const currentVisible = cloneDeep(visible)
+    currentVisible[index] = false
+    setVisible(currentVisible)
+  }
+
+  const deleteMember = async (id: number, index: number): Promise<void> => {
+    const res = await handleDeleteMember({ id })
+    if (res.data) {
+      message.info('Delete successfully')
+    } else {
+      message.error('Fail to delete')
+    }
+    closePopconfirm(index)
   }
 
   return (
@@ -19,12 +40,21 @@ const MemberUserList: React.FC<{ data: memberItem[], isLeader: boolean }> = ({ d
       pagination={{
         pageSize: 6,
       }}
-      renderItem={item => (
+      renderItem={(item, index) => (
         <List.Item
           className="p-2 rounded-md"
           actions={[
             <IconText key={item.id} icon={CalendarOutlined} text={item.joinTime} title={`Joined time: ${item.joinTime}`} />,
-            isLeader ? <Button key={item.id} type="link" danger onClick={() => deleteMember(item.id)}>Delete</Button> : undefined
+            isLeader ?
+              <Popconfirm
+                title='Are you sure to delete?'
+                visible={visible[index]}
+                onConfirm={() => deleteMember(item.id, index)}
+                onCancel={() => closePopconfirm(index)}
+              >
+                <Button key={item.id} type="link" danger onClick={() => showPopconfirm(index)}>Delete</Button>
+              </Popconfirm>
+              : undefined
           ]}
         >
           <List.Item.Meta
