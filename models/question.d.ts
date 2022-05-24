@@ -4,6 +4,7 @@ export interface questionItem {
   up: string,
   upId: number,
   topic: string,
+  topicId: number,
   type: number,
   optionA: string,
   optionB: string,
