@@ -1,14 +1,14 @@
 import type { responseItem } from '@/models/base'
 import type { memberItem, memberApplyItem, memberQuitItem } from '@/models/member'
-import { baseUrl } from '@/constant'
+import { baseUrl, QUIT } from '@/constant'
 
-export async function getTeamListByUserId(id: number): Promise<responseItem<memberItem[]>> {
-  const response = await fetch(baseUrl + '/member/team?id=' + id)
+export async function getTeamListByUserId(id: number, pass: string, quit: number = QUIT.NOT_QUIT): Promise<responseItem<memberItem[]>> {
+  const response = await fetch(baseUrl + `/member/team?id=${id}&pass=${pass}&quit=${quit}`)
   return response.json()
 }
 
-export async function getUserListByTeamId(id: number): Promise<responseItem<memberItem[]>> {
-  const response = await fetch(baseUrl + '/member/user?id=' + id)
+export async function getUserListByTeamId(id: number, pass: string, quit: number = QUIT.NOT_QUIT): Promise<responseItem<memberItem[]>> {
+  const response = await fetch(baseUrl + `/member/user?id=${id}&pass=${pass}&quit=${quit}`)
   return response.json()
 }
 
