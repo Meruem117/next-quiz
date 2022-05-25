@@ -37,7 +37,7 @@ const MemberApplyList: React.FC<{ data: memberItem[] }> = ({ data }) => {
             <IconText key={item.id} icon={CalendarOutlined} text={item.joinTime} title={`Joined time: ${item.joinTime}`} />,
             <Popconfirm
               key={item.id}
-              title='Are you sure to delete?'
+              title='Are you sure to pass?'
               visible={visible[index]}
               // onConfirm={() => deleteMember(item.id, index)}
               onCancel={() => closePopconfirm(index)}

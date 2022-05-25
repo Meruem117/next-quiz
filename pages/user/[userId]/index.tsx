@@ -9,7 +9,7 @@ import { getUserList, getUserById } from '@/services/user'
 import { getTeamListByUserId } from '@/services/member'
 import { getResultListByParticipantId } from '@/services/result'
 import { getQuestionListByUpId } from '@/services/question'
-import { IS_TEAM } from '@/constant'
+import { IS_TEAM, PASS } from '@/constant'
 
 type propsType = {
   userData: userItem,
@@ -50,7 +50,7 @@ export async function getStaticPaths() {
 export async function getStaticProps(context: contextType) {
   const userId = context.params.userId
   const userRes = await getUserById(userId)
-  const memberRes = await getTeamListByUserId(userId)
+  const memberRes = await getTeamListByUserId(userId, PASS.PASS)
   const resultRes = await getResultListByParticipantId(userId, IS_TEAM.USER)
   const questionRes = await getQuestionListByUpId(userId)
 

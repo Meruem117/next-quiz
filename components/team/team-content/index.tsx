@@ -1,6 +1,6 @@
 import React from 'react'
 import { Tabs } from 'antd'
-import { TeamOutlined, SolutionOutlined } from '@ant-design/icons'
+import { TeamOutlined, SolutionOutlined, AuditOutlined } from '@ant-design/icons'
 import { useAppSelector } from '@/app/hooks'
 import { selectUser } from '@/features/user/userSlice'
 import MemberUserList from '@/components/member/member-user-list'
@@ -32,7 +32,7 @@ const TeamContent: React.FC<propsType> = (props) => {
       </Tabs.TabPane>
       {
         isLeader ? (
-          <Tabs.TabPane key="apply" tab={<IconTab icon={SolutionOutlined} text='Apply' />} >
+          <Tabs.TabPane key="apply" tab={<IconTab icon={AuditOutlined} text='Apply' />} >
             <MemberApplyList data={props.memberApplyList} />
           </Tabs.TabPane>
         ) : undefined
