@@ -2,7 +2,7 @@ import React from 'react'
 import Link from 'next/link'
 import { List, Tag, Typography } from 'antd'
 import type { questionItem } from '@/models/question'
-import { QUESTION_TEXT, PASS } from '@/constant'
+import { QUESTION_TEXT, PASS_TYPE } from '@/constant'
 
 const QuestionSimpleList: React.FC<{ data: questionItem[] }> = ({ data }) => {
   return (
@@ -20,7 +20,7 @@ const QuestionSimpleList: React.FC<{ data: questionItem[] }> = ({ data }) => {
               <Tag color="blue" key={item.id}>{item.topic}</Tag>,
               <Tag color="magenta" key={item.id}>{QUESTION_TEXT[item.type]}</Tag>,
               <div className="w-14 text-center" key={item.id}>
-                <Typography.Text type={PASS[item.pass].type}>{PASS[item.pass].name}</Typography.Text>
+                <Typography.Text type={PASS_TYPE[item.pass].type}>{PASS_TYPE[item.pass].name}</Typography.Text>
               </div>
             ]}
           >

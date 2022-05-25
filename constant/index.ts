@@ -18,6 +18,22 @@ export const GENDER_AVATAR_SRC = [
   'https://joeschmoe.io/api/v1/random'
 ]
 
+//* member
+export const PASS = {
+  PENDING: '0',
+  PASS: '1',
+  DENIED: '2'
+}
+export const PASS_TYPE: { [key: string]: { name: string, type: BaseType } } = {
+  '0': { name: 'Pending', type: 'secondary' },
+  '1': { name: 'Pass', type: 'success' },
+  '2': { name: 'Denied', type: 'danger' }
+}
+export const QUIT = {
+  QUIT: 1,
+  NOT_QUIT: 0
+}
+
 //* quiz
 export const IS_TEAM = {
   USER: 0,
@@ -53,11 +69,6 @@ export const QUESTION_SELECT: { name: string, value: number }[] = [
   { name: 'Single Choice', value: 1 },
   { name: 'Multiple Choice', value: 0 }
 ]
-export const PASS: { [key: string]: { name: string, type: BaseType } } = {
-  '0': { name: 'Pending', type: 'secondary' },
-  '1': { name: 'Pass', type: 'success' },
-  '2': { name: 'Denied', type: 'danger' }
-}
 
 //* result
 export const IS_TAKE = {
