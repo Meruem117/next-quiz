@@ -4,6 +4,7 @@ import { TeamOutlined, SolutionOutlined } from '@ant-design/icons'
 import { useAppSelector } from '@/app/hooks'
 import { selectUser } from '@/features/user/userSlice'
 import MemberUserList from '@/components/member/member-user-list'
+import MemberApplyList from '@/components/member/member-apply-list'
 import ResultQuizList from '@/components/result/result-quiz-list'
 import IconTab from '@/components/common/icon-tab'
 import type { teamItem } from '@/models/team'
@@ -13,6 +14,7 @@ import type { resultItem } from '@/models/result'
 type propsType = {
   teamData: teamItem,
   memberData: memberItem[],
+  memberApplyList: memberItem[],
   resultData: resultItem[]
 }
 
@@ -28,6 +30,13 @@ const TeamContent: React.FC<propsType> = (props) => {
       <Tabs.TabPane key="quiz" tab={<IconTab icon={SolutionOutlined} text='Quiz' />} >
         <ResultQuizList data={props.resultData} />
       </Tabs.TabPane>
+      {
+        isLeader ? (
+          <Tabs.TabPane key="apply" tab={<IconTab icon={SolutionOutlined} text='Apply' />} >
+            <MemberApplyList data={props.memberApplyList} />
+          </Tabs.TabPane>
+        ) : undefined
+      }
     </Tabs>
   )
 }

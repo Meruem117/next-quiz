@@ -7,11 +7,12 @@ import type { resultItem } from '@/models/result'
 import { getTeamList, getTeamById } from '@/services/team'
 import { getUserListByTeamId } from '@/services/member'
 import { getResultListByParticipantId } from '@/services/result'
-import { IS_TEAM } from '@/constant'
+import { IS_TEAM, PASS } from '@/constant'
 
 type propsType = {
   teamData: teamItem,
   memberList: memberItem[],
+  memberApplyList: memberItem[],
   resultList: resultItem[]
 }
 
@@ -28,7 +29,7 @@ const TeamDetailPage: NextPage<propsType> = (props) => {
         <TeamInfo data={props.teamData} />
       </div>
       <div className="w-1/3">
-        <TeamContent teamData={props.teamData} memberData={props.memberList} resultData={props.resultList} />
+        <TeamContent teamData={props.teamData} memberData={props.memberList} memberApplyList={props.memberApplyList} resultData={props.resultList} />
       </div>
     </div>
   )
@@ -51,13 +52,15 @@ export async function getStaticPaths() {
 export async function getStaticProps(context: contextType) {
   const teamId = context.params.teamId
   const teamRes = await getTeamById(teamId)
-  const memberRes = await getUserListByTeamId(teamId)
+  const memberRes = await getUserListByTeamId(teamId, PASS.PASS)
+  const memberApplyRes = await getUserListByTeamId(teamId, PASS.PENDING)
   const resultRes = await getResultListByParticipantId(teamId, IS_TEAM.TEAM)
 
   return {
     props: {
       teamData: teamRes.data,
       memberList: memberRes.data,
+      memberApplyList: memberApplyRes.data,
       resultList: resultRes.data
     },
     revalidate: 3600

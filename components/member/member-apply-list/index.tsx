@@ -8,7 +8,7 @@ import type { memberItem } from '@/models/member'
 import { handleQuit } from '@/services/member'
 import { convertUsername } from '@/utils'
 
-const MemberUserList: React.FC<{ data: memberItem[], isLeader: boolean }> = ({ data, isLeader }) => {
+const MemberApplyList: React.FC<{ data: memberItem[] }> = ({ data }) => {
   const [visible, setVisible] = useState<boolean[]>([])
 
   const showPopconfirm = (index: number): void => {
@@ -62,4 +62,4 @@ const MemberUserList: React.FC<{ data: memberItem[], isLeader: boolean }> = ({ d
   )
 }
 
-export default MemberUserList
+export default MemberApplyList
