@@ -1,7 +1,7 @@
 import type { getRequestItem } from '@/models/base'
 import { reviewResult } from '@/services/result'
 
-async function attendHandler(req: getRequestItem<{ scheduleId: number, participantId: number, isTeam: number }>, res: any) {
+async function reviewHandler(req: getRequestItem<{ scheduleId: number, participantId: number, isTeam: number }>, res: any) {
   if (req.method === 'GET') {
     const { scheduleId, participantId, isTeam } = req.query
     const response = await reviewResult(scheduleId, participantId, isTeam)
@@ -9,4 +9,4 @@ async function attendHandler(req: getRequestItem<{ scheduleId: number, participa
   }
 }
 
-export default attendHandler
+export default reviewHandler

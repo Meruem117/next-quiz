@@ -1,4 +1,4 @@
-import type { responseItem } from '@/models/base'
+import type { passRequestItem, responseItem } from '@/models/base'
 import type { memberItem, memberApplyItem, memberQuitItem } from '@/models/member'
 import { baseUrl, QUIT } from '@/constant'
 
@@ -39,6 +39,17 @@ export async function quitMember(data: memberQuitItem): Promise<responseItem<boo
   return response.json()
 }
 
+export async function passMember(data: passRequestItem) {
+  const response = await fetch(baseUrl + '/member/pass', {
+    method: 'POST',
+    body: JSON.stringify(data),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+  return response.json()
+}
+
 export async function handleCheck(teamId: number, userId: number): Promise<responseItem<number>> {
   const response = await fetch(`/api/member/check?teamId=${teamId}&userId=${userId}`)
   return response.json()
@@ -57,6 +68,17 @@ export async function handleApply(data: memberApplyItem): Promise<responseItem<n
 
 export async function handleQuit(data: memberQuitItem): Promise<responseItem<boolean>> {
   const response = await fetch('/api/member/quit', {
+    method: 'POST',
+    body: JSON.stringify(data),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+  return response.json()
+}
+
+export async function handlePass(data: passRequestItem): Promise<responseItem<boolean>> {
+  const response = await fetch('/api/member/pass', {
     method: 'POST',
     body: JSON.stringify(data),
     headers: {
