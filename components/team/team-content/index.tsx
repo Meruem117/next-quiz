@@ -4,7 +4,7 @@ import { TeamOutlined, SolutionOutlined, AuditOutlined } from '@ant-design/icons
 import { useAppSelector } from '@/app/hooks'
 import { selectUser } from '@/features/user/userSlice'
 import MemberUserList from '@/components/member/member-user-list'
-import MemberApplyList from '@/components/member/member-apply-list'
+import MemberApplyTable from '@/components/member/member-apply-table'
 import ResultQuizList from '@/components/result/result-quiz-list'
 import IconTab from '@/components/common/icon-tab'
 import type { teamItem } from '@/models/team'
@@ -33,7 +33,7 @@ const TeamContent: React.FC<propsType> = (props) => {
       {
         isLeader ? (
           <Tabs.TabPane key="apply" tab={<IconTab icon={AuditOutlined} text='Apply' />} >
-            <MemberApplyList data={props.memberApplyList} />
+            <MemberApplyTable data={props.memberApplyList} />
           </Tabs.TabPane>
         ) : undefined
       }

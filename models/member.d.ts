@@ -7,6 +7,7 @@ export interface memberItem {
   pass: string,
   quit: number,
   joinTime: string,
+  applyTime: string,
   createTime: string
 }
 

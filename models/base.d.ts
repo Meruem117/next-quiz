@@ -38,6 +38,6 @@ export interface deleteRequestItem {
 }
 
 export interface passRequestItem {
-  id: number,
+  ids: string,
   pass: string
 }
