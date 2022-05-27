@@ -1,16 +1,26 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Link from 'next/link'
 import { List, Avatar, Typography } from 'antd'
 import type { teamItem } from '@/models/team'
 
 const TeamList: React.FC<{ data: teamItem[] }> = ({ data }) => {
+  const [visible, setVisible] = useState<boolean>(false)
+
+  const showModal = (): void => {
+    setVisible(true)
+  }
+
+  const closeModal = (): void => {
+    setVisible(false)
+  }
+
   return (
     <List
       itemLayout="vertical"
       dataSource={data}
       className="base-box"
       pagination={{
-        pageSize: 6,
+        pageSize: 5,
       }}
       renderItem={item => (
         <Link href={`/team/${item.id}`} passHref>

@@ -1,9 +1,19 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Link from 'next/link'
 import { List, Card, Typography } from 'antd'
 import type { memberItem } from '@/models/member'
 
 const MemberTeamList: React.FC<{ data: memberItem[] }> = ({ data }) => {
+  const [visible, setVisible] = useState<boolean>(false)
+
+  const showModal = (): void => {
+    setVisible(true)
+  }
+
+  const closeModal = (): void => {
+    setVisible(false)
+  }
+
   return (
     <List
       grid={{
@@ -16,6 +26,9 @@ const MemberTeamList: React.FC<{ data: memberItem[] }> = ({ data }) => {
         xxl: 3,
       }}
       dataSource={data}
+      footer={
+        <Typography.Link onClick={showModal}>Create your team.</Typography.Link>
+      }
       renderItem={item => (
         <List.Item>
           <Link href={`/team/${item.teamId}`} passHref>
