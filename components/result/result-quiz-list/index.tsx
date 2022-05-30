@@ -27,16 +27,18 @@ const ResultQuizList: React.FC<{ data: resultItem[] }> = ({ data }) => {
           pageSize: 5,
         }}
         renderItem={item => (
-          <Link href={`/schedule/${item.scheduleId}`} passHref>
-            <List.Item className="p-2 cursor-pointer rounded-md hover:shadow-lg duration-150">
-              <Space size="middle">
-                <div className="text-xl font-semibold">{`${item.quizName} #${item.round}`}</div>
-                <Tag color={STATUS_TYPE[item.status].color}>{STATUS_TYPE[item.status].text}</Tag>
-                <Tag color="blue">{IS_TAKE_TEXT[item.isTake]}</Tag>
-                <Typography.Link>Cancel</Typography.Link>
-              </Space>
-            </List.Item>
-          </Link>
+          <div className="flex">
+            <Link href={`/schedule/${item.scheduleId}`} passHref>
+              <List.Item className="p-2 cursor-pointer rounded-md hover:shadow-lg duration-150">
+                <Space size="middle">
+                  <div className="text-xl font-semibold">{`${item.quizName} #${item.round}`}</div>
+                  <Tag color={STATUS_TYPE[item.status].color}>{STATUS_TYPE[item.status].text}</Tag>
+                  <Tag color="blue">{IS_TAKE_TEXT[item.isTake]}</Tag>
+                </Space>
+              </List.Item>
+            </Link>
+            <Typography.Link>Cancel</Typography.Link>
+          </div>
         )}
       />
     </div>
