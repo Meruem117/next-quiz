@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Modal, Form, Input, Select, Checkbox, Radio, message } from 'antd'
+import { Modal, Form, Row, Col, Input, Select, Checkbox, Radio, message } from 'antd'
 import type { CheckboxValueType } from 'antd/lib/checkbox/Group'
 import { useAppSelector } from '@/app/hooks'
 import { selectUser } from '@/features/user/userSlice'
@@ -52,24 +52,30 @@ const QuestionUploadModal: React.FC<{
         <Form.Item name="question" label="Question">
           <Input.TextArea autoSize={autoSize} placeholder="Input question" />
         </Form.Item>
-        <Form.Item name="topic" label="Topic">
-          <Select placeholder="Select a topic" defaultValue={topic}>
-            {
-              topicList.map(item => (
-                <Select.Option value={item.topic} key={item.topic}>{item.topic}</Select.Option>
-              ))
-            }
-          </Select>
-        </Form.Item>
-        <Form.Item name="type" label="Type">
-          <Select placeholder="Select a type" onSelect={(value: number) => setType(value)}>
-            {
-              QUESTION_SELECT.map(item => (
-                <Select.Option value={item.value} key={item.value}>{item.name}</Select.Option>
-              ))
-            }
-          </Select>
-        </Form.Item>
+        <Row gutter={8}>
+          <Col span={12}>
+            <Form.Item name="topic" label="Topic">
+              <Select placeholder="Select a topic" defaultValue={topic}>
+                {
+                  topicList.map(item => (
+                    <Select.Option value={item.topic} key={item.topic}>{item.topic}</Select.Option>
+                  ))
+                }
+              </Select>
+            </Form.Item>
+          </Col>
+          <Col span={12}>
+            <Form.Item name="type" label="Type">
+              <Select placeholder="Select a type" onSelect={(value: number) => setType(value)}>
+                {
+                  QUESTION_SELECT.map(item => (
+                    <Select.Option value={item.value} key={item.value}>{item.name}</Select.Option>
+                  ))
+                }
+              </Select>
+            </Form.Item>
+          </Col>
+        </Row>
         <Form.Item name="optionA" label="Option A">
           <Input.TextArea autoSize={autoSize} placeholder="Input option A" />
         </Form.Item>
