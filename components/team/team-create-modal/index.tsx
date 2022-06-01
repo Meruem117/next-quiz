@@ -4,20 +4,32 @@ import { useAppSelector } from '@/app/hooks'
 import { selectUser } from '@/features/user/userSlice'
 import type { teamItem } from '@/models/team'
 import { handleCreate } from '@/services/team'
+import { handleApply } from '@/services/member'
+import { PASS, QUIT } from '@/constant'
 
 const TeamCreateModal: React.FC<{ visible: boolean, closeModal: VoidFunction }> = ({ visible, closeModal }) => {
   const [form] = Form.useForm()
   const userState = useAppSelector(selectUser)
+  const userId = userState.id
+  const userName = userState.name
 
   const create = (): void => {
     form.validateFields().then(async (values: teamItem) => {
-      values.leader = userState.name
-      values.leaderId = userState.id
+      values.leader = userName
+      values.leaderId = userId
       const res = await handleCreate(values)
       if (res.data) {
+        handleApply({
+          teamId: res.data,
+          teamName: values.name,
+          userId,
+          userName,
+          pass: PASS.PASS,
+          quit: QUIT.NOT_QUIT
+        })
         closeModal()
         form.resetFields()
-        message.success('Create successfully')
+        message.success('Team create successfully')
       } else {
         message.error('Fail to create')
       }

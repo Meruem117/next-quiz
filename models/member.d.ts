@@ -16,6 +16,8 @@ export interface memberApplyItem {
   teamName: string,
   userId: number,
   userName: string,
+  pass?: string,
+  quit?: number
 }
 
 export interface memberQuitItem {
