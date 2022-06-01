@@ -6,7 +6,7 @@ import { useAppSelector } from '@/app/hooks'
 import { selectUser } from '@/features/user/userSlice'
 import type { scheduleItem } from '@/models/schedule'
 import type { teamItem } from '@/models/team'
-import { handleTeam } from '@/services/team'
+import { handleLeader } from '@/services/team'
 import { handleAttend, handleSign, handleReview } from '@/services/result'
 import { STATUS, IS_TEAM } from '@/constant'
 
@@ -20,7 +20,7 @@ const ScheduleContent: React.FC<{ schedule: scheduleItem }> = ({ schedule }) => 
   const [isTeam, setIsTeam] = useState<number>(IS_TEAM.USER)
 
   useEffect(() => {
-    handleTeam(userState.id).then(res => setTeamList(res.data))
+    handleLeader(userState.id).then(res => setTeamList(res.data))
   }, [userState])
 
   const onAttend = async (): Promise<void> => {

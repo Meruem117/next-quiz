@@ -28,8 +28,8 @@ export async function createTeam(data: teamItem): Promise<responseItem<number>> 
   return response.json()
 }
 
-export async function handleTeam(id: number): Promise<responseItem<teamItem[]>> {
-  const response = await fetch('/api/team/team?id=' + id)
+export async function handleLeader(id: number): Promise<responseItem<teamItem[]>> {
+  const response = await fetch('/api/team/leader?id=' + id)
   return response.json()
 }
 
