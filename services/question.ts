@@ -1,5 +1,5 @@
 import type { responseItem } from '@/models/base'
-import type { questionItem } from '@/models/question'
+import type { questionItem, disableItem } from '@/models/question'
 import { baseUrl } from '@/constant'
 
 export async function getQuestionById(id: number): Promise<responseItem<questionItem>> {
@@ -33,8 +33,30 @@ export async function uploadQuestion(data: questionItem): Promise<responseItem<n
   return response.json()
 }
 
+export async function disableQuestion(data: disableItem): Promise<responseItem<boolean>> {
+  const response = await fetch(baseUrl + '/question/disable', {
+    method: 'POST',
+    body: JSON.stringify(data),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+  return response.json()
+}
+
 export async function handleUpload(data: questionItem): Promise<responseItem<number>> {
   const response = await fetch('/api/question/upload', {
+    method: 'POST',
+    body: JSON.stringify(data),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+  return response.json()
+}
+
+export async function handleDisable(data: disableItem): Promise<responseItem<boolean>> {
+  const response = await fetch('/api/question/disable', {
     method: 'POST',
     body: JSON.stringify(data),
     headers: {

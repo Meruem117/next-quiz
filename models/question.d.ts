@@ -15,3 +15,7 @@ export interface questionItem {
   createTime: string,
   updateTime: string
 }
+
+export interface disableItem {
+  ids: string
+}

@@ -48,19 +48,19 @@ const QuestionTable: React.FC<{ data: questionItem[], list: topicItem[] }> = ({ 
   return (
     <Fragment>
       <div className="flex flex-col space-y-3">
-        <Table rowKey="id" rowSelection={rowSelection} columns={columns} dataSource={data} />
+        <Table rowKey="id" rowSelection={rowSelection} columns={columns} dataSource={data} pagination={{ pageSize: 5 }} />
         <div className="flex space-x-3">
           <Button type="primary" onClick={() => setModalVisible(true)}>
             Add
           </Button>
           <Popconfirm
-            title='Are you sure to delete?'
+            title='Are you sure to disable?'
             visible={visible}
             onConfirm={deleteQuestions}
             onCancel={() => setVisible(false)}
           >
             <Button type="primary" danger onClick={() => setVisible(true)} disabled={!hasSelected} loading={loading}>
-              Delete
+              Disable
             </Button>
           </Popconfirm>
           <span>
