@@ -1,11 +1,12 @@
 import React, { useState, Fragment } from 'react'
 import Link from 'next/link'
-import { Table, Button, Popconfirm, message } from 'antd'
+import { Table, Tag, Button, Popconfirm, message } from 'antd'
 import type { ColumnsType } from 'antd/lib/table'
 import QuestionUploadModal from '../question-upload-modal'
 import type { questionItem } from '@/models/question'
 import type { topicItem } from '@/models/topic'
-import { } from '@/services/question'
+import { handleDisable } from '@/services/question'
+import { QUESTION_TEXT } from '@/constant'
 
 const QuestionTable: React.FC<{ data: questionItem[], list: topicItem[] }> = ({ data, list }) => {
   const [visible, setVisible] = useState<boolean>(false)
@@ -30,18 +31,30 @@ const QuestionTable: React.FC<{ data: questionItem[], list: topicItem[] }> = ({ 
         </Link>
       )
     },
-    { title: 'Apply Time', dataIndex: 'applyTime' }
+    {
+      title: 'Topic', dataIndex: 'topic',
+      render: (text: string, record: questionItem, index: number) => (
+        <Tag color="blue">{text}</Tag>
+      )
+    },
+    {
+      title: 'Type', dataIndex: 'type',
+      render: (text: number, record: questionItem, index: number) => (
+        <Tag color="magenta">{QUESTION_TEXT[text]}</Tag>
+      )
+    },
+    { title: 'Last Update', dataIndex: 'updateTime' }
   ]
 
   const deleteQuestions = async (): Promise<void> => {
     const ids = selectedRowKeys.join(',')
     setLoading(true)
-    // const res = await handlePass({ ids, pass })
-    // if (res.data) {
-    //   message.info('Delete successfully')
-    // } else {
-    //   message.error('Fail to delete')
-    // }
+    const res = await handleDisable({ ids })
+    if (res.data) {
+      message.info('Disable successfully')
+    } else {
+      message.error('Fail to disable')
+    }
     setLoading(false)
   }
 
