@@ -9,7 +9,7 @@ import { handleUpload } from '@/services/question'
 import { QUESTION, QUESTION_SELECT } from '@/constant'
 
 const QuestionUploadModal: React.FC<{
-  topic: string, topicList: topicItem[], visible: boolean, closeModal: VoidFunction
+  topic?: string, topicList: topicItem[], visible: boolean, closeModal: VoidFunction
 }> = ({ topic, topicList, visible, closeModal }) => {
   const [form] = Form.useForm()
   const userState = useAppSelector(selectUser)

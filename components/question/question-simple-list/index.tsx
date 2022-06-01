@@ -1,10 +1,12 @@
 import React, { useState, Fragment } from 'react'
 import Link from 'next/link'
 import { List, Tag, Typography } from 'antd'
+import QuestionUploadModal from '../question-upload-modal'
 import type { questionItem } from '@/models/question'
+import type { topicItem } from '@/models/topic'
 import { QUESTION_TEXT, PASS_TYPE } from '@/constant'
 
-const QuestionSimpleList: React.FC<{ data: questionItem[] }> = ({ data }) => {
+const QuestionSimpleList: React.FC<{ data: questionItem[], list: topicItem[] }> = ({ data, list }) => {
   const [visible, setVisible] = useState<boolean>(false)
 
   const showModal = (): void => {
@@ -45,6 +47,7 @@ const QuestionSimpleList: React.FC<{ data: questionItem[] }> = ({ data }) => {
           </Link>
         )}
       />
+      <QuestionUploadModal visible={visible} closeModal={closeModal} topicList={list} />
     </Fragment>
   )
 }
