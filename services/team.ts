@@ -17,7 +17,29 @@ export async function getTeamListByLeaderId(id: number): Promise<responseItem<te
   return response.json()
 }
 
+export async function createTeam(data: teamItem): Promise<responseItem<number>> {
+  const response = await fetch(baseUrl + '/team/add', {
+    method: 'POST',
+    body: JSON.stringify(data),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+  return response.json()
+}
+
 export async function handleTeam(id: number): Promise<responseItem<teamItem[]>> {
   const response = await fetch('/api/team/team?id=' + id)
+  return response.json()
+}
+
+export async function handleCreate(data: teamItem): Promise<responseItem<number>> {
+  const response = await fetch('/api/team/create', {
+    method: 'POST',
+    body: JSON.stringify(data),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
   return response.json()
 }
