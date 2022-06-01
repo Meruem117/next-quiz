@@ -72,7 +72,7 @@ const MemberApplyTable: React.FC<{ data: memberItem[] }> = ({ data }) => {
           </Button>
         </Popconfirm>
         <span>
-          {hasSelected ? `Selected ${selectedRowKeys.length} users` : ''}
+          {hasSelected ? `Selected ${selectedRowKeys.length} user(s)` : ''}
         </span>
       </div>
       <Table rowKey="id" rowSelection={rowSelection} columns={columns} dataSource={data} />
