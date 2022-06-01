@@ -62,7 +62,7 @@ const TeamInfo: React.FC<{ data: teamItem }> = ({ data }) => {
     let text = ''
     let operation = undefined
     if (memberId > 0) {
-      if (memberId === data.leaderId) {
+      if (userState.id === data.leaderId) {
         title = 'dismiss'
         text = 'Dismiss the team.'
         operation = onDismiss
