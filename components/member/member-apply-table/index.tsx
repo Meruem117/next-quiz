@@ -12,6 +12,13 @@ const MemberApplyTable: React.FC<{ data: memberItem[] }> = ({ data }) => {
   const [passLoading, setPassLoading] = useState<boolean>(false)
   const [denyLoading, setDenyLoading] = useState<boolean>(false)
   const [selectedRowKeys, setSelectedRowKeys] = useState<React.Key[]>([])
+  const hasSelected = selectedRowKeys.length > 0
+  const rowSelection = {
+    selectedRowKeys,
+    onChange: (newSelectedRowKeys: React.Key[]): void => {
+      setSelectedRowKeys(newSelectedRowKeys)
+    }
+  }
   const columns: ColumnsType<memberItem> = [
     {
       title: 'Name', dataIndex: 'userName',
@@ -25,14 +32,6 @@ const MemberApplyTable: React.FC<{ data: memberItem[] }> = ({ data }) => {
     },
     { title: 'Apply Time', dataIndex: 'applyTime' }
   ]
-  const onSelectChange = (newSelectedRowKeys: React.Key[]): void => {
-    setSelectedRowKeys(newSelectedRowKeys)
-  }
-  const rowSelection = {
-    selectedRowKeys,
-    onChange: onSelectChange
-  }
-  const hasSelected = selectedRowKeys.length > 0
 
   const checkMembership = async (pass: string): Promise<void> => {
     const ids = selectedRowKeys.join(',')

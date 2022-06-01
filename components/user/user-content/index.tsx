@@ -4,6 +4,7 @@ import { TeamOutlined, SolutionOutlined, BookOutlined } from '@ant-design/icons'
 import MemberTeamList from '@/components/member/member-team-list'
 import ResultQuizList from '@/components/result/result-quiz-list'
 import QuestionSimpleList from '@/components/question/question-simple-list'
+import QuestionTable from '@/components/question/question-table'
 import IconTab from '@/components/common/icon-tab'
 import type { memberItem } from '@/models/member'
 import type { resultItem } from '@/models/result'
@@ -27,7 +28,8 @@ const UserContent: React.FC<propsType> = (props) => {
         <ResultQuizList data={props.resultList} />
       </Tabs.TabPane>
       <Tabs.TabPane key="question" tab={<IconTab icon={BookOutlined} text='Question' />} >
-        <QuestionSimpleList data={props.questionList} list={props.topicList} />
+        {/* <QuestionSimpleList data={props.questionList} list={props.topicList} /> */}
+        <QuestionTable data={props.questionList} list={props.topicList} />
       </Tabs.TabPane>
     </Tabs>
   )
