@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, ReactElement } from 'react'
 import { Typography, Popconfirm, message } from 'antd'
 import { UserOutlined, CalendarOutlined } from '@ant-design/icons'
 import { useAppSelector } from '@/app/hooks'
@@ -44,6 +44,36 @@ const TeamInfo: React.FC<{ data: teamItem }> = ({ data }) => {
     setVisible(false)
   }
 
+  const TeamOperation = (): ReactElement => {
+    let title = ''
+    let text = ''
+    let operation = undefined
+    if (memberId > 0) {
+      if (memberId === data.leaderId) {
+        title = 'dismiss'
+        text = 'Dismiss the team.'
+      } else {
+        title = 'quit'
+        text = 'Quit the team.'
+        operation = onQuit
+      }
+    } else {
+      title = 'apply'
+      text = 'Apply for the team.'
+      operation = onApply
+    }
+    return (
+      <Popconfirm
+        title={`Are you sure to ${title}?`}
+        visible={visible}
+        onConfirm={operation}
+        onCancel={() => setVisible(false)}
+      >
+        <Typography.Link onClick={() => setVisible(true)}>{text}</Typography.Link>
+      </Popconfirm>
+    )
+  }
+
   return (
     <div className="base-info">
       <Typography.Title level={3}>{data.name}</Typography.Title>
@@ -55,27 +85,7 @@ const TeamInfo: React.FC<{ data: teamItem }> = ({ data }) => {
         title={data.description}
       >{data.description}
       </Typography.Paragraph>
-      {
-        memberId > 0 ? (
-          <Popconfirm
-            title='Are you sure to quit?'
-            visible={visible}
-            onConfirm={onQuit}
-            onCancel={() => setVisible(false)}
-          >
-            <Typography.Link onClick={() => setVisible(true)}>Quit the team.</Typography.Link>
-          </Popconfirm>
-        ) : (
-          <Popconfirm
-            title='Are you sure to apply?'
-            visible={visible}
-            onConfirm={onApply}
-            onCancel={() => setVisible(false)}
-          >
-            <Typography.Link onClick={() => setVisible(true)}>Apply for the team.</Typography.Link>
-          </Popconfirm>
-        )
-      }
+      <TeamOperation />
     </div>
   )
 }
