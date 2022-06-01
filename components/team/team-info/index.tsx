@@ -6,7 +6,8 @@ import { selectUser } from '@/features/user/userSlice'
 import IconText from '@/components/common/icon-text'
 import IconLink from '@/components/common/icon-link'
 import type { teamItem } from '@/models/team'
-import { handleCheck, handleApply, handleQuit } from '@/services/member'
+import { handleDelete } from '@/services/team'
+import { handleCheck, handleApply, handleQuit, handleDismiss } from '@/services/member'
 
 const TeamInfo: React.FC<{ data: teamItem }> = ({ data }) => {
   const userState = useAppSelector(selectUser)
@@ -44,6 +45,18 @@ const TeamInfo: React.FC<{ data: teamItem }> = ({ data }) => {
     setVisible(false)
   }
 
+  const onDismiss = async (): Promise<void> => {
+    const req = { id: data.id }
+    const memberRes = await handleDismiss(req)
+    const teamRes = await handleDelete(req)
+    if (memberRes.data && teamRes.data) {
+      message.info('Dismiss successfully')
+    } else {
+      message.warn('Fail to dismiss')
+    }
+    setVisible(false)
+  }
+
   const TeamOperation = (): ReactElement => {
     let title = ''
     let text = ''
@@ -52,6 +65,7 @@ const TeamInfo: React.FC<{ data: teamItem }> = ({ data }) => {
       if (memberId === data.leaderId) {
         title = 'dismiss'
         text = 'Dismiss the team.'
+        operation = onDismiss
       } else {
         title = 'quit'
         text = 'Quit the team.'
