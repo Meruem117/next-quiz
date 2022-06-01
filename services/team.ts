@@ -1,4 +1,4 @@
-import type { responseItem } from '@/models/base'
+import type { deleteRequestItem, responseItem } from '@/models/base'
 import type { teamItem } from '@/models/team'
 import { baseUrl } from '@/constant'
 
@@ -28,6 +28,17 @@ export async function createTeam(data: teamItem): Promise<responseItem<number>> 
   return response.json()
 }
 
+export async function deleteTeam(data: deleteRequestItem): Promise<responseItem<boolean>> {
+  const response = await fetch(baseUrl + '/team/delete', {
+    method: 'POST',
+    body: JSON.stringify(data),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+  return response.json()
+}
+
 export async function handleLeader(id: number): Promise<responseItem<teamItem[]>> {
   const response = await fetch('/api/team/leader?id=' + id)
   return response.json()
@@ -35,6 +46,17 @@ export async function handleLeader(id: number): Promise<responseItem<teamItem[]>
 
 export async function handleCreate(data: teamItem): Promise<responseItem<number>> {
   const response = await fetch('/api/team/create', {
+    method: 'POST',
+    body: JSON.stringify(data),
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+  return response.json()
+}
+
+export async function handleDelete(data: deleteRequestItem): Promise<responseItem<boolean>> {
+  const response = await fetch('/api/team/delete', {
     method: 'POST',
     body: JSON.stringify(data),
     headers: {
