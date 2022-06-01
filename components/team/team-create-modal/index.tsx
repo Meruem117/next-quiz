@@ -3,7 +3,7 @@ import { Modal, Form, Input, message } from 'antd'
 import { useAppSelector } from '@/app/hooks'
 import { selectUser } from '@/features/user/userSlice'
 import type { teamItem } from '@/models/team'
-import { } from '@/services/team'
+import { handleCreate } from '@/services/team'
 
 const TeamCreateModal: React.FC<{ visible: boolean, closeModal: VoidFunction }> = ({ visible, closeModal }) => {
   const [form] = Form.useForm()
@@ -13,15 +13,14 @@ const TeamCreateModal: React.FC<{ visible: boolean, closeModal: VoidFunction }> 
     form.validateFields().then(async (values: teamItem) => {
       values.leader = userState.name
       values.leaderId = userState.id
-      console.log(values)
-      // const res = await handleUpload(values)
-      // if (res.data) {
-      //   closeModal()
-      //   form.resetFields()
-      //   message.success('Create successfully')
-      // } else {
-      //   message.error('Fail to create')
-      // }
+      const res = await handleCreate(values)
+      if (res.data) {
+        closeModal()
+        form.resetFields()
+        message.success('Create successfully')
+      } else {
+        message.error('Fail to create')
+      }
     })
   }
 
